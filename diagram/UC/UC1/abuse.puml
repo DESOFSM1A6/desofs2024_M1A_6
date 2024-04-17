@@ -1,0 +1,20 @@
+@startuml UC1
+left to right direction
+
+actor Jornalista as "Jornalista"
+actor MaliciousUser as "MauJornalista"
+database SistemaA as "Sistema"
+
+usecase "Escrever Noticia" as UC1
+usecase "Visualizar Noticias que escreveu" as UC2
+Jornalista -> UC1
+Jornalista --> UC2
+
+usecase "Visualizar Noticias que não escreveu e não foram publicadas" as UC3
+MaliciousUser --> UC3
+UC3 --> UC2: <<Threats>>
+usecase "Impedir visualização de noticias não publicadas caso não seja o editor" as UC4
+SistemaA --> UC4
+UC4 --> UC3: <<Mitigates>>
+
+@enduml
