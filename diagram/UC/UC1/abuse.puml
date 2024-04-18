@@ -2,7 +2,7 @@
 left to right direction
 
 actor Jornalista as "Jornalista"
-actor MaliciousUser as "MauJornalista"
+actor MaliciousUser as "Jornalista Malicioso"
 database SistemaA as "Sistema"
 
 usecase "Escrever Noticia" as UC1

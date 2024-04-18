@@ -1,0 +1,38 @@
+@startuml UCLogin
+left to right direction
+
+actor User as "User"
+actor Jornalista as "Jornalista"
+actor Editor as "Editor"
+actor Administrador as "Administrador"
+actor LeitorRegistado as "Leitor Registado"
+
+actor Malicioso as "User Malicioso"
+
+
+database SistemaA as "Sistema"
+
+Editor --|> User : Extends
+Jornalista -|> User : Extends
+Administrador --|> User : Extends
+LeitorRegistado --|> User : Extends
+
+usecase Login as "Login"
+usecase Registar as "Registar"
+
+User --> Login
+User --> Registar
+
+usecase TryLogin as "Tenta fazer login como um outro tipo de utilizador"
+
+TryLogin -> Login: <<Threats>>
+Registar <-- TryLogin : <<Threats>>
+
+
+TryLogin <--  Malicioso
+
+
+
+
+
+@enduml
