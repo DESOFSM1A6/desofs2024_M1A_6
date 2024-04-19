@@ -1,0 +1,22 @@
+@startuml usecase diagram
+left to right direction
+
+actor "Leitor Registado" as RegisteredReader
+actor "Leitor Registado Malicioso" as MaliciousReader
+database "Sistem" as System
+
+usecase "Comentar Notícia" as CommentNews
+usecase "Adicionar um grande número de comentários para causar um denial of service" as AddManyComments
+usecase "Obriga a um treashold de comentários" as ThresholdComments
+usecase "Limita o número de comentários por minuto" as LimitComments
+RegisteredReader --> CommentNews
+MaliciousReader --> AddManyComments
+
+AddManyComments --> CommentNews : <<threatens>>
+ThresholdComments -->  AddManyComments : <<mitigates>>
+LimitComments -->  AddManyComments : <<mitigates>>
+System --> ThresholdComments
+System --> LimitComments
+
+
+@enduml

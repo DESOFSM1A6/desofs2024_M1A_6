@@ -1,0 +1,19 @@
+@startuml
+
+left to right direction
+
+actor LeitorRegistado as LR
+actor LeitorMalicioso as LM
+database Sistema as S
+usecase "Ler Notícias disponiveis" as LN
+
+usecase "Ler Noticias indisponiveis tentando adivinhar o URL" as LI
+usecase "Impossibilita a leitura de noticias que não estejam em estado de publicação" as IP
+LM --> LI
+LI --> LN : <<Threats>>
+LR --> LN
+
+S  --> IP
+IP --> LI : <<Mitigates>>
+
+@enduml
