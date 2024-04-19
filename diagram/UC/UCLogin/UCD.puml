@@ -10,7 +10,7 @@ actor LeitorRegistado as "Leitor Registado"
 actor Malicioso as "User Malicioso"
 
 
-database SistemaA as "Sistema"
+database Sistema as "Sistema"
 
 Editor --|> User : Extends
 Jornalista -|> User : Extends
@@ -29,8 +29,12 @@ TryLogin -> Login: <<Threats>>
 Registar <-- TryLogin : <<Threats>>
 
 
+usecase "Não permite tentativas com menos de 1 minuto de intervalo" as Tentativas
 TryLogin <--  Malicioso
 
+Sistema --> Tentativas
+
+Tentativas --> TryLogin : <<Mitigates>>
 
 
 
