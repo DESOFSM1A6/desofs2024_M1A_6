@@ -1570,8 +1570,8 @@
             },
             "visible": true,
             "shape": "actor",
-            "id": "550c9175-0a67-410d-9af0-bc9125d24698",
             "zIndex": 1,
+            "id": "550c9175-0a67-410d-9af0-bc9125d24698",
             "data": {
               "type": "tm.Actor",
               "name": "Jornalista ",
@@ -2043,8 +2043,8 @@
             },
             "visible": true,
             "shape": "process",
-            "id": "7960b9d8-dffc-467e-be55-72fae9a0c6ec",
             "zIndex": 12,
+            "id": "7960b9d8-dffc-467e-be55-72fae9a0c6ec",
             "data": {
               "type": "tm.Process",
               "name": "Processo de\n Publicação",
@@ -2083,8 +2083,8 @@
             },
             "visible": true,
             "shape": "store",
-            "id": "7c5fd97f-c8d7-452b-8b89-38941e40fb8a",
             "zIndex": 13,
+            "id": "7c5fd97f-c8d7-452b-8b89-38941e40fb8a",
             "data": {
               "type": "tm.Store",
               "name": "Base de Dados\n",
@@ -2116,8 +2116,8 @@
             },
             "visible": true,
             "shape": "td-text-block",
-            "id": "11ef77e4-4d43-4811-abec-57cf593900a5",
             "zIndex": 14,
+            "id": "11ef77e4-4d43-4811-abec-57cf593900a5",
             "data": {
               "type": "tm.Text",
               "name": "Noticia\n",
@@ -2140,8 +2140,8 @@
             },
             "visible": true,
             "shape": "td-text-block",
-            "id": "f9e542f3-3dfa-443f-9744-9addbd7a65d3",
             "zIndex": 15,
+            "id": "f9e542f3-3dfa-443f-9744-9addbd7a65d3",
             "data": {
               "type": "tm.Text",
               "name": "Dados da noticia\n",
@@ -2159,7 +2159,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Processo de \nReview"
+                "text": "Processo de \nRevisão"
               },
               "body": {
                 "stroke": "#333333",
@@ -2169,11 +2169,11 @@
             },
             "visible": true,
             "shape": "process",
-            "id": "70ee2a2b-3e51-472a-a168-60895b270864",
             "zIndex": 17,
+            "id": "70ee2a2b-3e51-472a-a168-60895b270864",
             "data": {
               "type": "tm.Process",
-              "name": "Processo de \nReview",
+              "name": "Processo de \nRevisão",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -2206,8 +2206,8 @@
             },
             "visible": true,
             "shape": "actor",
-            "id": "6a5064a0-e00e-443d-8b2f-5daa50e80a6e",
             "zIndex": 18,
+            "id": "6a5064a0-e00e-443d-8b2f-5daa50e80a6e",
             "data": {
               "type": "tm.Actor",
               "name": "Editor",
@@ -2235,8 +2235,8 @@
             },
             "visible": true,
             "shape": "td-text-block",
-            "id": "2a607a33-62af-4245-961b-4115daf9f12c",
             "zIndex": 19,
+            "id": "2a607a33-62af-4245-961b-4115daf9f12c",
             "data": {
               "type": "tm.Text",
               "name": "Revisão",
@@ -2259,8 +2259,8 @@
             },
             "visible": true,
             "shape": "td-text-block",
-            "id": "47f16315-300a-4f7b-8cf9-7254c81f065e",
             "zIndex": 20,
+            "id": "47f16315-300a-4f7b-8cf9-7254c81f065e",
             "data": {
               "type": "tm.Text",
               "name": "Estado da noticia",
@@ -2283,8 +2283,8 @@
             },
             "visible": true,
             "shape": "td-text-block",
-            "id": "486bd406-e9ec-418f-af2d-d5154b9f6365",
             "zIndex": 21,
+            "id": "486bd406-e9ec-418f-af2d-d5154b9f6365",
             "data": {
               "type": "tm.Text",
               "name": "Dados da Noticia\n",
@@ -2307,8 +2307,8 @@
             },
             "visible": true,
             "shape": "td-text-block",
-            "id": "8aafeeab-77be-4b05-88c3-67a07cf94b65",
             "zIndex": 22,
+            "id": "8aafeeab-77be-4b05-88c3-67a07cf94b65",
             "data": {
               "type": "tm.Text",
               "name": "Noticia\n",
@@ -2331,8 +2331,8 @@
             },
             "visible": true,
             "shape": "td-text-block",
-            "id": "a50deb03-ad82-41ab-b518-2d3ed9053db4",
             "zIndex": 23,
+            "id": "a50deb03-ad82-41ab-b518-2d3ed9053db4",
             "data": {
               "type": "tm.Text",
               "name": "",
@@ -2355,8 +2355,8 @@
             },
             "visible": true,
             "shape": "td-text-block",
-            "id": "41e42bea-e3aa-414d-9e6f-508e4be7da36",
             "zIndex": 24,
+            "id": "41e42bea-e3aa-414d-9e6f-508e4be7da36",
             "data": {
               "type": "tm.Text",
               "name": "Notificação\n",
@@ -2379,8 +2379,8 @@
             },
             "visible": true,
             "shape": "td-text-block",
-            "id": "9ea50204-71d1-4c78-b47e-2cdc0958d35c",
             "zIndex": 25,
+            "id": "9ea50204-71d1-4c78-b47e-2cdc0958d35c",
             "data": {
               "type": "tm.Text",
               "name": "Estado da noticia\n",
@@ -2388,9 +2388,522 @@
             }
           }
         ]
+      },
+      {
+        "id": 5,
+        "title": "Review_news",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [
+          {
+            "position": {
+              "x": 60,
+              "y": 220
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Editor"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "5b9f4f81-5534-46b6-8725-b88b3d897d04",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Editor",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "c6d9e4c8-0e1e-47d8-a341-45d7ddb2662d",
+            "source": {
+              "x": 150,
+              "y": 100
+            },
+            "target": {
+              "x": 150,
+              "y": 380
+            },
+            "vertices": [
+              {
+                "x": 200,
+                "y": 250
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "59e4e547-9c1b-4966-8669-beb81602efab",
+            "source": {
+              "x": 200,
+              "y": 260
+            },
+            "target": {
+              "cell": "0b9910d2-e0a7-4a86-bdbc-06e37cf063f2"
+            },
+            "vertices": [
+              {
+                "x": 280,
+                "y": 290
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "a833e491-d2a5-4369-9260-5add691aaaea",
+            "source": {
+              "x": 640,
+              "y": 140
+            },
+            "target": {
+              "x": 640,
+              "y": 350
+            },
+            "vertices": [
+              {
+                "x": 620,
+                "y": 230
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "b8d23b63-f20c-46ce-9332-5b1f60ede74b",
+            "source": {
+              "x": 610,
+              "y": 170
+            },
+            "target": {
+              "x": 200,
+              "y": 200
+            },
+            "vertices": [
+              {
+                "x": 490,
+                "y": 140
+              },
+              {
+                "x": 320,
+                "y": 140
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "fdfd9591-38c2-44e7-bb26-bac23a98d5c2",
+            "source": {
+              "x": 610,
+              "y": 250
+            },
+            "target": {
+              "cell": "0b9910d2-e0a7-4a86-bdbc-06e37cf063f2"
+            },
+            "vertices": [
+              {
+                "x": 540,
+                "y": 230
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "53262597-8cfb-418d-b273-b18c31b5c8ec",
+            "source": {
+              "cell": "0b9910d2-e0a7-4a86-bdbc-06e37cf063f2"
+            },
+            "target": {
+              "x": 610,
+              "y": 270
+            },
+            "vertices": [
+              {
+                "x": 550,
+                "y": 310
+              }
+            ]
+          },
+          {
+            "position": {
+              "x": 320,
+              "y": 200
+            },
+            "size": {
+              "width": 160,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Processo \nde Revisão "
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "0b9910d2-e0a7-4a86-bdbc-06e37cf063f2",
+            "zIndex": 11,
+            "data": {
+              "type": "tm.Process",
+              "name": "Processo \nde Revisão ",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 207.5,
+              "y": 280
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Noticia"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "f83f3772-035a-4e66-b160-027b2270f0a4",
+            "zIndex": 13,
+            "data": {
+              "type": "tm.Text",
+              "name": "Noticia",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 641,
+              "y": 205
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Base de Dados"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "cf565b01-12ed-46a9-997b-7a294dec11b7",
+            "zIndex": 14,
+            "data": {
+              "type": "tm.Store",
+              "name": "Base de Dados",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 353.75,
+              "y": 90
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Noticia"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "dbadf639-d683-475d-ba71-b8a50f6f9ac4",
+            "zIndex": 15,
+            "data": {
+              "type": "tm.Text",
+              "name": "Noticia",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 490,
+              "y": 300
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Feedback de revisão\nda noticia"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "be01a851-bca5-4b43-b08b-e5f35a289be7",
+            "zIndex": 16,
+            "data": {
+              "type": "tm.Text",
+              "name": "Feedback de revisão\nda noticia",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 480,
+              "y": 190
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Informações adicionais"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "08cf6ad1-1ba4-403b-8f83-6d0d7833383d",
+            "zIndex": 17,
+            "data": {
+              "type": "tm.Text",
+              "name": "Informações adicionais",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 80,
+              "y": 40
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Limite utilizador / \nweb app"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "d27e75df-540b-4322-9ceb-200c1326ab3d",
+            "zIndex": 18,
+            "data": {
+              "type": "tm.Text",
+              "name": "Limite utilizador / \nweb app",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 644.75,
+              "y": 360
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Limite App /\n Base de dados"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "491cb7a1-59c2-4b6b-9f8f-fee2b82a47f8",
+            "zIndex": 19,
+            "data": {
+              "type": "tm.Text",
+              "name": "Limite App /\n Base de dados",
+              "hasOpenThreats": false
+            }
+          }
+        ]
       }
     ],
-    "diagramTop": 5,
+    "diagramTop": 6,
     "reviewer": "",
     "threatTop": 0
   }
