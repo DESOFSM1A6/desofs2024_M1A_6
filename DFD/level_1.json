@@ -1401,7 +1401,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Leitor Registado"
+                "text": "Utilizador \nRegistado"
               },
               "body": {
                 "stroke": "#333333",
@@ -1415,7 +1415,7 @@
             "id": "f0911993-ed48-4de8-aade-186c9d6efba1",
             "data": {
               "type": "tm.Actor",
-              "name": "Leitor Registado",
+              "name": "Utilizador \nRegistado",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -1771,6 +1771,35 @@
             ]
           },
           {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "0b4101bb-735d-43ea-9ee7-5399f3e0a765",
+            "source": {
+              "x": 710,
+              "y": 140
+            },
+            "target": {
+              "x": 730,
+              "y": 370
+            },
+            "vertices": [
+              {
+                "x": 690,
+                "y": 250
+              }
+            ]
+          },
+          {
             "position": {
               "x": 49.9999999999999,
               "y": 227
@@ -1983,7 +2012,7 @@
           },
           {
             "position": {
-              "x": 710,
+              "x": 720,
               "y": 227
             },
             "size": {
@@ -2086,8 +2115,8 @@
             },
             "visible": true,
             "shape": "td-text-block",
-            "id": "4ee76542-1644-4b85-8d20-d8a148dab97f",
             "zIndex": 22,
+            "id": "4ee76542-1644-4b85-8d20-d8a148dab97f",
             "data": {
               "type": "tm.Text",
               "name": "",
@@ -2110,11 +2139,59 @@
             },
             "visible": true,
             "shape": "td-text-block",
-            "id": "12107595-c516-43dc-a024-931bdb8016c1",
             "zIndex": 23,
+            "id": "12107595-c516-43dc-a024-931bdb8016c1",
             "data": {
               "type": "tm.Text",
               "name": "Confirmação do \narmazenamento do \ncomentário",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 420,
+              "y": 60
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Limite Utilizador/\nWeb App"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "a5fad532-dfbd-42b8-86d4-2f95af2eac74",
+            "zIndex": 24,
+            "data": {
+              "type": "tm.Text",
+              "name": "Limite Utilizador/\nWeb App",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 710,
+              "y": 377
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Limite Web App/\nBase de dados\n"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "754e215c-2459-4761-9266-c896cd326592",
+            "zIndex": 25,
+            "data": {
+              "type": "tm.Text",
+              "name": "Limite Web App/\nBase de dados\n",
               "hasOpenThreats": false
             }
           }
