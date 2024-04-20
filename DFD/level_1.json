@@ -2901,9 +2901,366 @@
             }
           }
         ]
+      },
+      {
+        "id": 6,
+        "title": "Sign _In",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [
+          {
+            "position": {
+              "x": 50,
+              "y": 210
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Utilizador\nnão registado"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "5db8fa8b-0ee7-444a-abba-a67cf5613833",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Utilizador\nnão registado",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "27283b28-be7a-4479-a3fa-f460eac05588",
+            "source": {
+              "x": 124,
+              "y": 150
+            },
+            "target": {
+              "x": 120,
+              "y": 350
+            },
+            "vertices": [
+              {
+                "x": 180,
+                "y": 240
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "f68d5cd2-8565-4116-9232-f7bf7714cf48",
+            "source": {
+              "x": 190,
+              "y": 220
+            },
+            "target": {
+              "x": 330,
+              "y": 220
+            }
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "6a7bd3fe-0442-4341-96ad-38dc0b02d3aa",
+            "source": {
+              "x": 630,
+              "y": 120
+            },
+            "target": {
+              "x": 640,
+              "y": 300
+            },
+            "vertices": [
+              {
+                "x": 590,
+                "y": 220
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "244307b5-6829-4344-81e5-7b8cdbd1b63a",
+            "source": {
+              "cell": "1414a82f-17b3-4439-b0ff-9e0951609017"
+            },
+            "target": {
+              "x": 580,
+              "y": 220
+            }
+          },
+          {
+            "position": {
+              "x": 330,
+              "y": 160
+            },
+            "size": {
+              "width": 110,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Processo \nde registo"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "1414a82f-17b3-4439-b0ff-9e0951609017",
+            "zIndex": 11,
+            "data": {
+              "type": "tm.Process",
+              "name": "Processo \nde registo",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 200,
+              "y": 210
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Dados de registo"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "a99c0dbb-7c6b-4d8b-a1f9-cb462127a78c",
+            "zIndex": 12,
+            "data": {
+              "type": "tm.Text",
+              "name": "Dados de registo",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 620,
+              "y": 185
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Base de dados"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "0288f4a8-ad3c-4fc4-b247-440274c06582",
+            "zIndex": 13,
+            "data": {
+              "type": "tm.Store",
+              "name": "Base de dados",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 450.5,
+              "y": 210
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Dados de registo"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "b3641e07-0313-4da4-b7be-cea4830f381e",
+            "zIndex": 14,
+            "data": {
+              "type": "tm.Text",
+              "name": "Dados de registo",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 70,
+              "y": 100
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Limite utilizador/\nweb app"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "daa9b604-1904-457e-8f97-bfdd8df76bbd",
+            "zIndex": 15,
+            "data": {
+              "type": "tm.Text",
+              "name": "Limite utilizador/\nweb app",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 563,
+              "y": 300
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Limite App/ \nBase de dados"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "6caed20d-58f7-4b31-8992-b033204a3d48",
+            "zIndex": 16,
+            "data": {
+              "type": "tm.Text",
+              "name": "Limite App/ \nBase de dados",
+              "hasOpenThreats": false
+            }
+          }
+        ]
       }
     ],
-    "diagramTop": 6,
+    "diagramTop": 7,
     "reviewer": "",
     "threatTop": 0
   }
