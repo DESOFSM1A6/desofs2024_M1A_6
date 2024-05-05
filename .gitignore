@@ -167,3 +167,6 @@ build/
 
 .fake
 */target/
+
+### Terraform ###
+Code/Infrastructure/terraform-azure/.terraform/*
