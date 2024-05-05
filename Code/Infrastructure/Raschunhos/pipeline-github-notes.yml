@@ -1,0 +1,33 @@
+# Deploy for a "azurerm_linux_web_app" using docker image
+
+name: Azure Web App Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: |
+          docker build -t yourdockerregistry/yourimage:tag .
+
+      - name: Login to Docker registry
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin yourdockerregistry
+
+      - name: Push Docker image
+        run: docker push yourdockerregistry/yourimage:tag
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: your-webapp-name
+          images: yourdockerregistry/yourimage:tag
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
