@@ -1,4 +1,10 @@
-# We strongly recommend using the required_providers block to set the
+
+# Reference: https://learn.microsoft.com/en-us/azure/app-service/tutorial-secure-ntier-app
+# Frontend URL: https://frontend-desofsm1a6.azurewebsites.net/
+# Backend URL: https://backend-desofsm1a6.azurewebsites.net/
+
+# TODO: Database integration
+
 # Azure Provider source and version being used
 terraform {
   required_providers {
@@ -31,7 +37,7 @@ resource "azurerm_service_plan" "appserviceplan" {
   location            = azurerm_resource_group.tf_resource_group.location
   resource_group_name = azurerm_resource_group.tf_resource_group.name
   os_type             = "Linux"
-  sku_name            = "B1"
+  sku_name            = "S1"
 }
 
 # Create the frontend, pass in the App Service Plan ID
@@ -107,9 +113,11 @@ resource "azurerm_private_dns_zone" "private_dns_zone" {
 resource "azurerm_private_dns_zone_virtual_network_link" "dns_link" {
   name                  = "dnslink-desofsM1a6"
   resource_group_name   = azurerm_resource_group.tf_resource_group.name
-  private_dns_zone_name = "privatelink.azurewebsites.net"
+  private_dns_zone_name = azurerm_private_dns_zone.private_dns_zone.name
   virtual_network_id    = azurerm_virtual_network.tf_virtual_network.id
-  registration_enabled  = false
+  registration_enabled  = true
+
+  depends_on = [azurerm_private_dns_zone.private_dns_zone] # Ensure that the Private DNS zone resource is created first
 }
 
 # Create Private Endpoint for the Backend
@@ -126,11 +134,31 @@ resource "azurerm_private_endpoint" "backend_endpoint" {
   }
 
   subnet_id = azurerm_subnet.private_endpoint_subnet.id
+
+  # Ensure the private endpoint depends on the DNS zone link being created
+  depends_on = [azurerm_private_dns_zone_virtual_network_link.dns_link]
 }
 
-# Link Private Endpoint to the Private DNS Zone with a DNS Zone Group for the Backend Webapp Private Endpoint
-# resource "azurerm_private_endpoint_dns_zone_group" "dns_zone_group" {
-#   name                = "zoneGroup-desofsM1a6"
-#   private_endpoint_id = azurerm_private_endpoint.backend_endpoint.id
-#   private_dns_zone_id = azurerm_private_dns_zone.private_dns_zone.id
-# }
+locals {
+  commands = [
+    # Enable Virtual Network Integration with the app
+    "az webapp vnet-integration add --resource-group ${azurerm_resource_group.tf_resource_group.name} --name ${azurerm_linux_web_app.frontend.name} --vnet ${azurerm_virtual_network.tf_virtual_network.name} --subnet ${azurerm_subnet.vnet_integration_subnet.name}",
+    # Enable deployment to back-end web app from internet
+    "az webapp update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name ${azurerm_linux_web_app.backend.name} --set publicNetworkAccess=Enabled",
+    "az resource update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name ${azurerm_linux_web_app.backend.name} --namespace Microsoft.Web --resource-type sites --set properties.siteConfig.ipSecurityRestrictionsDefaultAction=Deny",
+    "az resource update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name ${azurerm_linux_web_app.backend.name} --namespace Microsoft.Web --resource-type sites --set properties.siteConfig.scmIpSecurityRestrictionsDefaultAction=Allow",
+    # Lock down FTP and SCM access
+    "az resource update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name ftp --namespace Microsoft.Web --resource-type basicPublishingCredentialsPolicies --parent sites/${azurerm_linux_web_app.frontend.name} --set properties.allow=false",
+    "az resource update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name ftp --namespace Microsoft.Web --resource-type basicPublishingCredentialsPolicies --parent sites/${azurerm_linux_web_app.backend.name} --set properties.allow=false",
+    "az resource update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name scm --namespace Microsoft.Web --resource-type basicPublishingCredentialsPolicies --parent sites/${azurerm_linux_web_app.frontend.name} --set properties.allow=false",
+    "az resource update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name scm --namespace Microsoft.Web --resource-type basicPublishingCredentialsPolicies --parent sites/${azurerm_linux_web_app.backend.name} --set properties.allow=false"
+  ]
+}
+
+resource "null_resource" "commands" {
+  count = length(local.commands)
+
+  provisioner "local-exec" {
+    command = local.commands[count.index]
+  }
+}
