@@ -1,164 +1,210 @@
-
-# Reference: https://learn.microsoft.com/en-us/azure/app-service/tutorial-secure-ntier-app
-# Frontend URL: https://frontend-desofsm1a6.azurewebsites.net/
-# Backend URL: https://backend-desofsm1a6.azurewebsites.net/
-
-# TODO: Database integration
-
-# Azure Provider source and version being used
 terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=3.0.0"
+      version = "~>3.0"
     }
   }
 }
-
-# Configure the Microsoft Azure Provider
 provider "azurerm" {
-  skip_provider_registration = true # This is only required when the User, Service Principal, or Identity running Terraform lacks the permissions to register Azure Resource Providers.
   features {}
 }
 
-# Create a resource group
-resource "azurerm_resource_group" "tf_resource_group" {
-  name     = "resourceGroup-desofsM1a6"
-  location = "West Europe"
-
-  tags = {
-    environment = "dev"
-  }
+resource "azurerm_resource_group" "rg" {
+  name     = "desofsM1a6-rg"
+  location = "westeurope"
 }
 
-# Create the Linux App Service Plan
-resource "azurerm_service_plan" "appserviceplan" {
-  name                = "appServicePlan-desofsM1a6"
-  location            = azurerm_resource_group.tf_resource_group.location
-  resource_group_name = azurerm_resource_group.tf_resource_group.name
-  os_type             = "Linux"
-  sku_name            = "S1"
-}
-
-# Create the frontend, pass in the App Service Plan ID
-resource "azurerm_linux_web_app" "frontend" {
-  name                = "frontend-desofsM1a6"
-  location            = azurerm_resource_group.tf_resource_group.location
-  resource_group_name = azurerm_resource_group.tf_resource_group.name
-  service_plan_id     = azurerm_service_plan.appserviceplan.id
-  https_only          = true
-  site_config {
-    minimum_tls_version = "1.2"
-  }
-}
-
-# Create the backend, pass in the App Service Plan ID
-resource "azurerm_linux_web_app" "backend" {
-  name                = "backend-desofsM1a6"
-  location            = azurerm_resource_group.tf_resource_group.location
-  resource_group_name = azurerm_resource_group.tf_resource_group.name
-  service_plan_id     = azurerm_service_plan.appserviceplan.id
-  https_only          = true
-  site_config {
-    minimum_tls_version = "1.2"
-  }
-}
-
-# Create a virtual network within the resource group
-resource "azurerm_virtual_network" "tf_virtual_network" {
-  name                = "vnet-desofsM1a6"
-  resource_group_name = azurerm_resource_group.tf_resource_group.name
-  location            = azurerm_resource_group.tf_resource_group.location
+resource "azurerm_virtual_network" "vnet" {
+  name                = "desofsM1a6-vnet"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
   address_space       = ["10.0.0.0/16"]
-
-  tags = {
-    environment = "dev"
-  }
 }
 
-# Create a subnet for the App Service virtual network integration
-resource "azurerm_subnet" "vnet_integration_subnet" {
-  name                 = "vnetIntegrationSubnet-desofsM1a6"
-  virtual_network_name = azurerm_virtual_network.tf_virtual_network.name
-  resource_group_name  = azurerm_resource_group.tf_resource_group.name
-  address_prefixes     = ["10.0.0.0/24"]
-
+resource "azurerm_subnet" "integrationsubnet" {
+  name                 = "desofsM1a6-integrationsubnet"
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = ["10.0.1.0/24"]
   delegation {
     name = "delegation"
     service_delegation {
       name = "Microsoft.Web/serverFarms"
     }
   }
-
-  enforce_private_link_endpoint_network_policies = false
 }
 
-# Create a subnet for the Private Endpoint
-resource "azurerm_subnet" "private_endpoint_subnet" {
-  name                 = "privateEndpointSubnet-desofsM1a6"
-  virtual_network_name = azurerm_virtual_network.tf_virtual_network.name
-  resource_group_name  = azurerm_resource_group.tf_resource_group.name
-  address_prefixes     = ["10.0.1.0/24"]
-
-  enforce_private_link_endpoint_network_policies = true
+resource "azurerm_subnet" "backendendpointsubnet" {
+  name                                      = "desofsM1a6-backendendpointsubnet"
+  resource_group_name                       = azurerm_resource_group.rg.name
+  virtual_network_name                      = azurerm_virtual_network.vnet.name
+  address_prefixes                          = ["10.0.2.0/24"]
+  private_endpoint_network_policies_enabled = true
 }
 
-# Create Private DNS Zone
-resource "azurerm_private_dns_zone" "private_dns_zone" {
-  name                = "privateLink-desofsM1a6.azurewebsites.net"
-  resource_group_name = azurerm_resource_group.tf_resource_group.name
+resource "azurerm_subnet" "databaseendpointsubnet" {
+  name                                      = "desofsM1a6-databaseendpointsubnet"
+  resource_group_name                       = azurerm_resource_group.rg.name
+  virtual_network_name                      = azurerm_virtual_network.vnet.name
+  address_prefixes                          = ["10.0.3.0/24"]
+  private_endpoint_network_policies_enabled = true
+
+  delegation {
+    name = "dbFlexibleServer"
+    service_delegation {
+      name    = "Microsoft.DBforMySQL/flexibleServers"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
+    }
+  }
 }
 
-# Create a link between private DNS zone and the VNET
-resource "azurerm_private_dns_zone_virtual_network_link" "dns_link" {
-  name                  = "dnslink-desofsM1a6"
-  resource_group_name   = azurerm_resource_group.tf_resource_group.name
-  private_dns_zone_name = azurerm_private_dns_zone.private_dns_zone.name
-  virtual_network_id    = azurerm_virtual_network.tf_virtual_network.id
-  registration_enabled  = true
-
-  depends_on = [azurerm_private_dns_zone.private_dns_zone] # Ensure that the Private DNS zone resource is created first
+resource "azurerm_service_plan" "appserviceplan" {
+  name                = "desofsM1a6-appserviceplan"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  os_type             = "Windows"
+  sku_name            = "S1"
 }
 
-# Create Private Endpoint for the Backend
-resource "azurerm_private_endpoint" "backend_endpoint" {
-  name                = "backendPrivateEndpoint-desofsM1a6"
-  location            = azurerm_resource_group.tf_resource_group.location
-  resource_group_name = azurerm_resource_group.tf_resource_group.name
+resource "azurerm_windows_web_app" "frontwebapp" {
+  name                = "frontend-desofsM1a06"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  service_plan_id     = azurerm_service_plan.appserviceplan.id
+
+  site_config {
+    vnet_route_all_enabled = true
+  }
+  app_settings = {
+    "WEBSITE_DNS_SERVER" : "168.63.129.16"
+  }
+}
+
+resource "azurerm_app_service_virtual_network_swift_connection" "vnetintegrationconnection" {
+  app_service_id = azurerm_windows_web_app.frontwebapp.id
+  subnet_id      = azurerm_subnet.integrationsubnet.id
+}
+
+resource "azurerm_windows_web_app" "backwebapp" {
+  name                = "backend-desofsM1a06"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  service_plan_id     = azurerm_service_plan.appserviceplan.id
+
+  site_config {}
+}
+
+resource "azurerm_private_dns_zone" "dnsprivatezone" {
+  name                = "privatelink.azurewebsites.net"
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+# Confirm
+resource "azurerm_private_dns_a_record" "dnsrecord_frontend" {
+  name                = "desofsm1a6-dns-frontend"
+  zone_name           = azurerm_private_dns_zone.dnsprivatezone.name
+  resource_group_name = azurerm_resource_group.rg.name
+  ttl                 = 300
+  records             = [azurerm_windows_web_app.frontwebapp.name]
+}
+
+# Confirm
+resource "azurerm_private_dns_a_record" "dnsrecord_backend" {
+  name                = "desofsm1a6-dns-backend"
+  zone_name           = azurerm_private_dns_zone.dnsprivatezone.name
+  resource_group_name = azurerm_resource_group.rg.name
+  ttl                 = 300
+  records             = [azurerm_windows_web_app.backwebapp.name]
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "dnszonelink" {
+  name                  = "desofsM1a6dnszonelink"
+  resource_group_name   = azurerm_resource_group.rg.name
+  private_dns_zone_name = azurerm_private_dns_zone.dnsprivatezone.name
+  virtual_network_id    = azurerm_virtual_network.vnet.id
+}
+
+resource "azurerm_private_endpoint" "privateendpoint" {
+  name                = "backwebappprivateendpoint"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  subnet_id           = azurerm_subnet.backendendpointsubnet.id
+
+  private_dns_zone_group {
+    name                 = "privatednszonegroup"
+    private_dns_zone_ids = [azurerm_private_dns_zone.dnsprivatezone.id]
+  }
 
   private_service_connection {
-    name                           = "connection-desofsM1a6"
-    private_connection_resource_id = azurerm_linux_web_app.backend.id
+    name                           = "privateendpointconnection"
+    private_connection_resource_id = azurerm_windows_web_app.backwebapp.id
     subresource_names              = ["sites"]
     is_manual_connection           = false
   }
-
-  subnet_id = azurerm_subnet.private_endpoint_subnet.id
-
-  # Ensure the private endpoint depends on the DNS zone link being created
-  depends_on = [azurerm_private_dns_zone_virtual_network_link.dns_link]
 }
 
-locals {
-  commands = [
-    # Enable Virtual Network Integration with the app
-    "az webapp vnet-integration add --resource-group ${azurerm_resource_group.tf_resource_group.name} --name ${azurerm_linux_web_app.frontend.name} --vnet ${azurerm_virtual_network.tf_virtual_network.name} --subnet ${azurerm_subnet.vnet_integration_subnet.name}",
-    # Enable deployment to back-end web app from internet
-    "az webapp update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name ${azurerm_linux_web_app.backend.name} --set publicNetworkAccess=Enabled",
-    "az resource update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name ${azurerm_linux_web_app.backend.name} --namespace Microsoft.Web --resource-type sites --set properties.siteConfig.ipSecurityRestrictionsDefaultAction=Deny",
-    "az resource update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name ${azurerm_linux_web_app.backend.name} --namespace Microsoft.Web --resource-type sites --set properties.siteConfig.scmIpSecurityRestrictionsDefaultAction=Allow",
-    # Lock down FTP and SCM access
-    "az resource update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name ftp --namespace Microsoft.Web --resource-type basicPublishingCredentialsPolicies --parent sites/${azurerm_linux_web_app.frontend.name} --set properties.allow=false",
-    "az resource update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name ftp --namespace Microsoft.Web --resource-type basicPublishingCredentialsPolicies --parent sites/${azurerm_linux_web_app.backend.name} --set properties.allow=false",
-    "az resource update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name scm --namespace Microsoft.Web --resource-type basicPublishingCredentialsPolicies --parent sites/${azurerm_linux_web_app.frontend.name} --set properties.allow=false",
-    "az resource update --resource-group ${azurerm_resource_group.tf_resource_group.name} --name scm --namespace Microsoft.Web --resource-type basicPublishingCredentialsPolicies --parent sites/${azurerm_linux_web_app.backend.name} --set properties.allow=false"
-  ]
+# For the database
+# 1 - create subnet
+# 2 - create private dns zone
+# 3 - assign private dns to the vnet
+# 4 - create private endpoint to the new vnet
+
+resource "azurerm_private_dns_zone" "dbdnsprivatezone" {
+  name                = "dbserver.mysql.database.azure.com"
+  resource_group_name = azurerm_resource_group.rg.name
 }
 
-resource "null_resource" "commands" {
-  count = length(local.commands)
+resource "azurerm_private_dns_zone_virtual_network_link" "db-dnszonelink" {
+  name                  = "dbdesofsM1a6dnszonelink.com"
+  resource_group_name   = azurerm_resource_group.rg.name
+  private_dns_zone_name = azurerm_private_dns_zone.dbdnsprivatezone.name
+  virtual_network_id    = azurerm_virtual_network.vnet.id
 
-  provisioner "local-exec" {
-    command = local.commands[count.index]
+  depends_on = [azurerm_subnet.databaseendpointsubnet]
+}
+
+resource "azurerm_mysql_flexible_server" "serverMysql" {
+  name                         = "dbserverdesofsm1a6"
+  location                     = azurerm_resource_group.rg.location
+  resource_group_name          = azurerm_resource_group.rg.name
+  administrator_login          = "admin1"
+  administrator_password       = "adminAdmin1"
+  backup_retention_days        = 7
+  delegated_subnet_id          = azurerm_subnet.databaseendpointsubnet.id
+  geo_redundant_backup_enabled = false
+  private_dns_zone_id          = azurerm_private_dns_zone.dbdnsprivatezone.id
+  sku_name                     = "GP_Standard_D2ds_v4"
+  version                      = "8.0.21"
+
+  high_availability {
+    mode = "SameZone"
   }
+  maintenance_window {
+    day_of_week  = 0
+    start_hour   = 8
+    start_minute = 0
+  }
+  storage {
+    iops    = 360
+    size_gb = 20
+  }
+
+  depends_on = [azurerm_private_dns_zone_virtual_network_link.db-dnszonelink]
 }
+
+# resource "azurerm_mysql_flexible_database" "databaseMysql" {
+#   name                = "databasedbserver"
+#   resource_group_name = azurerm_resource_group.rg.name
+#   server_name         = azurerm_mysql_flexible_server.serverMysql.name
+#   charset             = "utf8mb4"
+#   collation           = "utf8mb4_unicode_ci"
+# }
+
+# resource "azurerm_private_dns_a_record" "dnsrecord_database" {
+#   name                = "database"
+#   zone_name           = azurerm_private_dns_zone.dbdnsprivatezone.name
+#   resource_group_name = azurerm_resource_group.rg.name
+#   ttl                 = 300
+#   records             = [azurerm_mysql_flexible_server.serverMysql.name] # has wrong name
+# }
