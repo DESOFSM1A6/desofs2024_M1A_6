@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package pt.ipp.isep.dei.DesofsNews.app;
+=======
+/**package pt.ipp.isep.dei.DesofsNews.app;
+>>>>>>> origin/initial/db-connection
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,3 +17,7 @@ class DesofsNewsApplicationTests {
 	}
 
 }
+<<<<<<< HEAD
+=======
+**/
+>>>>>>> origin/initial/db-connection
