@@ -1,0 +1,59 @@
+variable "resource_group_name" {
+  description = "The name of the resource group."
+  default     = "desofsm1a6-rg1"
+}
+
+variable "location" {
+  description = "The location of the resources."
+  default     = "westeurope"
+}
+
+variable "vnet_name" {
+  description = "The name of the virtual network."
+  default     = "desofsm1a6-vnet1"
+}
+
+variable "integrationsubnet_name" {
+  description = "The name of the integration subnet."
+  default     = "desofsm1a6-integrationsubnet1"
+}
+
+variable "integrationsubnet_address_prefixes" {
+  description = "The address prefixes for the integration subnet."
+  default     = ["10.0.1.0/24"]
+}
+
+variable "backendendpointsubnet_name" {
+  description = "The name of the backend endpoint subnet."
+  default     = "desofsm1a6-backendendpointsubnet1"
+}
+
+variable "backendendpointsubnet_address_prefixes" {
+  description = "The address prefixes for the backend endpoint subnet."
+  default     = ["10.0.2.0/24"]
+}
+
+variable "databaseendpointsubnet_name" {
+  description = "The name of the database endpoint subnet."
+  default     = "desofsm1a6-databaseendpointsubnet1"
+}
+
+variable "databaseendpointsubnet_address_prefixes" {
+  description = "The address prefixes for the database endpoint subnet."
+  default     = ["10.0.3.0/24"]
+}
+
+variable "appserviceplan_name" {
+  description = "The name of the App Service Plan."
+  default     = "desofsm1a6-appserviceplan1"
+}
+
+variable "appserviceplan_sku_name" {
+  description = "The SKU name of the App Service Plan."
+  default     = "B1"
+}
+
+variable "appserviceplan_os_type" {
+  description = "The operating system type of the App Service Plan."
+  default     = "Linux"
+}
