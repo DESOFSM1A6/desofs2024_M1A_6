@@ -45,7 +45,7 @@ resource "azurerm_subnet" "databaseendpointsubnet" {
   private_endpoint_network_policies_enabled = true
 
   delegation {
-    name = "dbFlexibleServer"
+    name = "fs"
     service_delegation {
       name    = "Microsoft.DBforMySQL/flexibleServers"
       actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
