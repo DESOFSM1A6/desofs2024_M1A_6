@@ -1,24 +1,5 @@
 package pt.ipp.isep.dei.desofsnews.controller;
 
-<<<<<<< HEAD
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import pt.ipp.isep.dei.desofsnews.app.DesofsNewsApplication;
-
-@RestController
-@EnableAutoConfiguration
-@Component
-@RequestMapping("/object")
-public class SampleController {
-
- // endpoint that returns simple string
-    @GetMapping("/message")
-    public String getMessage() {
-        return DesofsNewsApplication.getMessage();
-=======
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,7 +42,6 @@ public class SampleController {
     public @ResponseBody Iterable<User> getAllUsersOp() {
         // This returns a JSON or XML with the users
         return userRepository.findAll();
->>>>>>> origin/initial/db-connection
     }
 
 }

@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-package pt.ipp.isep.dei.DesofsNews.app;
-=======
 /**package pt.ipp.isep.dei.DesofsNews.app;
 >>>>>>> origin/initial/db-connection
 
@@ -20,4 +17,3 @@ class DesofsNewsApplicationTests {
 <<<<<<< HEAD
 =======
 **/
->>>>>>> origin/initial/db-connection
