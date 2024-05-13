@@ -32,6 +32,10 @@ module "webapp" {
   location             = var.location
   appserviceplan_name  = var.appserviceplan_name
   integrationsubnet_id = module.network.integrationsubnet_id
+  mysql_administrator_login = var.mysql_administrator_login
+  mysql_administrator_password = var.mysql_administrator_password
+  mysql_server_name = var.mysql_server_name
+  mysql_database_name = var.mysql_database_name
 
   depends_on = [
     module.network
@@ -59,6 +63,10 @@ module "database" {
   location                  = var.location
   databaseendpointsubnet_id = module.network.databaseendpointsubnet_id
   dbdnsprivatezone_id       = module.private_dns.dbdnsprivatezone_id
+  mysql_administrator_login = var.mysql_administrator_login
+  mysql_administrator_password = var.mysql_administrator_password
+  mysql_server_name = var.mysql_server_name
+  mysql_database_name = var.mysql_database_name
 
   depends_on = [
     module.private_dns

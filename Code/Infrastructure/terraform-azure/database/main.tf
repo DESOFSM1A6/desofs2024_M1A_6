@@ -1,8 +1,8 @@
 resource "azurerm_mysql_flexible_server" "servermysql" {
-  name                         = "dbserverdesofsm1a61"
+  name                         = var.mysql_server_name
   location                     = var.location
   resource_group_name          = var.resource_group_name
-  administrator_login          = "admin1"
+  administrator_login          = var.mysql_administrator_login
   administrator_password       = "adminAdmin1"
   backup_retention_days        = 7
   delegated_subnet_id          = var.databaseendpointsubnet_id
@@ -28,7 +28,7 @@ resource "azurerm_mysql_flexible_server" "servermysql" {
 }
 
 resource "azurerm_mysql_flexible_database" "databasemysql" {
-  name                = "databasedbserver"
+  name                = var.mysql_database_name
   resource_group_name = var.resource_group_name
   server_name         = azurerm_mysql_flexible_server.servermysql.name
   charset             = "utf8mb4"

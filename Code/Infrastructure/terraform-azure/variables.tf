@@ -57,3 +57,23 @@ variable "appserviceplan_os_type" {
   description = "The operating system type of the App Service Plan."
   default     = "Linux"
 }
+
+variable "mysql_administrator_login" {
+  description = "The administrator login for the MySQL server"
+  default     = "admin1"
+}
+
+variable "mysql_administrator_password" {
+  description = "The administrator password for the MySQL server"
+  default     = "adminAdmin1"
+}
+
+variable "mysql_server_name" {
+  description = "The name of the MySQL server"
+  default     = "dbserverdesofsm1a61"
+}
+
+variable "mysql_database_name" {
+  description = "The name of the MySQL database"
+  default     = "databasedbserver"
+}
