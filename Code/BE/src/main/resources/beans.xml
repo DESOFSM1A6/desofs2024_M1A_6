@@ -15,5 +15,5 @@
 
     <bean id="userRepository" class="pt.ipp.isep.dei.desofsnews.dao.UserRepository"></bean>
 
-    <jpa:repositories base-package="pt.ipp.isep.dei.desofsnews.repository" />
+    <!-- <jpa:repositories base-package="pt.ipp.isep.dei.desofsnews.repository" /> -->
 </beans>

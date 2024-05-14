@@ -1,31 +1,26 @@
 package pt.ipp.isep.dei.desofsnews.dao;
 
-import java.util.UUID;
+import org.hibernate.annotations.UuidGenerator;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(columnDefinition = "varchar(36)")
-
-    private UUID id;
+    @UuidGenerator
+    private String id;
 
     private String username;
 
     private String email;
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
