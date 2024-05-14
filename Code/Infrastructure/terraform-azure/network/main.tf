@@ -32,7 +32,6 @@ resource "azurerm_subnet" "backendendpointsubnet" {
   resource_group_name                       = var.resource_group_name
   virtual_network_name                      = var.vnet_name
   address_prefixes                          = var.backendendpointsubnet_address_prefixes
-  # private_endpoint_network_policies = "Enabled"
   private_endpoint_network_policies_enabled = true
   service_endpoints    = ["Microsoft.Sql"]
   
