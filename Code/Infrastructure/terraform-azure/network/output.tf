@@ -14,8 +14,3 @@ output "backendendpointsubnet_id" {
   description = "The ID of the backend endpoint subnet."
   value       = azurerm_subnet.backendendpointsubnet.id
 }
-
-output "databaseendpointsubnet_id" {
-  description = "The ID of the database endpoint subnet."
-  value       = azurerm_subnet.databaseendpointsubnet.id
-}

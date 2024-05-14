@@ -6,13 +6,13 @@ variable "location" {
   description = "The location of the resources."
 }
 
-variable "databaseendpointsubnet_id" {
+variable "backendendpointsubnet_id" {
   description = "Database endpoint subnet ID"
 }
 
-variable "dbdnsprivatezone_id" {
-  description = "DB DNS Private Zone ID"
-}
+# variable "dbdnsprivatezone_id" {
+#   description = "DB DNS Private Zone ID"
+# }
 
 variable "mysql_administrator_login" {
   description = "The administrator login for the MySQL server"

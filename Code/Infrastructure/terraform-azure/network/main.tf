@@ -32,25 +32,9 @@ resource "azurerm_subnet" "backendendpointsubnet" {
   resource_group_name                       = var.resource_group_name
   virtual_network_name                      = var.vnet_name
   address_prefixes                          = var.backendendpointsubnet_address_prefixes
+  # private_endpoint_network_policies = "Enabled"
   private_endpoint_network_policies_enabled = true
-  
-  depends_on                                = [azurerm_virtual_network.vnet]
-}
-
-resource "azurerm_subnet" "databaseendpointsubnet" {
-  name                                      = var.databaseendpointsubnet_name
-  resource_group_name                       = var.resource_group_name
-  virtual_network_name                      = var.vnet_name
-  address_prefixes                          = var.databaseendpointsubnet_address_prefixes
-  private_endpoint_network_policies_enabled = true
-
-  delegation {
-    name = "fs"
-    service_delegation {
-      name    = "Microsoft.DBforMySQL/flexibleServers"
-      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
-    }
-  }
+  service_endpoints    = ["Microsoft.Sql"]
   
   depends_on                                = [azurerm_virtual_network.vnet]
 }

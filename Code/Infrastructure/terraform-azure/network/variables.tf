@@ -27,11 +27,3 @@ variable "backendendpointsubnet_name" {
 variable "backendendpointsubnet_address_prefixes" {
   description = "The address prefixes for the backend endpoint subnet."
 }
-
-variable "databaseendpointsubnet_name" {
-  description = "The name of the database endpoint subnet."
-}
-
-variable "databaseendpointsubnet_address_prefixes" {
-  description = "The address prefixes for the database endpoint subnet."
-}

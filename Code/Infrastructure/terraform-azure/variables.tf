@@ -33,16 +33,6 @@ variable "backendendpointsubnet_address_prefixes" {
   default     = ["10.0.2.0/24"]
 }
 
-variable "databaseendpointsubnet_name" {
-  description = "The name of the database endpoint subnet."
-  default     = "desofsm1a6-databaseendpointsubnet1"
-}
-
-variable "databaseendpointsubnet_address_prefixes" {
-  description = "The address prefixes for the database endpoint subnet."
-  default     = ["10.0.3.0/24"]
-}
-
 variable "appserviceplan_name" {
   description = "The name of the App Service Plan."
   default     = "desofsm1a6-appserviceplan1"
@@ -65,7 +55,7 @@ variable "mysql_administrator_login" {
 
 variable "mysql_administrator_password" {
   description = "The administrator password for the MySQL server"
-  default     = "adminAdmin1"
+  default     = "ExamplePassword123!"
 }
 
 variable "mysql_server_name" {

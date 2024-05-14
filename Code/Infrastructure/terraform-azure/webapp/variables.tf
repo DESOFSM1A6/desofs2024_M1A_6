@@ -16,6 +16,10 @@ variable "integrationsubnet_id" {
   description = "Integration subnet ID"
 }
 
+variable "backendendpointsubnet_id"{
+  description = "Backend subnet ID"
+}
+
 variable "mysql_administrator_login" {
   description = "The administrator login for the MySQL server"
 }
