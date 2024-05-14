@@ -31,6 +31,7 @@ resource "azurerm_linux_web_app" "backwebapp" {
   location            = var.location
   resource_group_name = var.resource_group_name
   service_plan_id     = azurerm_service_plan.appserviceplan1.id
+  public_network_access_enabled = false
 
   site_config {
     application_stack {
