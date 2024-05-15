@@ -13,7 +13,7 @@
         <property name="userRepository" ref="userRepository"></property>
     </bean>
 
-    <bean id="userRepository" class="pt.ipp.isep.dei.desofsnews.dao.UserRepository"></bean>
+    <bean id="userRepository" class="pt.ipp.isep.dei.desofsnews.repositories.UserRepository"></bean>
 
     <!-- <jpa:repositories base-package="pt.ipp.isep.dei.desofsnews.repository" /> -->
 </beans>
