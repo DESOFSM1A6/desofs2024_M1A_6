@@ -1,9 +1,17 @@
 FROM tomcat
 
 #install maven
-RUN apt-get update && apt-get install -y maven
+RUN apt-get update && apt-get install -y maven \
+    && apt-get clean
 
-COPY . .
+# create new directory for the project
+RUN mkdir /app
+
+#copy the project to the container
+COPY . /app
+
+#change the working directory
+WORKDIR /app
 
 #build the project
 RUN mvn clean package -DskipTests
