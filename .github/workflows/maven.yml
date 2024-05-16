@@ -22,7 +22,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Build and Test
+    name: Build and Test Application
     runs-on: ubuntu-latest
 
     steps:
@@ -43,7 +43,7 @@ jobs:
       run: mvn test --file Code/BE/pom.xml
 
   image_scan:
-    name: Build Image and Run Image Scan
+    name: Build and Run Image Scan
     runs-on: ubuntu-latest
 
     steps:
@@ -52,6 +52,8 @@ jobs:
     
     - name: Setup Docker
       uses: docker-practice/actions-setup-docker@v1
+      with:
+        docker_version: '20.10.7'
 
     - name: Build Docker Image
       run: docker build -f Dockerfile -t ${{ env.DOCKER_IMAGE_NAME }}:latest ${{env.DOCKERFILE_PATH}}
