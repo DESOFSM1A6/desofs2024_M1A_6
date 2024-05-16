@@ -13,6 +13,9 @@ COPY . /app
 #change the working directory
 WORKDIR /app
 
+RUN ls
+RUN pwd
+
 #build the project
 RUN mvn clean package -DskipTests
 
