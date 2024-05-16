@@ -52,26 +52,39 @@ jobs:
     # Sonar (ver)
 
     # Docker Scout
+    # - name: Setup Docker buildx
+    #   uses: docker/setup-buildx-action@v2.5.0
+
     - name: Log in to Docker Hub
       run: docker login --username ${{ env.DOCKER_USERNAME }}
 
-    - name: Build Docker image
-      run: docker build -t ${{ env.DOCKER_IMAGE_NAME }}) {{ env.IMAGE_FULL_PATH }}
+    - name: Extract Docker metadata
+      id: meta
+      uses: docker/metadata-action@v4.4.0
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}
+        labels: |
+          org.opencontainers.image.revision=${{ env.SHA }}
+        tags: |
+          type=edge,branch=$repo.default_branch
+          type=semver,pattern=v{{version}}
+          type=sha,prefix=,suffix=,format=short
 
-    - name: Get image ID
-      id: get_image_id
-      run: echo "::set-output name=image_id::$(docker images -q ${{ env.DOCKER_IMAGE_NAME }})"
-      
-    - name: Tag Docker image
-      run: docker tag ${{ steps.get_image_id.outputs.image_id }} ${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}
-      
-    - name: Push Docker image
-      run: docker push ${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}
+    - name: Build and push Docker image
+      id: build-and-push
+      uses: docker/build-push-action@v4.0.0
+      with:
+        context: ${{ env.IMAGE_FULL_PATH }}
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
 
     - name: Docker Scout
       id: docker-scout
       if: ${{ github.event_name == 'pull_request' }}
-      uses: docker/scout-action@v1
+      uses: docker/scout-action@dd36f5b0295baffa006aa6623371f226cc03e506
       with:
         command: cves
         image: ${{ steps.meta.outputs.tags }}
