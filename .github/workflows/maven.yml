@@ -62,8 +62,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -f Code/BE/pom.xml
-        
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=DESOFSM1A6_desofs2024_M1A_6 -f Code/BE/pom.xml
   image_scan:
     name: Build and Run Image Scan
     runs-on: ubuntu-latest
