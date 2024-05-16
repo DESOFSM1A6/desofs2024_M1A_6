@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y maven \
 RUN mkdir /app
 
 #copy the project to the container
-COPY . /app
+COPY ./Code/BE /app
 
 #change the working directory
 WORKDIR /app
