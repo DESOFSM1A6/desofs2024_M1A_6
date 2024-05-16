@@ -1,0 +1,88 @@
+h2 {
+  font-family: arial, sans-serif;
+  font-size: 2em;
+  text-align: center;
+  font-weight: bold;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th {
+  background-color: #CF7500;
+  border: 1px solid #CF7500;
+}
+
+td {
+  border: 1px solid #dddddd;
+}
+
+td,
+th {
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f0a40030;
+}
+
+/* Registar um armazem */
+
+.registar-button {
+  font-family: arial, sans-serif;
+  padding: .5rem 1.5rem;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #F4F4F4;
+  background-color: #F0A500;
+  text-align: center;
+}
+
+.registar-button:hover {
+  font-family: arial, sans-serif;
+  color: #000000;
+  background-color: #CF7500;
+}
+
+input {
+  font-size: 1em;
+  padding: 0.5rem;
+  width: 10%;
+  border-bottom: 2px solid #dddddd;
+}
+
+form {
+  text-align: center;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.alert div {
+  position: relative;
+  background-color: #fed3d3;
+  color: #820000;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 10%;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  margin-bottom: .5rem;
+}
+

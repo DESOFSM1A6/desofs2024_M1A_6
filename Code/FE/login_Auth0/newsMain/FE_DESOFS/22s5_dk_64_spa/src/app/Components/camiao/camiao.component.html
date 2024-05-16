@@ -1,0 +1,74 @@
+<div>
+  <h2>Registar Camião</h2>
+  <form #camiaoForm="ngForm"
+          (ngSubmit)="createCamiao(camiaoCaracteristica.value, camiaoTara.value, camiaoCapacidadeMassa.value, camiaoCapacidadekWh.value, camiaoAutonomia.value, camiaoTempoCarregamento.value)">
+      
+          <div class="form-group">
+  <label for="new-camiao">Caracteristica: </label>
+  <input caracteristica="new-camiao" type="text" #camiaoCaracteristica="ngModel"  ngModel name = "camiaoCaracteristica" class="form-control " required  />
+  <div *ngIf="camiaoCaracteristica.errors?.['required']">
+    Caracteristica é obrigatória
+  </div>
+  <br>
+  <br>
+  <label  for="new-camiao">Tara (kg): </label>
+  <input camiaoTara="new-camiao" type="number" #camiaoTara="ngModel" ngModel name = "camiaoTara" /> 
+  <br>
+  <br>
+  <label for="new-camiao">Capacidade (kg): </label>
+  <input camiaoCapacidadeMassa="new-camiao" type="number" #camiaoCapacidadeMassa="ngModel" ngModel name = "camiaoCapacidadeMassa"  /> 
+  <br>
+  <br>
+  <label for="new-camiao">Capacidade (kWh): </label>
+  <input camiaoCapacidadekWh="new-camiao" type="number" #camiaoCapacidadekWh="ngModel" ngModel name = "camiaoCapacidadekWh" /> 
+  <br>
+  <br>
+  <label for="new-camiao">Autonomia: </label>
+  <input camiaoAutonomia="new-camiao" type="number" #camiaoAutonomia="ngModel" ngModel name = "camiaoAutonomia" /> 
+  <br>
+  <br>
+  <label for="new-camiao">Tempo Carregamento: </label>
+  <input camiaoTempoCarregamento="new-camiao" type="number" #camiaoTempoCarregamento="ngModel" ngModel name = "camiaoTempoCarregamento" /> 
+  <br>
+  <br>
+  <button type="submit"  class="registar-button" id="registar-button" >
+      Registar
+    </button>
+
+</div>
+</form>
+
+
+<h2>Lista de Camiões</h2>
+<div style="margin: 30px">
+  
+  
+  <table>
+    <tr>
+      <th>Index</th>
+      <th>Caracteristica</th>
+      <th>Tara</th>
+      <th>Capacidade (kg)</th>
+      <th>Capacidade (kWh)</th>
+      <th>Autonomia</th>
+      <th>Tempo Carregamento</th>
+    </tr>
+    <tr
+      *ngFor="let camiao of camioes ; let i = index"
+    >
+    
+      <td>{{ i + 1 }}</td>
+      <td>
+        {{ camiao.caracteristica }}
+       
+      </td>
+      <td>{{ camiao.tara }}</td>
+      <td>{{ camiao.capacidadeMassa }}</td>
+      <td>{{ camiao.capacidadekWh }}</td>
+      <td>{{ camiao.autonomia }}</td>
+      <td>{{ camiao.tempoCarregamento }}</td>
+    
+    
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class GraphNode {\n  constructor(id, description, x, y, z) {\n    this.id = id;\n    this.description = description;\n    this.x = x;\n    this.y = y;\n    this.z = z;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

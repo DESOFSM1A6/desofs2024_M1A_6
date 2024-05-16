@@ -1,0 +1,74 @@
+<div style="margin: 30px">
+
+  <h2>Registar Entrega</h2>
+  <form #deliveryForm="ngForm"
+          (ngSubmit)="createDelivery(id.value,deliveryDate.value, deliveryMass.value, timeToPutMin.value, timeToTakeOffMin.value, warehouseId.value)">
+      <div class="form-group">
+        <label> Nome </label>
+        <input id="new-delivery" #id="ngModel" type="string" ngModel name = "id" class="form-control " required />
+        <div *ngIf="id.errors?.['required']">
+          Campo Obrigatório
+        </div>
+        <br>
+        <br>
+        <label>Data </label>
+        <input deliveryDate="new-delivery" #deliveryDate="ngModel" type="date" ngModel name = "deliveryDate" class="form-control " required />
+        <div *ngIf="deliveryDate.errors?.['required']">
+          Campo Obrigatório
+        </div>
+        <br>
+        <br>
+        <label> Massa (kg)</label>
+        <input deliveryMass="new-delivery" #deliveryMass="ngModel" type="number" ngModel name = "deliveryMass" class="form-control " required />
+        <div *ngIf="deliveryMass.errors?.['required']">
+          Campo Obrigatório
+        </div>
+        <br>
+        <br>
+        <label>Tempo para colocar (min) </label>
+        <input timeToPutMin="new-delivery" #timeToPutMin="ngModel" type="number" ngModel name = "timeToPutMin"  />
+        <br>
+        <br>
+        <label>Tempo para retirar (min) </label>
+        <input timeToTakeOffMin="new-delivery" #timeToTakeOffMin="ngModel" type="number" ngModel name = "timeToTakeOffMin"  />
+        <br>
+        <br>
+        <label>Warehouse: </label>
+        <select warehouseId="new-delivery" #warehouseId="ngModel" type="string"  ngModel name="warehouseId" required>
+          <option *ngFor="let armazem of armazens" [value]="armazem.id">{{armazem.id}}</option>
+        </select>
+        <div *ngIf="warehouseId.errors?.['required']">
+          Campo Obrigatório
+        </div>
+        <br>
+        <br>
+        <button type="submit" class="registar-button" id="registar-button">Registar</button>
+      </div>
+  </form>
+</div>
+
+  <h2>Lista de Entregas</h2>
+<div style="margin: 30px">
+  <table>
+    <tr>
+      <th>Index</th>
+      <th>ID</th>
+      <th>Data</th>
+      <th>Massa (kg)</th>
+      <th>Tempo para colocar entega (min)</th>
+      <th>Tempo para retirar entega (min)</th>
+      <th>Warehouse</th>
+    </tr>
+    <tr
+      *ngFor="let delivery of deliveries ; let i = index">
+      <td>{{i + 1}}</td>
+      <td>{{delivery.id}}</td>
+      <td>{{delivery.deliveryDate}}</td>
+      <td>{{delivery.deliveryMass}}</td>
+      <td>{{delivery.timeToPutMin}}</td>
+      <td>{{delivery.timeToTakeOffMin}}</td>
+      <td>{{delivery.warehouseId}}</td>
+    </tr>
+  </table>
+</div>
+

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class GraphEdge {\n  constructor(whPartida, whChegada, distancia) {\n    this.whPartida = whPartida;\n    this.whChegada = whChegada;\n    this.distancia = distancia;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

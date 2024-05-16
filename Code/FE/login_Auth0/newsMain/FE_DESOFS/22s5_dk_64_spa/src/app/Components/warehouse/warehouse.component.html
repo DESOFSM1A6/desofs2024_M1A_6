@@ -1,0 +1,238 @@
+<!--<div style="margin: 30px">
+
+    <h2>Registar Armazém</h2>
+    <form #warehousestaticForm="ngForm"
+        (ngSubmit)="createWarehouse(warehouseId.value, description.value, latitude.value, longitude.value, altitude.value, street.value, local.value, postalCode.value, country.value)">
+        <div class="form-group">
+            <label>Warehouse ID: </label>
+            <input warehouseId="new-warehouse" #warehouseId="ngModel" type="string" ngModel name="warehouseId" />
+
+            <label>Description: </label>
+            <input description="new-warehouse" #description="ngModel" type="string" ngModel name="description" />
+            <br>
+            <br>
+            <label>Latitude: </label>
+            <input latitude="new-warehouse" #latitude="ngModel" type="number" ngModel name="latitude" />
+
+            <label>Longitude: </label>
+            <input longitude="new-warehouse" #longitude="ngModel" type="number" ngModel name="longitude" />
+            <br>
+            <br>
+            <label>Altitude: </label>
+            <input altitude="new-warehouse" #altitude="ngModel" type="number" ngModel name="altitude" />
+
+            <label>Street: </label>
+            <input street="new-warehouse" #street="ngModel" type="string" ngModel name="street" />
+            <br>
+            <br>
+
+            <br>
+            <br>
+            <label>Local: </label>
+            <input local="new-warehouse" #local="ngModel" type="string" ngModel name="local" />
+
+            <label>Postal Code: </label>
+            <input postalCode="new-warehouse" #postalCode="ngModel" type="string" ngModel name="postalCode" />
+            <br>
+            <br>
+            <label>Country: </label>
+            <input country="new-warehouse" #country="ngModel" type="string" ngModel name="country" />
+            <br>
+            <br>
+            <button type="submit" class="registar-button">
+                Registar
+            </button>
+        </div>
+    </form>
+</div>-->
+
+<div style="margin: 30px">
+    <h2>Registar Armazém</h2>
+    <form [formGroup]="warehouseForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="warehouseId">
+                ID do Armazém
+            </label>
+            <input id="warehouseId" type="text" formControlName="warehouseId" required>
+            <div *ngIf="warehouseId.invalid && (warehouseId.dirty || warehouseId.touched)" class="alert alert-danger">
+
+                <div *ngIf="warehouseId.errors?.['required']">
+                    Campo Obrigatório
+                </div>
+                <div *ngIf="warehouseId.errors?.['pattern']">
+                    Armazém deve ser 3 caracteres alfanuméricos
+                </div>
+            </div>
+            <label for="description">
+                Descrição
+            </label>
+            <input id="description" type="text" formControlName="description" required>
+            <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+
+                <div *ngIf="description.errors?.['required']">
+                    Campo Obrigatório
+                </div>
+                <div *ngIf="description.errors?.['maxlength']">
+                    Descrição tem um limite de 50 caracteres
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="latitudeHrs">
+                Latitude
+            </label>
+            <input id="latitudeHrs" type="number" formControlName="latitudeHrs" required>
+            <div *ngIf="latitudeHrs.invalid && (latitudeHrs.dirty || latitudeHrs.touched)" class="alert alert-danger">
+
+                <div *ngIf="latitudeHrs.errors?.['required']">
+                    Campo Obrigatório
+                </div>
+                <div *ngIf="latitudeHrs.errors?.['min'] || latitudeHrs.errors?.['max']">
+                    Valor tem de ser de 0 a 90
+                </div>
+            </div>
+            <label for="latitudeMins">
+                °
+            </label>
+            <input id="latitudeMins" type="number" formControlName="latitudeMins" required>
+            <div *ngIf="latitudeMins.invalid && (latitudeMins.dirty || latitudeMins.touched)" class="alert alert-danger">
+
+                <div *ngIf="latitudeMins.errors?.['required']">
+                    Campo Obrigatório
+                </div>
+                <div *ngIf="latitudeMins.errors?.['min'] || latitudeMins.errors?.['max']">
+                    Valor tem de ser de 0 a 60
+                </div>
+            </div>
+            <label for="latitudeDir">
+                '
+            </label>
+            <select id="latitudeDir" class="form-control" formControlName="latitudeDir" required>
+                <option *ngFor="let latloc of lat_dir" [value]="latloc">{{latloc}}</option>
+            </select>
+        </div>
+        <div>
+            <label for="longitudeHrs">
+                Longitude
+            </label>
+            <input id="longitudeHrs" type="number" formControlName="longitudeHrs" required>
+            <div *ngIf="longitudeHrs.invalid && (longitudeHrs.dirty || longitudeHrs.touched)" class="alert alert-danger">
+
+                <div *ngIf="longitudeHrs.errors?.['required']">
+                    Campo Obrigatório
+                </div>
+                <div *ngIf="longitudeHrs.errors?.['min'] || longitudeHrs.errors?.['max']">
+                    Valor tem de ser de 0 a 180
+                </div>
+            </div>
+            <label for="longitudeMins">
+                °
+            </label>
+            <input id="longitudeMins" type="number" formControlName="longitudeMins" required>
+            <div *ngIf="longitudeMins.invalid && (longitudeMins.dirty || longitudeMins.touched)" class="alert alert-danger">
+
+                <div *ngIf="longitudeMins.errors?.['required']">
+                    Campo Obrigatório
+                </div>
+                <div *ngIf="longitudeMins.errors?.['min'] || longitudeMins.errors?.['max']">
+                    Valor tem de ser de 0 a 60
+                </div>
+            </div>
+            <label for="longitudeDir">
+                '
+            </label>
+            <select id="longitudeDir" class="form-control" formControlName="longitudeDir" required>
+                <option *ngFor="let lonloc of long_dir" [value]="lonloc">{{lonloc}}</option>
+            </select>
+        </div>
+        <div>
+            <label for="altitude">
+                Altitude
+            </label>
+            <input id="altitude" type="number" formControlName="altitude" required>
+            <div *ngIf="altitude.invalid && (altitude.dirty || altitude.touched)" class="alert alert-danger">
+
+                <div *ngIf="altitude.errors?.['required']">
+                    Campo Obrigatório
+                </div>
+                <div *ngIf="altitude.errors?.['min']">
+                    Valor tem de ser superior a -450
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="street">
+                Morada
+            </label>
+            <input id="street" type="text" formControlName="street" required>
+            <div *ngIf="street.invalid && (street.dirty || street.touched)" class="alert alert-danger">
+                <div *ngIf="street.errors?.['required']">
+                    Campo Obrigatório
+                </div>
+            </div>
+            <label for="local">
+                Localidade
+            </label>
+            <input id="local" type="text" formControlName="local" required>
+            <div *ngIf="local.invalid && (local.dirty || local.touched)" class="alert alert-danger">
+                <div *ngIf="local.errors?.['required']">
+                    Campo Obrigatório
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="postalCode">
+                Código Postal
+            </label>
+            <input id="postalCode" type="text" formControlName="postalCode" required>
+            <div *ngIf="postalCode.invalid && (postalCode.dirty || postalCode.touched)" class="alert alert-danger">
+                <div *ngIf="postalCode.errors?.['required']">
+                    Campo Obrigatório
+                </div>
+                <div *ngIf="postalCode.errors?.['pattern']">
+                    Código de postal inválido
+                </div>
+            </div>
+            <label for="country">
+                País
+            </label>
+            <input id="country" type="text" formControlName="country" required>
+            <div *ngIf="country.invalid && (country.dirty || country.touched)" class="alert alert-danger">
+                <div *ngIf="country.errors?.['required']">
+                    Campo Obrigatório
+                </div>
+            </div>
+        </div>
+        <button class="registar-button" type="submit" id="registar-button" [disabled]="warehouseForm.invalid">Registar</button>
+    </form>
+</div>
+
+<h2>Lista de Armazéms</h2>
+<div style="margin: 30px">
+    <table>
+        <tr>
+            <th>Index</th>
+            <th>ID Armazém</th>
+            <th>Descrição</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Altitude</th>
+            <th>Morada</th>
+            <th>Localidade</th>
+            <th>Código Postal</th>
+            <th>País</th>
+        </tr>
+        <tr *ngFor="let warehouse of warehouses ; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ warehouse.id }}</td>
+            <td>{{ warehouse.description }}</td>
+            <td>{{ warehouse.latitude }}</td>
+            <td>{{ warehouse.longitude }}</td>
+            <td>{{ warehouse.altitude }}</td>
+            <td>{{ warehouse.street }}</td>
+            <td>{{ warehouse.local }}</td>
+            <td>{{ warehouse.postalCode }}</td>
+            <td>{{ warehouse.country }}</td>
+        </tr>
+    </table>
+</div>
