@@ -167,3 +167,5 @@ build/
 
 .fake
 */target/
+*/Code/FE/login_Auth0/newsMain
+*/Code/FE/login_Auth0/newsMain/*
