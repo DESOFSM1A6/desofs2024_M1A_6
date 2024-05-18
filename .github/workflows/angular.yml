@@ -31,13 +31,11 @@ jobs:
           node-version: '20.x'
 
       - name: Install Dependencies
-        working-directory: ./code/FE/login_Auth0/login
-        run: npm install
+        run: cd ./code/FE/login_Auth0/login && npm install
           
       - name: Build
-        working-directory: ./code/FE/login_Auth0/login
-        run: npm run build  # this is where the error occurs
+        run: cd ./code/FE/login_Auth0/login && npm run build
       
       - name: Test
         working-directory: ./code/FE/login_Auth0/login
-        run: npm run test
+        run: cd ./code/FE/login_Auth0/login && npm run test
