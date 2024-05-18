@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { KeycloakService } from 'keycloak-angular';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () => keycloak.init({
@@ -14,8 +14,11 @@ function initializeKeycloak(keycloak: KeycloakService) {
     },
     initOptions: {
       onLoad: 'login-required',
-      flow: 'standard'
+      flow: 'standard',
+      checkLoginIframe: false,
     },
+    enableBearerInterceptor: true,
+    // bearerExcludedUrls: [],
   });
 }
 
@@ -25,7 +28,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    KeycloakAngularModule
   ],
   providers: [
     {
