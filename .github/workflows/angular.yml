@@ -40,4 +40,4 @@ jobs:
         run: cd ./Code/FE/login_Auth0/login && npm run build
       
       - name: Test
-        run: cd ./Code/FE/login_Auth0/login && npm run test
+        run: cd ./Code/FE/login_Auth0/login && npm run test --no-watch --no-progress --browsers=ChromeHeadlessCI
