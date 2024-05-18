@@ -16,6 +16,9 @@ on:
 
 # Fix
 jobs:
+  #before all jobs change the working directory to the FE folder
+  
+
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -32,9 +35,11 @@ jobs:
         node-version: '14'
 
     - name: Install Dependencies
+      working-directory: ./Code/FE/login_Auth0/login
       run: npm install
 
     - name: Build
+      working-directory: ./Code/FE/login_Auth0/login
       run: npm run build
 
   test:
@@ -53,6 +58,7 @@ jobs:
         node-version: '14'
 
     - name: Install Dependencies
+      working-directory: ./Code/FE/login_Auth0/login
       run: npm install
 
     - name: Test
@@ -74,6 +80,7 @@ jobs:
         node-version: '14'
 
     - name: Install Dependencies
+      working-directory: ./Code/FE/login_Auth0/login
       run: npm install
 
     - name: SonarQube Scan
