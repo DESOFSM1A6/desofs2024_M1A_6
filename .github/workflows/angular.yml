@@ -40,7 +40,7 @@ jobs:
 
     - name: Build
       working-directory: ./Code/FE/login_Auth0/login
-      run: npm run build
+      run: ng build
 
   test:
     name: Test
@@ -59,10 +59,10 @@ jobs:
 
     - name: Install Dependencies
       working-directory: ./Code/FE/login_Auth0/login
-      run: npm install
+      run: ng build
 
     - name: Test
-      run: npm run test
+      run: ng test 
 
   sonar:
     name: SonarQube Scan
