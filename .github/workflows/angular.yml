@@ -1,10 +1,10 @@
 name: FE Pipeline
 
-# when occurs a push with files in the specified paths, the pipeline will be triggered
+# when occurs a push 
 on:
   push:
-    paths:
-      - './code/FE/**'
+    branches:
+      - '*' # all branches
 
 jobs:
   build:
