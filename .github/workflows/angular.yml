@@ -42,8 +42,6 @@ jobs:
       - name: Test
         run: cd ./Code/FE/login_Auth0/login && npm run test -- --watch=false --browsers=ChromeHeadless
 
-      - name: Code Analysis (SonarCloud)
-        run: cd ./Code/FE/login_Auth0/login && npm run sonar
       - name: SonarQube Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
