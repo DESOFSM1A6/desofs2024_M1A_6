@@ -34,13 +34,13 @@ jobs:
         run: pwd
 
       - name: Install Dependencies
-        run: cd ./Code/FE/login_Auth0/login && npm install
+        run: cd ./Code/FE/login_Auth0/newspaper && npm install
 
       - name: Build
-        run: cd ./Code/FE/login_Auth0/login && npm run build
+        run: cd ./Code/FE/login_Auth0/newspaper && npm run build
 
       - name: Test
-        run: cd ./Code/FE/login_Auth0/login && npm run test -- --watch=false --browsers=ChromeHeadless
+        run: cd ./Code/FE/login_Auth0/newspaper && npm run test -- --watch=false --browsers=ChromeHeadless
 
       - name: SonarQube Scan
         uses: sonarsource/sonarcloud-github-action@master
