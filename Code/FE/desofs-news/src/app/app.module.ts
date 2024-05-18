@@ -8,9 +8,10 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 function initializeKeycloak(keycloak: KeycloakService) {
   return () => keycloak.init({
     config: {
-      url: 'http://localhost:9090/auth',
+      url: 'http://localhost:9090/',
       realm: 'master',
-      clientId: 'oauth2-backend-client'
+      clientId: 'oauth2-backend-client',
+
     },
     initOptions: {
       onLoad: 'login-required',
