@@ -100,4 +100,72 @@ public class NewsServiceTest {
         assert(true);
     }
 
+    @Test
+    void addNewsWithLikes(){
+        //mocks the repository
+        NewsRepository newsRepository = mock(NewsRepository.class);
+        Mockito.when(newsRepository.save(any())).thenReturn(null);
+        //creates the service
+        NewsService newsService = new NewsService();
+
+        //create th newsDTO
+        // Calendar now = Calendar.getInstance();
+        NewsDTO newsDTO = new NewsDTO("asafadf",null, 5);
+        //calls the method to be tested
+
+        newsService.setNewsRepository(newsRepository);
+        try {
+            newsService.addNews(newsDTO);
+        } catch (IllegalSaveOperation e) {
+            //fails the test if an exception is thrown
+            assert(false);
+        }
+    }
+    
+    @Test
+    void updateNewsTest(){
+        //mocks the repository
+        NewsRepository newsRepository = mock(NewsRepository.class);
+        Mockito.when(newsRepository.save(any())).thenReturn(null);
+        //creates the service
+        NewsService newsService = new NewsService();
+
+        try{
+            newsService.updateNews(0, null);
+            assert(false);
+        }catch(UnsupportedOperationException e){
+            assert(true);
+        }
+    }
+
+    @Test
+    void deleteNewsTest(){
+        //mocks the repository
+        NewsRepository newsRepository = mock(NewsRepository.class);
+        Mockito.when(newsRepository.save(any())).thenReturn(null);
+        //creates the service
+        NewsService newsService = new NewsService();
+
+        try{
+            newsService.deleteNews(0);
+            assert(false);
+        }catch(UnsupportedOperationException e){
+            assert(true);
+        }
+    }
+    @Test
+    void getNewsByIdTest(){
+        //mocks the repository
+        NewsRepository newsRepository = mock(NewsRepository.class);
+        Mockito.when(newsRepository.save(any())).thenReturn(null);
+        //creates the service
+        NewsService newsService = new NewsService();
+
+        try{
+            newsService.getNewsById(0);
+            assert(false);
+        }catch(UnsupportedOperationException e){
+            assert(true);
+        }
+    }
 }
