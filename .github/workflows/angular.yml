@@ -8,15 +8,13 @@ on:
     - feature/*
   pull_request:
     branches: [ "main" ]
-    
+
 jobs:
   build:
     name: All Steps (Build, Test & Deploy)
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20.x]
+
 
     steps:
       - uses: actions/checkout@v2
@@ -31,8 +29,6 @@ jobs:
             
       - name: Setup Node.js environment
         uses: actions/setup-node@v1.4.2
-        with:
-          node-version: ${{ matrix.node-version }}
 
       - name: Install Dependencies
         run: npm ci
