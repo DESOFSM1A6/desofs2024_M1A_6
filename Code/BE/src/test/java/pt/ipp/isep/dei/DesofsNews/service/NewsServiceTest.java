@@ -44,7 +44,7 @@ public class NewsServiceTest {
     void addNewsTestWithException() {
         //mocks the repository
         NewsRepository newsRepository = mock(NewsRepository.class);
-        Mockito.when(newsRepository.save(any())).thenThrow(IllegalSaveOperation.class);
+        Mockito.when(newsRepository.save(any())).thenThrow(RuntimeException.class);
         //creates the service
         NewsService newsService = new NewsService();
 
@@ -73,10 +73,16 @@ public class NewsServiceTest {
         NewsService newsService = new NewsService();
 
         //calls the method to be tested
-
+        //expects an not implemented exception
         newsService.setNewsRepository(newsRepository);
-        newsService.getNewsOfTheDay();
-        assert(true);
+        try {
+            newsService.getNewsOfTheDay();
+            //fails the test if an exception is not thrown
+            assert(false);
+        } catch (UnsupportedOperationException e) {
+            //fails the test if an exception is thrown
+            assert(true);
+        }
     }
 
     @Test
