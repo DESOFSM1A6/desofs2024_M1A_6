@@ -9,7 +9,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
   return () => keycloak.init({
     config: {
       url: 'http://localhost:9090/',
-      realm: 'master',
+      realm: 'jn-desofs',
       clientId: 'oauth2-backend-client',
 
     },
