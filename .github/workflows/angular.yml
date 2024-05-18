@@ -34,11 +34,11 @@ jobs:
         run: pwd
 
       - name: Install Dependencies
-        run: cd ./code/FE/login_Auth0/login && npm install
+        run: cd ./Code/FE/login_Auth0/login && npm install
           
       - name: Build
-        run: cd ./code/FE/login_Auth0/login && npm run build
+        run: cd ./Code/FE/login_Auth0/login && npm run build
       
       - name: Test
         working-directory: ./code/FE/login_Auth0/login
-        run: cd ./code/FE/login_Auth0/login && npm run test
+        run: cd ./Code/FE/login_Auth0/login && npm run test
