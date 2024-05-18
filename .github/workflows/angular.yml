@@ -77,11 +77,11 @@ jobs:
     - name: Setup Node
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '18'
 
     - name: Install Dependencies
       working-directory: ./Code/FE/login_Auth0/login
-      run: npm install
+      run: ng build 
 
     - name: SonarQube Scan
       uses: sonarsource/sonarcloud-github-action@master
