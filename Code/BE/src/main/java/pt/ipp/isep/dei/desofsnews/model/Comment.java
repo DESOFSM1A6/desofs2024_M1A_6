@@ -5,14 +5,20 @@ import java.util.Calendar;
 import java.util.List;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Comment {
+    @Id
+    //@UuidGenerator
+    private Long id;
+    @Transient
     private User user;
     private String text;
+    @Transient
     private List<Comment> responses;
-    @OneToMany
+    @Transient
     private List<Like> likes;
     private Calendar dateTime;
 

@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.desofsnews.model;
 
-import org.hibernate.annotations.UuidGenerator;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -9,7 +7,7 @@ import jakarta.persistence.Id;
 public class User {
 
     @Id
-    @UuidGenerator
+    //@UuidGenerator
     private String id;
     private String username;
     private String email;

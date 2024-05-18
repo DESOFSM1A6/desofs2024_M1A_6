@@ -13,6 +13,16 @@
         <property name="userRepository" ref="userRepository"></property>
     </bean>
 
+    <bean class ="pt.ipp.isep.dei.desofsnews.controller.NewsController">
+        <property name="newsService" ref="newsService"></property>
+    </bean>
+
+    <bean id="newsService" class="pt.ipp.isep.dei.desofsnews.service.NewsService">
+        <property name="newsRepository" ref="newsRepository"></property>
+    </bean>
+
+    <bean id="newsRepository" class="pt.ipp.isep.dei.desofsnews.repositories.NewsRepository"></bean>
+
     <bean id="userRepository" class="pt.ipp.isep.dei.desofsnews.repositories.UserRepository"></bean>
 
     <!-- <jpa:repositories base-package="pt.ipp.isep.dei.desofsnews.repository" /> -->

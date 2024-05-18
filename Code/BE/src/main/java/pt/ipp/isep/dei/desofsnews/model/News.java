@@ -4,17 +4,26 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.hibernate.annotations.UuidGenerator;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
+@Table(name = "news")
 public class News {
+    @Id
+    @UuidGenerator
+    private String id;
+
     private String text;
-    @OneToMany
+    @Transient
     private List<Picture> picture;
-    @OneToMany
+    @Transient
     private List<Comment> comments;
-    @OneToMany
+    @Transient
     private List<Like> likes;
     private Calendar dateTime;
 
@@ -30,8 +39,8 @@ public class News {
         return this.comments.add(comment);
     }
 
-    public boolean addLike(Like like) {
-        return this.likes.add(like);
+    public boolean addLike(User user) {
+        return this.likes.add(new Like(user));
     }
     
     public boolean removeLikeByUser(User user) {
@@ -84,5 +93,7 @@ public class News {
     public int countComments() {
         return this.comments.size();
     }
+
+
 
 }
