@@ -16,10 +16,13 @@
 	<name>DesofsNews</name>
 	<description>News website for desofs lecture</description>
 	<properties>
-		<java.version>21</java.version>
+		<sonar.organization>desofsm1a6</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 
+		
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>

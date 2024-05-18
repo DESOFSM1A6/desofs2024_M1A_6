@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import pt.ipp.isep.dei.desofsnews.dao.IUserRepository;
-import pt.ipp.isep.dei.desofsnews.dao.User;
+import pt.ipp.isep.dei.desofsnews.model.User;
+import pt.ipp.isep.dei.desofsnews.repositories.IUserRepository;
 
 @RestController
 @Component
