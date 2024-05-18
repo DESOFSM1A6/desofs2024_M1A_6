@@ -4,7 +4,11 @@ name: FE Pipeline
 on:
   push:
     branches:
-      - '*'
+    - main
+    - feature/*
+  pull_request:
+    branches: [ "main" ]
+    
 jobs:
   build:
     name: All Steps (Build, Test & Deploy)
