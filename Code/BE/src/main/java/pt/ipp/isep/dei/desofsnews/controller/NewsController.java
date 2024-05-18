@@ -44,15 +44,15 @@ public class NewsController {
 
     @GetMapping
     public ResponseEntity<List<News>> getAllNews() {
-        List<News> News = newsService.getAllNews();
-        return new ResponseEntity<>(News, HttpStatus.OK);
+        List<News> news = newsService.getAllNews();
+        return new ResponseEntity<>(news, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<News> getNewsById(@PathVariable int id) {
-        News News = newsService.getNewsById(id);
-        if (News != null) {
-            return new ResponseEntity<>(News, HttpStatus.OK);
+        News news = newsService.getNewsById(id);
+        if (news != null) {
+            return new ResponseEntity<>(news, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

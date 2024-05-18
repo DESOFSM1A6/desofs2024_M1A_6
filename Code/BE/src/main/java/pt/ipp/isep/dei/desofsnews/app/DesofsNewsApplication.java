@@ -16,16 +16,6 @@ import io.swagger.v3.oas.models.info.Info;
 @RequestMapping("api/v1")
 public class DesofsNewsApplication {
 
-	private static String message;
-
-	public static String getMessage() {
-		return message;
-	}
-
-	public static void setMessage(String message) {
-		DesofsNewsApplication.message = message;
-	}
-
 	public static void main(String[] args) {
 
 		SpringApplication.run(DesofsNewsApplication.class, args);

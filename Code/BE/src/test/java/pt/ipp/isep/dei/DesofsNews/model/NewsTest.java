@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 import pt.ipp.isep.dei.desofsnews.app.DesofsNewsApplication;
 import pt.ipp.isep.dei.desofsnews.model.Comment;
+import pt.ipp.isep.dei.desofsnews.model.Like;
 import pt.ipp.isep.dei.desofsnews.model.News;
 import pt.ipp.isep.dei.desofsnews.model.Picture;
 import pt.ipp.isep.dei.desofsnews.model.User;
@@ -146,4 +147,47 @@ public class NewsTest {
         assert (news.getComments().get(0).getDateTime().get(Calendar.DAY_OF_MONTH) == Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
     }
 
+
+    @Test
+    void addLikeToComment(){
+        // Arrange
+        List<Picture> pictures = new ArrayList<>();
+        Picture picture = new Picture("urlPic1", "description1");
+        pictures.add(picture);
+        News news = new News("text", pictures);
+
+        // Act
+        User user = new User();
+        user.setUsername("username");
+        user.setEmail("email");
+        user.setId("id");
+        Comment comment = new Comment(user, "text");
+        news.addComment(comment);
+        news.getComments().get(0).addLike(new Like(user));
+
+        // Assert
+        assert (news.getComments().get(0).getLikes().size() == 1);
+    }
+
+    @Test
+    void removeLikeFromComment(){
+        // Arrange
+        List<Picture> pictures = new ArrayList<>();
+        Picture picture = new Picture("urlPic1", "description1");
+        pictures.add(picture);
+        News news = new News("text", pictures);
+
+        // Act
+        User user = new User();
+        user.setUsername("username");
+        user.setEmail("email");
+        user.setId("id");
+        Comment comment = new Comment(user, "text");
+        news.addComment(comment);
+        news.getComments().get(0).addLike(new Like(user));
+        news.getComments().get(0).removeLikeByUser(user);
+
+        // Assert
+        assert (news.getComments().get(0).getLikes().size() == 0);
+    }
 }

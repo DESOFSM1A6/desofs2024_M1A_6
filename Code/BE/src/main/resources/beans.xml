@@ -6,7 +6,6 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <bean class="pt.ipp.isep.dei.desofsnews.app.DesofsNewsApplication">
-        <property name="message" value="blabla"></property>
     </bean>
 
     <bean class="pt.ipp.isep.dei.desofsnews.controller.SampleController">
