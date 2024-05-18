@@ -1,1 +1,0 @@
-{"ast":null,"code":"export const config = {\n  mdlApiUrl: 'https://two2s5-dk-64.onrender.com/api',\n  mdaApiUrl: 'https://22s5-dk-64-mda.azurewebsites.net/api'\n};","map":null,"metadata":{},"sourceType":"module"}
