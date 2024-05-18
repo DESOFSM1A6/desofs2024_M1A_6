@@ -14,8 +14,6 @@ jobs:
     name: All Steps (Build, Test & Deploy)
     runs-on: ubuntu-latest
 
-
-
     steps:
       - uses: actions/checkout@v2
 
@@ -33,13 +31,13 @@ jobs:
           node-version: '20.x'
 
       - name: Install Dependencies
-        working-directory: ./code/FE
+        working-directory: /code/FE/login_Auth0/login
         run: npm install
           
       - name: Build
-        working-directory: ./code/FE
+        working-directory: /code/FE/login_Auth0/login
         run: npm run build  # this is where the error occurs
       
       - name: Test
-        working-directory: ./code/FE
+        working-directory: /code/FE/login_Auth0/login
         run: npm run test
