@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pt.ipp.isep.dei.desofsnews.DTO.NewsDTO;
 import pt.ipp.isep.dei.desofsnews.model.News;
 import pt.ipp.isep.dei.desofsnews.service.INewsService;
+import pt.ipp.isep.dei.desofsnews.service.IllegalSaveOperation;
 import pt.ipp.isep.dei.desofsnews.service.NewsService;
 
 @RestController
@@ -59,7 +60,11 @@ public class NewsController {
 
     @PostMapping
     public ResponseEntity<Void> addNews(@RequestBody NewsDTO article) {
-        newsService.addNews(article);
+        try {
+            newsService.addNews(article);
+        } catch (IllegalSaveOperation e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

@@ -47,7 +47,7 @@ public class NewsService implements INewsService {
     }
 
     @Override
-    public void addNews(NewsDTO article) {
+    public void addNews(NewsDTO article) throws IllegalSaveOperation {
        //print the content of the article
         System.out.println(article.getText());
         //create the news object
@@ -56,7 +56,11 @@ public class NewsService implements INewsService {
 
 
         //save the news object
-        newsRepository.save(news);
+        try{
+            newsRepository.save(news);
+        }catch(Exception e){
+            throw new IllegalSaveOperation("Error saving news", e);
+        }
     }
 
     private void addLikesToNews(NewsDTO article, News news) {
