@@ -19,7 +19,6 @@ function initializeKeycloak(keycloak: KeycloakService) {
       checkLoginIframe: false,
     },
     enableBearerInterceptor: true,
-    // bearerExcludedUrls: [],
   });
 }
 
