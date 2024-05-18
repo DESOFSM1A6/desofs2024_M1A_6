@@ -1,11 +1,10 @@
 name: FE Pipeline
 
-# when occurs a push 
+# run on every push to all branches
 on:
   push:
     branches:
-      - 'Feature/8-integrationPipeline' # all branches
-
+      - '*'
 jobs:
   build:
     name: All Steps (Build, Test & Deploy)
