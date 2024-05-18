@@ -87,13 +87,14 @@ public class NewsRepository implements INewsRepository{
     }
 
     @Override
-    public void getAllNews() {
+    public List<News> getAllNews() {
         System.out.println("Getting all news");
         List<News> resultList = entityManager.createQuery("SELECT n FROM News n", News.class)
                 .getResultList();
         for (News news : resultList) {
             System.out.println(news);
         }
+        return resultList;
     }
 
     @Override

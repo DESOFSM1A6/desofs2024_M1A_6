@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.desofsnews.repositories;
 
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
@@ -11,6 +12,6 @@ public interface INewsRepository extends CrudRepository<News, String>{
 
     NewsDTO getNewsOfTheDay(Calendar calendar);
 
-    void getAllNews();
+    List<News> getAllNews();
 
 }
