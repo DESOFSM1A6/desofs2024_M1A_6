@@ -1,129 +1,38 @@
-name: Angular CI
+name: FE Pipeline
 
-env:
-  DOCKERFILE_PATH: ./Code/FE/Dockerfile
-  DOCKER_IMAGE_NAME: frontend-image
-
+# when occurs a push with files in the specified paths, the pipeline will be triggered
 on:
   push:
-    branches:
-    - main
-    - feature/*
-    paths: 
-    - ./Code/FE/*
-  pull_request:
-    branches: [ "main" ]
+    paths:
+      - './code/FE/**'
 
-# Fix
 jobs:
-  #before all jobs change the working directory to the FE folder
-  
-
   build:
-    name: Build
+    name: All Steps (Build, Test & Deploy)
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
+
+    strategy:
+      matrix:
+        node-version: [20.x]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v1.4.2
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Install Dependencies
-      working-directory: ./Code/FE/login_Auth0/login
-      run: npm install
-
-    - name: Build
-      working-directory: ./Code/FE/login_Auth0/login
-      run: ng build
-
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Install Dependencies
-      working-directory: ./Code/FE/login_Auth0/login
-      run: ng build
-
-    - name: Test
-      run: ng test 
-
-  sonar:
-    name: SonarQube Scan
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
-
-    - name: Install Dependencies
-      working-directory: ./Code/FE/login_Auth0/login
-      run: ng build 
-
-    - name: SonarQube Scan
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  image_scan:
-    name: Build and Run Image Scan
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    
-    - name: Setup Docker
-      uses: docker-practice/actions-setup-docker@v1
-      with:
-        docker_version: '26.1.3'
-
-    - name: Build Docker Image
-      run: docker build -f ${{ env.DOCKERFILE_PATH }} -t ${{ env.DOCKER_IMAGE_NAME }}:latest .
-
-    - name: Docker Scout Scan
-      uses: docker/scout-action@v1.8.0
-      with:
-        dockerhub-user: ${{ secrets.DOCKER_USER }}
-        dockerhub-password: ${{ secrets.DOCKER_PWD }}
-        command: quickview,cves
-        only-severities: critical,high
-        sarif-file: angular-scout-report.sarif
-
-    - name: Upload Artificat
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: docker-scout-findings
-        path: angular-scout-report.sarif
-
-    # Publish das docker images
-
-    # deploy (next sprint/pipeline)
-    
-    # docker compose etc
+      - name: Install Dependencies
+        run: npm ci
+          
+      - name: Run Unit Tests
+        run: npm run ci:test
