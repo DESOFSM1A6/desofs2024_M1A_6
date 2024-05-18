@@ -4,7 +4,7 @@ name: FE Pipeline
 on:
   push:
     branches:
-      - '*' # all branches
+      - 'Feature/8-integrationPipeline' # all branches
 
 jobs:
   build:
