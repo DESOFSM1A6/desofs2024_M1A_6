@@ -91,9 +91,6 @@ public class NewsRepository implements INewsRepository{
         System.out.println("Getting all news");
         List<News> resultList = entityManager.createQuery("SELECT n FROM News n", News.class)
                 .getResultList();
-        for (News news : resultList) {
-            System.out.println(news);
-        }
         return resultList;
     }
 
