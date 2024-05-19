@@ -73,7 +73,7 @@ class SecurityConfig {
 
     @Bean
     public JwtDecoder jwtDecoder() {
-        return NimbusJwtDecoder.withJwkSetUri("http://localhost:9090/realms/jn-desofs/.well-known/jwks.json").build();
+        return NimbusJwtDecoder.withJwkSetUri("http://localhost:9090/realms/jn-desofs/protocol/openid-connect/certs").build();
     }
 
     @Bean
