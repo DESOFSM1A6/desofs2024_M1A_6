@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pt.ipp.isep.dei.desofsnews.DTO.NewsDTO;
-import pt.ipp.isep.dei.desofsnews.model.News;
 import pt.ipp.isep.dei.desofsnews.service.INewsService;
 import pt.ipp.isep.dei.desofsnews.service.IllegalSaveOperation;
 import pt.ipp.isep.dei.desofsnews.service.NewsService;
@@ -40,8 +39,8 @@ public class NewsController {
     }
 
     @GetMapping
-    public ResponseEntity<List<News>> getAllNews() {
-        List<News> news = newsService.getAllNews();
+    public ResponseEntity<List<NewsDTO>> getAllNews() {
+        List<NewsDTO> news = newsService.getAllNews();
         return new ResponseEntity<>(news, HttpStatus.OK);
     }
 

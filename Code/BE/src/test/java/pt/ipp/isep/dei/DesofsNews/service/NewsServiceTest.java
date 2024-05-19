@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -13,6 +15,8 @@ import org.springframework.test.context.ContextConfiguration;
 
 import pt.ipp.isep.dei.desofsnews.DTO.NewsDTO;
 import pt.ipp.isep.dei.desofsnews.app.DesofsNewsApplication;
+import pt.ipp.isep.dei.desofsnews.model.News;
+import pt.ipp.isep.dei.desofsnews.model.User;
 import pt.ipp.isep.dei.desofsnews.repositories.NewsRepository;
 import pt.ipp.isep.dei.desofsnews.service.IllegalSaveOperation;
 import pt.ipp.isep.dei.desofsnews.service.NewsService;
@@ -96,8 +100,11 @@ public class NewsServiceTest {
     @Test
     void getAllNewsTest() {
         //mocks the repository
+        List<News> newsList = new ArrayList<>();
+        News news = new News("News123","asdhdfhkdshfds", new User("Jose","whatever"));
+        newsList.add(news);
         NewsRepository newsRepository = mock(NewsRepository.class);
-        Mockito.when(newsRepository.getAllNews()).thenReturn(null);
+        Mockito.when(newsRepository.getAllNews()).thenReturn(newsList);
         //creates the service
         NewsService newsService = new NewsService();
 

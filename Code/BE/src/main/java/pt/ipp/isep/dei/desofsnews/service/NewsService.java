@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.desofsnews.service;
 
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class NewsService implements INewsService {
     }
 
     @Override
-    public List<News> getAllNews() {
+    public List<NewsDTO> getAllNews() {
 
         List<News> allNews = newsRepository.getAllNews();
         //create a list of newsDTO
