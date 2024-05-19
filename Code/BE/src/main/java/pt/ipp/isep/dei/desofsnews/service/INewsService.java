@@ -13,7 +13,7 @@ public interface INewsService {
 
     News getNewsById(int id);
 
-    void addNews(NewsDTO article) throws IllegalSaveOperation;
+    News addNews(NewsDTO article) throws IllegalSaveOperation;
 
     void updateNews(int id, News article);
 

@@ -3,12 +3,13 @@ package pt.ipp.isep.dei.desofsnews.DTO;
 import java.util.Calendar;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @AllArgsConstructor
 public class NewsDTO {
-    private String text;
+    private String title;
+    private String content;
     private Calendar dateTime;
-    private int likes;
+    private String writer;
 }

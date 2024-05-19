@@ -8,10 +8,6 @@
     <bean class="pt.ipp.isep.dei.desofsnews.app.DesofsNewsApplication">
     </bean>
 
-    <bean class="pt.ipp.isep.dei.desofsnews.controller.SampleController">
-        <property name="userRepository" ref="userRepository"></property>
-    </bean>
-
     <bean class ="pt.ipp.isep.dei.desofsnews.controller.NewsController">
         <property name="newsService" ref="newsService"></property>
     </bean>

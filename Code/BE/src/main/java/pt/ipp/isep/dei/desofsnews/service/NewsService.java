@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pt.ipp.isep.dei.desofsnews.DTO.NewsDTO;
 import pt.ipp.isep.dei.desofsnews.model.News;
+import pt.ipp.isep.dei.desofsnews.model.User;
 import pt.ipp.isep.dei.desofsnews.repositories.INewsRepository;
 
 @Transactional
@@ -47,27 +48,22 @@ public class NewsService implements INewsService {
     }
 
     @Override
-    public void addNews(NewsDTO article) throws IllegalSaveOperation {
-       //print the content of the article
-        System.out.println(article.getText());
+    public News addNews(NewsDTO article) throws IllegalSaveOperation {
+        //find the author of the news
+        User author = new User(article.getWriter(),"dev@null.com");
+        
         //create the news object
-        News news = new News(article.getText(), null);
-        addLikesToNews(article, news);
+        News news = new News(article.getTitle(), article.getContent(), author);
 
-
-        //save the news object
+       //save the news object
         try{
             newsRepository.save(news);
         }catch(Exception e){
             throw new IllegalSaveOperation("Error saving news", e);
         }
+        return news;
     }
 
-    private void addLikesToNews(NewsDTO article, News news) {
-        for(int i =0; i < article.getLikes(); i++) {
-            news.addLike(null);
-        }
-    }
 
     @Override
     public void updateNews(int id, News article) {
