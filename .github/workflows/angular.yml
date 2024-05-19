@@ -1,0 +1,49 @@
+name: FE Pipeline
+
+# run on every push to all branches
+on:
+  push:
+    branches:
+      - main
+      - feature/*
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    name: All Steps (Build, Test & Deploy)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "20.x"
+
+      - name: get the working directory
+        run: pwd
+
+      - name: Install Dependencies
+        run: cd ./Code/FE/desofs-news && npm install
+
+      - name: Build
+        run: cd ./Code/FE/desofs-news && npm run build
+
+      - name: Test
+        run: cd ./Code/FE/desofs-news && npm run test -- --watch=false --browsers=ChromeHeadless
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_FE }}
