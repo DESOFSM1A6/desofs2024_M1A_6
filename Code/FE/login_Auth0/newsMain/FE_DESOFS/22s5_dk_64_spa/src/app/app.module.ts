@@ -10,6 +10,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { HomeComponent } from './Components/home/home.component';
 
 import { NewsComponent } from './Components/news/news.component';
+import { NewsSubmissionComponent } from './Components/news-submission/news-submission.component';
+import { NewsValidationComponent } from './Components/news-validation/news-validation.component';
 
 
 
@@ -19,7 +21,9 @@ import { NewsComponent } from './Components/news/news.component';
     LoginComponent,
     MessagesComponent,
     HomeComponent,
-    NewsComponent
+    NewsComponent,
+    NewsSubmissionComponent,
+    NewsValidationComponent
   ],
   imports: [
     BrowserModule,

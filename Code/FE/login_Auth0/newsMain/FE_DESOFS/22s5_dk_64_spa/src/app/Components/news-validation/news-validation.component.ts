@@ -1,13 +1,13 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
   selector: 'app-news-validation',
-  imports: [],
   templateUrl: './news-validation.component.html',
   styleUrls: ['./news-validation.component.css']
 })
-export class NewsValidationComponent implements OnInit{
+export class NewsValidationComponent {
+
   newsList = [
     { id: 1, title: 'Notícia 1', content: 'Conteúdo da notícia 1...' },
     { id: 2, title: 'Notícia 2', content: 'Conteúdo da notícia 2...' },
