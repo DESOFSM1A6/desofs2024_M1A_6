@@ -9,6 +9,9 @@ on:
     branches:
     - main
     - feature/*
+    paths: 
+    - ./Code/FE/*
+    - ./Code/BE/*
   pull_request:
     branches: [ "main" ]
 
@@ -60,8 +63,8 @@ jobs:
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=DESOFSM1A6_desofs2024_M1A_6 -f Code/BE/pom.xml
+          SONAR_TOKEN: ${{ secrets.SONAR_BE }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=desofsm1a6_desofs2024_M1A_6_BE -f Code/BE/pom.xml
   
   image_scan:
     name: Build and Run Image Scan
@@ -88,14 +91,14 @@ jobs:
         dockerhub-password: ${{ secrets.DOCKER_PWD }}
         command: quickview,cves
         only-severities: critical,high
-        sarif-file: scout-report.sarif
+        sarif-file: java-scout-report.sarif
 
     - name: Upload Artificat
       uses: actions/upload-artifact@v3
       if: always()
       with:
         name: docker-scout-findings
-        path: scout-report.sarif
+        path: java-scout-report.sarif
 
     # Publish das docker images
 

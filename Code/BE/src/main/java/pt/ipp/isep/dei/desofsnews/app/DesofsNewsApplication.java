@@ -12,19 +12,9 @@ import io.swagger.v3.oas.models.info.Info;
 
 @SpringBootApplication
 @ImportResource("classpath:beans.xml")
-@EntityScan("pt.ipp.isep.dei.desofsnews.dao")
+@EntityScan("pt.ipp.isep.dei.desofsnews.model")
 @RequestMapping("api/v1")
 public class DesofsNewsApplication {
-
-	private static String message;
-
-	public static String getMessage() {
-		return message;
-	}
-
-	public static void setMessage(String message) {
-		DesofsNewsApplication.message = message;
-	}
 
 	public static void main(String[] args) {
 
