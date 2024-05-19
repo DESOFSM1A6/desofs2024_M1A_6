@@ -11,13 +11,14 @@ import lombok.NoArgsConstructor;
 public class User {
 
     @Id
-    //@UuidGenerator
+    // @UuidGenerator
     private String id;
     private String username;
     private String email;
 
     public User(String username, String email) {
-        this.id = String.valueOf((int) (Math.random() * 1000));
+        java.security.SecureRandom random = new java.security.SecureRandom();
+        this.id = String.valueOf((int) (random.nextDouble()));
         this.username = username;
         this.email = email;
     }
