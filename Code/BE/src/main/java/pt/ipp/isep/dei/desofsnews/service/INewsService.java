@@ -9,7 +9,7 @@ public interface INewsService {
 
     String getNewsOfTheDay();
 
-    List<News> getAllNews();
+    List<NewsDTO> getAllNews();
 
     News getNewsById(int id);
 
