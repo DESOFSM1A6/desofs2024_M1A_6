@@ -3,7 +3,7 @@ FROM node:alpine AS builder
 
 COPY ./Code/FE/ .
 
-WORKDIR .desofs-news
+WORKDIR /desofs-news
 
 RUN addgroup allusers && adduser -S -G allusers username
 
