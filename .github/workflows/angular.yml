@@ -10,8 +10,8 @@ on:
     branches:
       - main
       - feature/*
-    paths: 
-      - ./Code/FE/*
+    paths:
+      - Code/FE/*
   pull_request:
     branches: ["main"]
 
