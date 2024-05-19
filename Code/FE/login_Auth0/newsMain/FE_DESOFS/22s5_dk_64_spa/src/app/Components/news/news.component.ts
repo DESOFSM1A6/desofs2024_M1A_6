@@ -1,8 +1,6 @@
 
 import { Component } from '@angular/core';
-import { CamiaoMap } from 'src/app/Mapper/CamiaoMap';
 import { News } from 'src/app/Models/news';
-import { CamiaoService } from 'src/app/Services/camiao.service';
 
 
 @Component({
