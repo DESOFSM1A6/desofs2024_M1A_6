@@ -35,16 +35,16 @@
   "verifyEmail": false,
   "loginWithEmailAllowed": true,
   "duplicateEmailsAllowed": false,
-  "resetPasswordAllowed": false,
+  "resetPasswordAllowed": true,
   "editUsernameAllowed": false,
-  "bruteForceProtected": false,
+  "bruteForceProtected": true,
   "permanentLockout": false,
-  "maxFailureWaitSeconds": 900,
+  "maxFailureWaitSeconds": 3600,
   "minimumQuickLoginWaitSeconds": 60,
-  "waitIncrementSeconds": 60,
+  "waitIncrementSeconds": 600,
   "quickLoginCheckMilliSeconds": 1000,
   "maxDeltaTimeSeconds": 43200,
-  "failureFactor": 30,
+  "failureFactor": 5,
   "roles": {
     "realm": [
       {
@@ -501,14 +501,17 @@
     "clientRole": false,
     "containerId": "c9b9195b-aab8-4c7b-887d-fca5d5646c80"
   },
+  "defaultGroups": [
+    "/user"
+  ],
   "requiredCredentials": [
     "password"
   ],
-  "passwordPolicy": "forceExpiredPasswordChange(180) and length(9) and passwordHistory(2) and upperCase(1) and lowerCase(1) and digits(1)",
+  "passwordPolicy": "forceExpiredPasswordChange(180) and length(12) and passwordHistory(2) and upperCase(1) and lowerCase(1) and digits(1) and specialChars(1) and maxLength(128) and regexPattern(^[^\\s]*(?:\\s[^\\s]+)*$)",
   "otpPolicyType": "totp",
   "otpPolicyAlgorithm": "HmacSHA512",
   "otpPolicyInitialCounter": 0,
-  "otpPolicyDigits": 6,
+  "otpPolicyDigits": 8,
   "otpPolicyLookAheadWindow": 1,
   "otpPolicyPeriod": 60,
   "otpPolicyCodeReusable": false,
