@@ -13,6 +13,11 @@
             <div class="user-controls" *ngIf="!isLoggedIn">
                 <button routerLink='/login'>Login</button>
             </div>
+            <div class="user-controls" *ngIf="isLoggedIn">
+                <button (click)="setRoleJornalista()">Jornalista</button>
+                <button (click)="setRoleEditor()">Editor</button>
+                <button (click)="setRoleLeitor()">Leitor</button>
+            </div>
         </div>
         <nav *ngIf="!isLoggedIn">
             <ul>
@@ -21,9 +26,24 @@
                 <li><a routerLink="/contact">Contato</a></li>
             </ul>
         </nav>
-        <nav *ngIf="isLoggedIn">
+        <nav *ngIf="isLoggedIn && this.role === 'Leitor'">
             <ul>
                 <li><a routerLink="/home">Home</a></li>
+                <li><a routerLink="/news">Últimas Notícias</a></li>
+            </ul>
+        </nav>
+
+        <nav *ngIf="isLoggedIn && this.role === 'Jornalista'">
+            <ul>
+                <li><a routerLink="/home">Home</a></li>
+                <li><a routerLink="/news">Últimas Notícias</a></li>
+                <li><a routerLink="/news-submission">Submissão de noticias</a></li>
+            </ul>
+        </nav>
+        <nav *ngIf="isLoggedIn && this.role === 'Editor'">
+            <ul>
+                <li><a routerLink="/home">Home</a></li>
+                <li><a routerLink="/news">Últimas Notícias</a></li>
                 <li><a routerLink="/news-submission">Submissão de noticias</a></li>
                 <li><a routerLink="/news-validation">Validação de noticias</a></li>
             </ul>

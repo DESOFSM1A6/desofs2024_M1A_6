@@ -10,6 +10,7 @@ import { AuthenticationService } from './Services/auth.service';
 export class AppComponent {
   title = 'JN ISEP';
   isLoggedIn: boolean = false;
+  role: String = "Leitor";
 
   constructor(public authService: AuthenticationService) {
     this.authService.isLoggedIn.subscribe(x => this.isLoggedIn = x);
@@ -19,4 +20,14 @@ export class AppComponent {
     this.authService.logout();
   }
 
+  setRoleJornalista(){
+    this.role = "Jornalista";
+  }
+
+  setRoleEditor(){
+    this.role = "Editor";
+  }
+  setRoleLeitor(){
+    this.role = "Leitor";
+  }
 }
