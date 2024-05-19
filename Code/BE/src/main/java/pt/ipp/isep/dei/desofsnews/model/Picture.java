@@ -1,9 +1,14 @@
 package pt.ipp.isep.dei.desofsnews.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Picture {
+    @Id
+    //@UuidGenerator
+    private Long id;
+
     private String url;
     private String caption;
 
