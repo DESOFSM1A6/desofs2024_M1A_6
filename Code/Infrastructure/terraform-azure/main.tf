@@ -69,6 +69,10 @@ resource "azurerm_linux_virtual_machine" "my_terraform_vm" {
 
   disable_password_authentication = false
 
+  identity {
+    type = "SystemAssigned"
+  }
+
   os_disk {
     name                 = var.os_disk.name
     caching              = var.os_disk.caching
