@@ -45,14 +45,14 @@ Garantir que o sistema de autenticação seja robusto e seguro, incluindo senhas
 
 | ASVS Level | CWE Code | Correção | Prova |
 |------------|----------|----------|----------| 
-| Nível 1    | CWE-620  | Utilização de autenticação multifator (2FA) | ![alt text](./MarkdownImages/OTPPolicies.png) |
-| Nível 1    | CWE-521  | Políticas de senhas fortes |![alt text](./MarkdownImages/PasswordPolicies.png)|
-| Nível 3    | CWE-308  | Bloqueio de contas após tentativas falhadas | ![alt text](./MarkdownImages/BruteForceDetectionPolicies.png) |
-| Nível 1    | CWE-307  | Implementação de bloqueio de contas | ![alt text](./MarkdownImages/Enable_DisableUser.png) |
+| Nível 1    | CWE-620  | Utilização de autenticação multifator (2FA) | ![alt text](./MarkdownImages/Auth/OTPPolicies.png) |
+| Nível 1    | CWE-521  | Políticas de senhas fortes |![alt text](./MarkdownImages/Auth/PasswordPolicies.png)|
+| Nível 3    | CWE-308  | Bloqueio de contas após tentativas falhadas | ![alt text](./MarkdownImages/Auth/BruteForceDetectionPolicies.png) |
+| Nível 1    | CWE-307  | Implementação de bloqueio de contas | ![alt text](./MarkdownImages/Auth/Enable_DisableUser.png) |
 | Nível 1    | CWE-304  | Reforço de autenticação multifator |            |
-|            | CWE-303  | Verificação de autenticadores | ![alt text](./MarkdownImages/MFA_Request.png) |
-| Nível 1    | CWE-640  | Armazenamento seguro de credenciais | ![alt text](./MarkdownImages/SafeCredentialStorage.png) ![alt text](./MarkdownImages/SafeCredentialDatabaseStorage.png) https://www.keycloak.org/docs/latest/server_admin/#password-database-compromised|
-| Nível 1    | CWE-287  | Autenticação robusta de utilizadores | ![alt text](./MarkdownImages/OTPPolicies.png) ![alt text](./MarkdownImages/MFA_Request.png) | 
+|            | CWE-303  | Verificação de autenticadores | ![alt text](./MarkdownImages/Auth/MFA_Request.png) |
+| Nível 1    | CWE-640  | Armazenamento seguro de credenciais | ![alt text](./MarkdownImages/Auth/SafeCredentialStorage.png) ![alt text](./MarkdownImages/Auth/SafeCredentialDatabaseStorage.png) https://www.keycloak.org/docs/latest/server_admin/#password-database-compromised|
+| Nível 1    | CWE-287  | Autenticação robusta de utilizadores | ![alt text](./MarkdownImages/Auth/OTPPolicies.png) ![alt text](./MarkdownImages/Auth/MFA_Request.png) | 
 | Nível 2    | CWE-522  | Proteção das credenciais durante a transmissão |
 
 **Com o Keycloak**: Keycloak fornece autenticação multifator (2FA), políticas de senhas, e bloqueio de contas após tentativas falhadas.
@@ -66,9 +66,9 @@ Garantir que os utilizadores tenham acesso apenas às áreas e funcionalidades n
 | ASVS Level | CWE Code | Correção | Prova |
 |------------|----------|----------|----------| 
 | Nível 1    | CWE-602  | Definição de permissões detalhadas |
-| Nível 1    | CWE-639  | Atribuição de roles específicos | ![alt text](./MarkdownImages/RealmRoles.png) |
-| Nível 1    | CWE-285  | Implementação de controlo de acesso baseado em roles | Dependendo da role acima, é possivel decidir paginas / conteudo a exibir para cada role.![alt text](./MarkdownImages/resourceServerFilterChainMethod.png) |
-| Nível 1    | CWE-352  | Prevenção de ataques Cross-Site Request Forgery (CSRF) | ![CSRF Attacks extraido da documentação do Keycloak](./MarkdownImages/CSRFAttacks.png) https://www.keycloak.org/docs/latest/server_admin/#csrf-attacks|
+| Nível 1    | CWE-639  | Atribuição de roles específicos | ![alt text](./MarkdownImages/Auth/RealmRoles.png) |
+| Nível 1    | CWE-285  | Implementação de controlo de acesso baseado em roles | Dependendo da role acima, é possivel decidir paginas / conteudo a exibir para cada role.![alt text](./MarkdownImages/Auth/resourceServerFilterChainMethod.png) |
+| Nível 1    | CWE-352  | Prevenção de ataques Cross-Site Request Forgery (CSRF) | ![CSRF Attacks extraido da documentação do Keycloak](./MarkdownImages/Auth/CSRFAttacks.png) https://www.keycloak.org/docs/latest/server_admin/#csrf-attacks|
 | Nível 1    | CWE-419  | Verificação de acesso adequado |
 | Nível 1    | CWE-548  | Proteção de funcionalidades sensíveis |
 
