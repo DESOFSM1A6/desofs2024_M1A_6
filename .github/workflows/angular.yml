@@ -34,13 +34,13 @@ jobs:
         run: pwd
 
       - name: Install Dependencies
-        run: cd ./Code/FE/newspaper && npm install
+        run: cd ./Code/FE/desofs-news && npm install
 
       - name: Build
-        run: cd ./Code/FE/newspaper && npm run build
+        run: cd ./Code/FE/desofs-news && npm run build
 
       - name: Test
-        run: cd ./Code/FE/newspaper && npm run test -- --watch=false --browsers=ChromeHeadless
+        run: cd ./Code/FE/desofs-news && npm run test -- --watch=false --browsers=ChromeHeadless
 
       - name: SonarQube Scan
         uses: sonarsource/sonarcloud-github-action@master
