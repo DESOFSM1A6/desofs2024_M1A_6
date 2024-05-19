@@ -1,5 +1,5 @@
 # Angular app
-FROM node:alpine
+FROM node:alpine AS builder
 
 COPY . .
 
