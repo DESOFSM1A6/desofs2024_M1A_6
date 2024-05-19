@@ -1,25 +1,30 @@
 package pt.ipp.isep.dei.desofsnews.model;
 
-import org.hibernate.annotations.UuidGenerator;
-
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Embeddable
+@NoArgsConstructor
 public class User {
 
     @Id
-    @UuidGenerator
+    // @UuidGenerator
     private String id;
     private String username;
     private String email;
 
-    public String getId() {
-        return id;
+    public User(String username, String email) {
+        java.security.SecureRandom random = new java.security.SecureRandom();
+        this.id = String.valueOf((int) (random.nextDouble()));
+        this.username = username;
+        this.email = email;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getId() {
+        return id;
     }
 
     public String getUsername() {
