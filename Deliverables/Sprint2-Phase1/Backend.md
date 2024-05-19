@@ -10,7 +10,7 @@ O backend foi dividido em 4 módulos principais:
 4. **Model**: Contém as classes que representam as entidades da aplicação.
 Esta arquitetura respeita a separação de responsabilidades, facilitando a manutenção e a escalabilidade do sistema. Baseia-se no padrão de arquitetura de software Onion Architecture.
 
-Nesta fase do projeto foi implementado um endpoint para a criação de notícias, que recebe um objeto JSON com os dados da notícia e a guarda na base de dados. Foi também implementado um endpoint para a listagem de todas as notícias, que retorna um array JSON com todas as notícias guardadas na base de dados. A funcionalidade de criar outros value objects relacionados com a notício como os comentários ou likes não foi implementada nesta fase do projeto. 
+Nesta fase do projeto foi implementado um endpoint para a criação de notícias, que recebe um objeto JSON com os dados da notícia e a guarda na base de dados. Foi também implementado um endpoint para a listagem de todas as notícias, que retorna um array JSON com todas as notícias guardadas na base de dados. A funcionalidade de criar outros value objects relacionados com a notício como os comentários ou likes não foi implementada nesta fase do projeto.
 
 ## Base de Dados
 O DBMS escolhido foi mySQL, devido à sua popularidade e facilidade de integração com o Spring Boot. A base de dados foi modelada com base nas entidades da aplicação, utilizando o conceito de ORM (Object-Relational Mapping) para mapear as classes Java para tabelas no mySQL. Foi utilizado o Hibernate como biblioteca ORM, que facilita a interação com a base de dados e a escrita de queries em HQL (Hibernate Query Language).
