@@ -1,15 +1,19 @@
-#Angular app
+# Angular app
 FROM node:alpine
-WORKDIR /app
+
 COPY . .
 
-#install dependencies
+WORKDIR ./desofs-news
+
+# Install dependencies
 RUN npm install
 
-#build the project
+RUN ls
+
+# Build the project
 RUN npm run build
 
 EXPOSE 4200
 
-#start the app
+# Start the app
 CMD ["npm", "start"]
