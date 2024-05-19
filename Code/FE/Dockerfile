@@ -1,9 +1,9 @@
 # Angular app
 FROM node:alpine AS builder
 
-COPY . .
+COPY ./Code/FE/ .
 
-WORKDIR ./desofs-news
+WORKDIR .desofs-news
 
 RUN ls
 RUN addgroup allusers && adduser -S -G allusers username
