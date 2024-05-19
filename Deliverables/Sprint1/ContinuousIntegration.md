@@ -18,3 +18,15 @@ Enquanto as pipelines previamente referidas são triggered a cada commit se algu
 
 É uma tool criada pelo Github que dependendo das configurações, cria Pulll Requests com atualizações, envia notificações, entre outros.
 Decidimos utilizá-la uma vez que adiciona mais uma camada de segurança à nossa aplicação.
+
+## Requisitos de Segurança
+
+### Arquitetura, Design e Ameaça
+
+| ASVS Level | CWE Code | Correção | Prova |
+|------------|----------|----------|----------| 
+| Nível 2    | CWE-502  | Implementação do Sonar Cloud |  |
+| Nível 2    | CWE-250  | Implementação do Docker Scout verifica a utilização de privilégio em operações que podem ser exploradas |  |
+| Nível 2    | CWE-284  | Implementação do Docker Scout deteta problemas em controlo de acessos nos componentes da imagem Docker |  |
+| Nível 2    | CWE-284  | Build da imagem Docker verifica que as imagens não utilizam demasiadas permissões |  |
+| Nível 2    | CWE-1104  | Implementação de Sonar Cloud e Docker Scout enviam relatórios e avisos sobre componentes e o Dependabot deteta dependências inválidas e cria PRs |  |
