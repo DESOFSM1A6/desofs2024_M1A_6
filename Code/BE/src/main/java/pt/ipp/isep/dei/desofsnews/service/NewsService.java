@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.desofsnews.service;
 
+
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +41,7 @@ public class NewsService implements INewsService {
             NewsDTO newsDTO = new NewsDTO(news.getText()," ",news.getDateTime(), news.getWriter().getUsername());
             newsDTOList.add(newsDTO);
         }
-        return allNews;
+        return newsDTOList;
     }
 
     @Override
@@ -50,6 +52,7 @@ public class NewsService implements INewsService {
 
     @Override
     public News addNews(NewsDTO article) throws IllegalSaveOperation {
+
         // find the author of the news
         User author = new User(article.getWriter(), "dev@null.com");
 
@@ -64,7 +67,7 @@ public class NewsService implements INewsService {
         }
         return news;
     }
-
+      
     @Override
     public void updateNews(int id, News article) {
         // TODO Auto-generated method stub
