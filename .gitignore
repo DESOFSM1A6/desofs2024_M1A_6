@@ -41,6 +41,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+.angular/
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
@@ -167,3 +168,9 @@ build/
 
 .fake
 */target/
+*/Code/FE/login_Auth0/newsMain
+*/Code/FE/login_Auth0/newsMain/*
+*/.angular/*
+*/.angular-cli.json
+*/.angular
+.angular
