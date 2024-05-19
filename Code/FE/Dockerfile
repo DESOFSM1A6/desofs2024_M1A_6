@@ -5,7 +5,6 @@ COPY ./Code/FE/ .
 
 WORKDIR .desofs-news
 
-RUN ls
 RUN addgroup allusers && adduser -S -G allusers username
 
 # Install dependencies
