@@ -1,0 +1,55 @@
+.validation-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.validation-container h1 {
+    text-align: center;
+}
+
+.validation-container p {
+    text-align: center;
+}
+
+.news-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f2f1f1;
+}
+
+.news-content {
+    padding-bottom: 20px; 
+}
+
+.news-content h2 {
+    margin-top: 0;
+}
+
+.action-buttons {
+    text-align: center; 
+}
+
+.action-buttons button {
+    margin: 5px; 
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.accept {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.reject {
+    background-color: #dc3545;
+    color: #fff;
+}
+
