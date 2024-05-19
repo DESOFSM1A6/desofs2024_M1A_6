@@ -1,7 +1,10 @@
 package pt.ipp.isep.dei.DesofsNews.service;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
+
+import java.util.Calendar;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -27,8 +30,13 @@ public class NewsServiceTest {
         NewsService newsService = new NewsService();
 
         //create th newsDTO
-        // Calendar now = Calendar.getInstance();
-        NewsDTO newsDTO = new NewsDTO("asafadf",null, 0);
+        Calendar now = Calendar.getInstance();
+        NewsDTO newsDTO = new NewsDTO("News123","asdhdfhkdshfds",now,"Jose");
+
+        assertEquals("News123", newsDTO.getTitle());
+        assertEquals("asdhdfhkdshfds", newsDTO.getContent());
+        assertEquals(now, newsDTO.getDateTime());
+        assertEquals("Jose", newsDTO.getWriter());
         //calls the method to be tested
 
         newsService.setNewsRepository(newsRepository);
@@ -50,7 +58,7 @@ public class NewsServiceTest {
 
         //create th newsDTO
         // Calendar now = Calendar.getInstance();
-        NewsDTO newsDTO = new NewsDTO("asafadf",null, 0);
+        NewsDTO newsDTO = new NewsDTO("News123","asdhdfhkdshfds",null,"Jose");
         //calls the method to be tested
 
         newsService.setNewsRepository(newsRepository);
@@ -108,9 +116,10 @@ public class NewsServiceTest {
         //creates the service
         NewsService newsService = new NewsService();
 
+        //todays date
+        Calendar now = Calendar.getInstance();
         //create th newsDTO
-        // Calendar now = Calendar.getInstance();
-        NewsDTO newsDTO = new NewsDTO("asafadf",null, 5);
+        NewsDTO newsDTO = new NewsDTO("News123","asdhdfhkdshfds",now,"Jose");
         //calls the method to be tested
 
         newsService.setNewsRepository(newsRepository);

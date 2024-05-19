@@ -1,9 +1,13 @@
 package pt.ipp.isep.dei.desofsnews.model;
 
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Embeddable
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -12,12 +16,14 @@ public class User {
     private String username;
     private String email;
 
-    public String getId() {
-        return id;
+    public User(String username, String email) {
+        this.id = String.valueOf((int) (Math.random() * 1000));
+        this.username = username;
+        this.email = email;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getId() {
+        return id;
     }
 
     public String getUsername() {
