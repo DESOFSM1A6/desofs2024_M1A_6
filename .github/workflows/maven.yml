@@ -30,11 +30,29 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
+    - name: Cache Maven packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-m2-
+
     - name: Build with Maven
       run: mvn -B clean install --file Code/BE/pom.xml
 
     - name: Test with Maven
-      run: mvn test --file Code/BE/pom.xml  
+      run: mvn test --file Code/BE/pom.xml
+
+    - name: Generate SBOM
+      run: mvn cyclonedx:makeBom
+
+    - name: Upload SBOM to artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: sbom
+        path: target/bom.xml
+
   sonar:
     name: Build and analyze
     runs-on: ubuntu-latest
