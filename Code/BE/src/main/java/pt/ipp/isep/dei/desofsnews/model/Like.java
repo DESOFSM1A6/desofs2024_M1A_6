@@ -11,7 +11,7 @@ import jakarta.persistence.Transient;
 @Table(name = "likes")
 public class Like {
     @Id
-    
+    //test
     private Long id;
     @Transient
     private User user;

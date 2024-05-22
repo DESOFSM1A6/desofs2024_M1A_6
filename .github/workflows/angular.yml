@@ -11,7 +11,7 @@ on:
       - main
       - feature/*
     paths:
-      - Code/FE/*
+      - 'Code/FE/**'
   pull_request:
     branches: ["main"]
 
