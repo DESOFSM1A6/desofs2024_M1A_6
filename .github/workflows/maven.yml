@@ -41,44 +41,14 @@ jobs:
     - name: Build with Maven
       run: mvn -B -U clean install --file Code/BE/pom.xml
 
+    - name: Upload SBOM to artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: sbom
+        path: Code/BE/target/bom.xml
+
     - name: Test with Maven
       run: mvn -B -U test --file Code/BE/pom.xml
-    
-  generate-sbom:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up JDK 11
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '11'
-
-      - name: Cache Maven packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-m2-
-
-      - name: Clean local Maven repository
-        run: mvn dependency:purge-local-repository -DactTransitively=false -DreResolve=false
-
-      - name: Build with Maven and force update
-        run: mvn clean install -U
-
-      - name: Generate SBOM
-        run: mvn org.cyclonedx:cyclonedx-maven-plugin:makeBom -U
-
-      - name: Upload SBOM to artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: sbom
-          path: target/bom.xml
 
   sonar:
     name: Build and analyze
