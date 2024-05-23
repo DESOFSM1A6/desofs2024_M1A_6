@@ -46,7 +46,7 @@ jobs:
         run: cd ./Code/FE/desofs-news && npm run build
       
       - name: Generate SBOM
-        run: npm run generate-sbom -- -o bomFE.xml
+        run: cd ./Code/FE/desofs-news && npm run generate-sbom -- -o bomFE.xml
 
       - name: Upload SBOM to artifact
         uses: actions/upload-artifact@v3
