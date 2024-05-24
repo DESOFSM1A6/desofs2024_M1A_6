@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DESOFS NEWS - Login</title>
+  <link rel="stylesheet" >
+</head>
+<body>
+  <header class="header">
+    <h1>DESOFS NEWS</h1>
+    <p>Bem-vindo de volta! Faça login para ver as últimas notícias.</p>
+  </header>
+  <div class="login-container">
+     <form>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="Seu email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Sua senha" required>
+      </div>
+      <button class="btn btn-login-normal" style="margin-top: 10px;">Login Normal</button>
+    </form>
+    <button (click)="handleAuth()" class="btn btn-login">Login with GitHub</button>
+    <p class="signup-link">Ainda não tem uma conta? <a href="#">Registre-se aqui</a></p>
+  </div>
+</body>
+</html>

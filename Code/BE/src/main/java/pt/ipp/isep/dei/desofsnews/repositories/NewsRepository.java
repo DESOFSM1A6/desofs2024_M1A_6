@@ -4,12 +4,17 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import pt.ipp.isep.dei.desofsnews.DTO.NewsDTO;
 import pt.ipp.isep.dei.desofsnews.model.News;
 
 public class NewsRepository implements INewsRepository{
+    private static Logger logger = (Logger) LoggerFactory.getLogger(NewsRepository.class);
+
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -88,12 +93,9 @@ public class NewsRepository implements INewsRepository{
 
     @Override
     public List<News> getAllNews() {
-        System.out.println("Getting all news");
+        logger.info("Getting all news from the database");
         List<News> resultList = entityManager.createQuery("SELECT n FROM News n", News.class)
                 .getResultList();
-        for (News news : resultList) {
-            System.out.println(news);
-        }
         return resultList;
     }
 

@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.desofsnews.service;
 
-import java.util.Calendar;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,19 +27,20 @@ public class NewsService implements INewsService {
 
     @Override
     public String getNewsOfTheDay() {
-        //gets the date of the day
-        Calendar calendar = Calendar.getInstance();
-        
-        newsRepository.getNewsOfTheDay(calendar);
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getNewsOfTheDay'");
     }
 
     @Override
-    public List<News> getAllNews() {
-        System.out.println("Getting all news");
-        newsRepository.getAllNews();
-        return null;
+    public List<NewsDTO> getAllNews() {
+
+        List<News> allNews = newsRepository.getAllNews();
+        //create a list of newsDTO
+        List<NewsDTO> newsDTOList = new ArrayList<>();
+        for (News news : allNews) {
+            NewsDTO newsDTO = new NewsDTO(news.getText()," ",news.getDateTime(), news.getWriter().getUsername());
+            newsDTOList.add(newsDTO);
+        }
+        return newsDTOList;
     }
 
     @Override
@@ -49,22 +51,22 @@ public class NewsService implements INewsService {
 
     @Override
     public News addNews(NewsDTO article) throws IllegalSaveOperation {
-        //find the author of the news
-        User author = new User(article.getWriter(),"dev@null.com");
-        
-        //create the news object
+
+        // find the author of the news
+        User author = new User(article.getWriter(), "dev@null.com");
+
+        // create the news object
         News news = new News(article.getTitle(), article.getContent(), author);
 
-       //save the news object
-        try{
+        // save the news object
+        try {
             newsRepository.save(news);
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new IllegalSaveOperation("Error saving news", e);
         }
         return news;
     }
-
-
+      
     @Override
     public void updateNews(int id, News article) {
         // TODO Auto-generated method stub
