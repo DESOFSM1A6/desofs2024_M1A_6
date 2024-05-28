@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthGuard } from './Services/guard/auth.guard';
 import { KeycloakService } from './Services/keycloak-init.factory';
 
 @Component({
@@ -28,8 +27,6 @@ export class AppComponent implements OnInit  {
   }
 
   setRoles(){
-    this.roles = this.keycloakService.getUserRoles();
-    console.log(this.roles);
     if(this.roles.includes("Leitor")){
       this.role = "Leitor";
     }
