@@ -13,11 +13,11 @@ export class JornalistaGuard implements CanActivate {
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const userRoles = this.keycloak.getUserRoles();
 
-    // Verificar se o utilizador é jornalista
+    // Verificar se o utilizador é jornalista ou editor ou administrador
     if (userRoles.includes('Admin') || userRoles.includes('Editor') || userRoles.includes('Jornalista')) {
       return true; // Permitir o acesso à rota
     } else {
-      // Redirecionar o utilizador para uma página de acesso negado
+      // Redirecionar o utilizador para a pagina de inicio
       return this.router.navigate(['/']);
     }
   }

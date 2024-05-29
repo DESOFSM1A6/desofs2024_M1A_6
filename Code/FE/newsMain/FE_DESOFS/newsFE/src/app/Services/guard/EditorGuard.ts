@@ -13,12 +13,12 @@ export class EditorGuard implements CanActivate {
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const userRoles = this.keycloak.getUserRoles();
 
-    // Verificar se o utilizador é editor
+    // Verificar se o utilizador é editor ou administrador
     if (userRoles.includes('Admin') || userRoles.includes('Editor')) {
       return true; // Permitir o acesso à rota
     } else {
-      // Redirecionar o utilizador para uma página de acesso negado
-      return this.router.createUrlTree(['/access-denied']);
+      // Redirecionar o utilizador para a pagina de inicio
+      return this.router.navigate(['/']);
     }
   }
 }
