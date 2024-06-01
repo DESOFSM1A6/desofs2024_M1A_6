@@ -1,0 +1,34 @@
+version: '3'
+services:
+  fe:
+    build: "../../FE"
+    ports:
+      - "4221:4200"
+    volumes:
+      - ../../FE/desofs-news:/usr/src/app 
+    networks:
+      my_network:
+        ipv4_address: 172.25.0.2   # Assigning IP address to frontend
+    depends_on:
+      - be
+  # Missing test connection
+  be:
+    build: "../../BE"
+    volumes:
+      - ../../BE:/usr/src/app 
+    networks:
+      my_network:
+        ipv4_address: 172.25.0.3   # Assigning IP address to backend
+    expose:
+      - 9090
+    # depends_on:
+    #   - db
+
+  # Missing keycloak and database
+
+networks:
+  my_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.25.0.0/16   # Define the subnet for your custom network

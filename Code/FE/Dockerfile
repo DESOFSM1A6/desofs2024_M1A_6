@@ -1,20 +1,18 @@
 # Angular app
-FROM node:alpine AS builder
+FROM node:alpine
 
-COPY ./Code/FE/ .
+RUN mkdir /app
 
-WORKDIR /desofs-news
+COPY ./Code/FE/desofs-news /app
 
-RUN addgroup allusers && adduser -S -G allusers username
+WORKDIR /app
 
 # Install dependencies
-RUN npm install
+RUN npm install -g @angular/cli
+
+RUN npm install 
 
 # Build the project
 RUN npm run build
 
-EXPOSE 4200
-
-# Start the app
-USER username
-CMD ["npm", "start"]
+CMD ["ng", "serve", "--host", "0.0.0.0"]
