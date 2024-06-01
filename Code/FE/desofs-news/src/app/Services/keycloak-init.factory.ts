@@ -15,9 +15,9 @@ export class KeycloakService {
     });
   }
 
-  init(): Promise<boolean>  {
+  init(onLoad: 'login-required' | 'check-sso'): Promise<boolean>  {
     return this.keycloak.init({
-      onLoad: 'login-required',
+      onLoad,
       checkLoginIframe: false,
       pkceMethod: 'S256'
     }).then(authenticated => {

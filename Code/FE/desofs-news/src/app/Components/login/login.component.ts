@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit {
   constructor(private keycloakService: KeycloakService) {}
 
   ngOnInit() {
-    this.keycloakService.init().then(authenticated => {
+    this.keycloakService.init('login-required').then(authenticated => {
       if (authenticated) {
         // Redirecionar para a página principal ou outra página após autenticação
         window.location.href = '/home';

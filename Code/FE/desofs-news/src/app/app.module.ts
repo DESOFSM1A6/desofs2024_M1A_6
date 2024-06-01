@@ -12,11 +12,13 @@ import { NewsComponent } from './Components/news/news.component';
 import { NewsSubmissionComponent } from './Components/news-submission/news-submission.component';
 import { NewsValidationComponent } from './Components/news-validation/news-validation.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { LoginComponent } from './Components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MessagesComponent,
+    LoginComponent,
     HomeComponent,
     NewsComponent,
     NewsSubmissionComponent,
