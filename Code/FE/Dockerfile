@@ -4,6 +4,8 @@ FROM node:alpine
 RUN mkdir /app
 
 COPY ./Code/FE/desofs-news /app
+# For the docker-compose
+# COPY ./desofs-news /app
 
 WORKDIR /app
 
