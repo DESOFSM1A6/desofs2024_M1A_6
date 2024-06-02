@@ -1,14 +1,19 @@
 FROM tomcat
 
-#install maven
+ARG PROJECT_PATH
+
+# Install maven
 RUN apt-get update && apt-get install -y maven \
     && apt-get clean
 
-# create new directory for the project
+# Create new directory for the project
 RUN mkdir /app
 
-#copy the project to the container
-COPY ./Code/BE /app
+# Copy the project to the container
+# COPY ./Code/BE /app
+# For the docker-compose
+# COPY . /app
+COPY $PROJECT_PATH /app
 
 #change the working directory
 WORKDIR /app
@@ -16,13 +21,13 @@ WORKDIR /app
 RUN ls
 RUN pwd
 
-#build the project
+# Build the project
 RUN mvn clean package -DskipTests
 
-#determine the war file name
+# Determine the war file name
 RUN mv target/*.war /usr/local/tomcat/webapps/app.war
 
 EXPOSE 8080
 
-#start tomcat
+# Start tomcat
 CMD ["catalina.sh", "run"]

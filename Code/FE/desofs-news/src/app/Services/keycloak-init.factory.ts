@@ -9,7 +9,7 @@ export class KeycloakService {
 
   constructor() {
     this.keycloak = new Keycloak({
-      url: 'http://localhost:9090',
+      url: 'http://keycloak:9090',
       realm: 'jn-desofs',
       clientId: 'oauth2-backend-client'
     });
