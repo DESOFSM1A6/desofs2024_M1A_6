@@ -7,7 +7,6 @@ terraform {
   }
 }
 
-# Configure the DigitalOcean Provider
 provider "digitalocean" {
   token = var.do_token
 }
@@ -29,18 +28,11 @@ resource "digitalocean_droplet" "tfdroplet" {
     host        = self.ipv4_address
     user        = "root"
     type        = "ssh"
-    private_key = file(var.private_key_path) # for the 'all' key
+    private_key = file(var.private_key_path)
     timeout     = "2m"
   }
 
   provisioner "remote-exec" {
-    # connection {
-    #     host = self.ipv4_address
-    #     user = "root"
-    #     type = "ssh"
-    #     private_key = file(var.private_key_path) # for the 'all' key
-    #     timeout = "2m"
-    # }
 
     inline = [
       "sudo mkdir -p /usr/src/Code/FE",
@@ -51,12 +43,12 @@ resource "digitalocean_droplet" "tfdroplet" {
 
   provisioner "file" {
     source      = "../../../Code/FE"
-    destination = "/usr/src/Code" # Remote path on the droplet
+    destination = "/usr/src/Code"
   }
 
   provisioner "file" {
     source      = "../../../Code/BE"
-    destination = "/usr/src/Code" # Remote path on the droplet
+    destination = "/usr/src/Code"
   }
 
   provisioner "file" {

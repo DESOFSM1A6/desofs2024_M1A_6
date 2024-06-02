@@ -11,10 +11,10 @@ services:
       - ../../FE/desofs-news:/usr/src/app
     networks:
       my_network:
-        ipv4_address: 172.25.0.2   # Assigning IP address to frontend
+        ipv4_address: 172.25.0.2
     depends_on:
       - be
-  # Missing test connection
+      
   be:
     build:
       context: "../../BE"
@@ -24,13 +24,12 @@ services:
       - ../../BE:/usr/src/app
     networks:
       my_network:
-        ipv4_address: 172.25.0.3   # Assigning IP address to backend
+        ipv4_address: 172.25.0.3
     expose:
       - 9090
     # depends_on:
     #   - db
 
-  # Missing keycloak and database
   keycloak:
     image: quay.io/keycloak/keycloak:20.0.0
     command: start-dev
@@ -48,7 +47,6 @@ services:
       - "9090:8080"
     depends_on:
       - postgres
-        # condition: service_healthy
     networks:
       my_network:
         ipv4_address: 172.25.0.4
@@ -71,6 +69,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     user: postgres
 
+  # Missing database
 
 volumes:
   postgres_data:
