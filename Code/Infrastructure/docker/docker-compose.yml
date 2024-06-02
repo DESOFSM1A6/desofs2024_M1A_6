@@ -1,11 +1,14 @@
 version: '3'
 services:
   fe:
-    build: "../../FE"
+    build:
+      context: "../../FE"
+      args:
+        - PROJECT_PATH=./desofs-news
     ports:
       - "4200:4200"
     volumes:
-      - ../../FE/desofs-news:/usr/src/app 
+      - ../../FE/desofs-news:/usr/src/app
     networks:
       my_network:
         ipv4_address: 172.25.0.2   # Assigning IP address to frontend
@@ -13,9 +16,12 @@ services:
       - be
   # Missing test connection
   be:
-    build: "../../BE"
+    build:
+      context: "../../BE"
+      args:
+        - PROJECT_PATH=.
     volumes:
-      - ../../BE:/usr/src/app 
+      - ../../BE:/usr/src/app
     networks:
       my_network:
         ipv4_address: 172.25.0.3   # Assigning IP address to backend
@@ -41,8 +47,8 @@ services:
     ports:
       - "9090:8080"
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
+        # condition: service_healthy
     networks:
       my_network:
         ipv4_address: 172.25.0.4

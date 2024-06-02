@@ -1,11 +1,14 @@
 # Angular app
 FROM node:alpine
 
+ARG PROJECT_PATH
+
 RUN mkdir /app
 
-COPY ./Code/FE/desofs-news /app
+# COPY ./Code/FE/desofs-news /app
 # For the docker-compose
 # COPY ./desofs-news /app
+COPY $PROJECT_PATH /app
 
 WORKDIR /app
 
@@ -15,6 +18,6 @@ RUN npm install -g @angular/cli
 RUN npm install 
 
 # Build the project
-RUN npm run build
+# RUN npm run build
 
 CMD ["ng", "serve", "--host", "0.0.0.0"]

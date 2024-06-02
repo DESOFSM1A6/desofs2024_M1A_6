@@ -1,5 +1,7 @@
 FROM tomcat
 
+ARG PROJECT_PATH
+
 # Install maven
 RUN apt-get update && apt-get install -y maven \
     && apt-get clean
@@ -8,9 +10,10 @@ RUN apt-get update && apt-get install -y maven \
 RUN mkdir /app
 
 # Copy the project to the container
-COPY ./Code/BE /app
+# COPY ./Code/BE /app
 # For the docker-compose
 # COPY . /app
+COPY $PROJECT_PATH /app
 
 #change the working directory
 WORKDIR /app
