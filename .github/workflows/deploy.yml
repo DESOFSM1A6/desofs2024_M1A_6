@@ -3,10 +3,11 @@ name: Deployment Pipeline
 on:
   workflow_run:
     workflows: ["Angular Pipeline", "Java CI with Maven"]
-    types: [completed]
-    branches:
-        - main
-        - 24-release-pipelines
+    branches: [24-release-pipelines]
+        # - main
+        # - 24-release-pipelines
+    types: 
+        - completed
 
 jobs:
   deploy:
@@ -16,8 +17,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          ssh-key: ${{secrets.SSH_KEY}}
 
       - name: Copy latest BE code to VM
         uses: appleboy/scp-action@v0.1.7
