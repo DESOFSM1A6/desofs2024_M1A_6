@@ -1,0 +1,58 @@
+name: Deployment Pipeline
+
+on:
+  workflow_run:
+    workflows: ["Angular Pipeline", "Java CI with Maven"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: 
+      name: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Copy latest BE code to VM
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ vars.HOST }}
+          username: ${{ vars.USER }}
+          port: ${{ vars.PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          source: '/Code/BE'
+          target: '/usr/src/Code/BE'
+
+      - name: Copy latest FE code to VM
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ vars.HOST }}
+          username: ${{ vars.USER }}
+          port: ${{ vars.PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          source: '/Code/FE/desofs-news'
+          target: '/usr/src/Code/FE'
+
+      - name: Copy latest docker-compose code to VM
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ vars.HOST }}
+          username: ${{ vars.USER }}
+          port: ${{ vars.PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          source: '/Code/Infrastructure/docker/docker-compose.yml'
+          target: '/usr/src/Code/Infrastructure/docker'
+
+      - name: SSH into VM and rebuild docker images
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ vars.HOST }}
+          username: ${{ vars.USER }}
+          port: ${{ vars.PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            # Your SSH commands here
+            cd /usr/src/Code/Infrastructure/docker
+            docker-compose up --build
