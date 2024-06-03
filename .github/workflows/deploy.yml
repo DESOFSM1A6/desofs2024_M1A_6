@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ssh-key: "${{secrets.SSH_KEY}}"
 
       - name: Copy latest BE code to VM
         uses: appleboy/scp-action@v0.1.7
