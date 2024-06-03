@@ -5,6 +5,9 @@ on:
     workflows: ["Angular Pipeline", "Java CI with Maven"]
     types:
       - completed
+    branches:
+        - main
+        - 24-release-pipelines
 
 jobs:
   deploy:
