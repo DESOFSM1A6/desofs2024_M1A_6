@@ -174,3 +174,5 @@ build/
 */.angular-cli.json
 */.angular
 .angular
+/Code/BE/.env
+*/.env
