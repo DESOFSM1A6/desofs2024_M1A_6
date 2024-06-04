@@ -13,37 +13,37 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Copy latest BE code to VM
-        uses: appleboy/scp-action@v0.1.4
+        uses: garygrossgarten/github-action-scp@release
         with:
           host: 206.189.24.67
           username: root
           port: 22
-          key: ${{ secrets.SSH_KEY }}
-          source: '/Code/BE'
-          target: '/usr/src/Code/BE'
+          privateKey: ${{ secrets.SSH_KEY }}
+          local: '/Code/BE'
+          remote: '/usr/src/Code/BE'
 
       - name: Copy latest FE code to VM
-        uses: appleboy/scp-action@v0.1.4
+        uses: garygrossgarten/github-action-scp@release
         with:
           host: 206.189.24.67
           username: root
           port: 22
-          key: ${{ secrets.SSH_KEY }}
-          source: '/Code/FE'
-          target: '/usr/src/Code/FE'
+          privateKey: ${{ secrets.SSH_KEY }}
+          local: '/Code/FE'
+          remote: '/usr/src/Code/FE'
 
       # - name: Copy latest docker-compose code to VM
-      #   uses: appleboy/scp-action@v0.1.4
+      #   uses: garygrossgarten/github-action-scp@release
       #   with:
       #     host: 206.189.24.67
       #     username: root
       #     port: 22
-      #     key: ${{ secrets.SSH_KEY }}
-      #     source: '/Code/Infrastructure/docker/docker-compose.yml'
-      #     target: '/usr/src/Code/Infrastructure/docker'
+      #     privateKey: ${{ secrets.SSH_KEY }}
+      #     local: '/Code/Infrastructure/docker/docker-compose.yml'
+      #     remote: '/usr/src/Code/Infrastructure/docker'
 
       - name: SSH into VM and rebuild docker images
-        uses: appleboy/ssh-action@v0.1.4
+        uses: appleboy/ssh-action@master
         with:
           host: 206.189.24.67
           username: root
