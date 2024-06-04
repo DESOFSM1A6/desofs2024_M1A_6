@@ -13,8 +13,6 @@ on:
       - main
       - 'feature/**'
       - 24-release-pipelines
-    paths:
-      - 'Code/FE/**'
   pull_request:
     branches: ["main"]
 
