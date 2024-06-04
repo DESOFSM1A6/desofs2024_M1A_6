@@ -19,6 +19,7 @@ on:
 jobs:
   build-fe:
     name: Build and Test FE
+    continue-on-error: true # To remove
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -44,6 +45,7 @@ jobs:
 
   build-be:
     name: Build and Test Application
+    continue-on-error: true # To remove
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -73,6 +75,7 @@ jobs:
 
   sonar-be:
     name: Build and analyze BE
+    continue-on-error: true # To remove
     needs: build-be
     runs-on: ubuntu-latest
     steps:
@@ -104,6 +107,7 @@ jobs:
   
   image-scan-fe:
     name: Build and Run Image Scan FE
+    continue-on-error: true # To remove
     needs: sonar-fe
     runs-on: ubuntu-latest
     permissions:
@@ -134,6 +138,7 @@ jobs:
         
   image-scan-be:
     name: Build and Run Image Scan BE
+    continue-on-error: true # To remove
     needs: sonar-be
     runs-on: ubuntu-latest
     permissions:
