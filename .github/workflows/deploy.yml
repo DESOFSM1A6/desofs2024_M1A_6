@@ -3,9 +3,9 @@ name: Deployment Pipeline
 on:
   workflow_run:
     workflows: ["Angular Pipeline"]
-    branches: [24-release-pipelines]
+    branches:
         # - main
-        # - 24-release-pipelines
+        - 24-release-pipelines
     types: 
         - completed
 
