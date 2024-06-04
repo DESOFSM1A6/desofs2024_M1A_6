@@ -157,3 +157,6 @@ jobs:
       with:
         name: docker-scout-findings
         path: java-scout-report.sarif
+
+  deploy:
+    uses: ./.github/workflows/deploy.yml
