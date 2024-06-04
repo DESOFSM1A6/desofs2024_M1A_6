@@ -1,11 +1,7 @@
 name: deploy
 
 on:
-  workflow_run:
-    workflows: 
-      - ci
-    types:
-      - completed
+  - workflow_call
 
 jobs:
   deployment:

@@ -61,6 +61,7 @@ jobs:
 
   sonar-fe:
     name: Build and analyze FE
+    needs: build-fe
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -72,6 +73,7 @@ jobs:
 
   sonar-be:
     name: Build and analyze BE
+    needs: build-be
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -102,6 +104,7 @@ jobs:
   
   image-scan-fe:
     name: Build and Run Image Scan FE
+    needs: sonar-fe
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -129,8 +132,9 @@ jobs:
         name: docker-scout-findings
         path: angular-scout-report.sarif
         
-  image_scan_be:
+  image-scan-be:
     name: Build and Run Image Scan BE
+    needs: sonar-be
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -157,3 +161,8 @@ jobs:
       with:
         name: docker-scout-findings
         path: java-scout-report.sarif
+
+  deploy:
+    name: Deployment to 'production'
+    needs: [image-scan-fe, image-scan-be]
+    uses: ./.github/workflows/deploy.yml
