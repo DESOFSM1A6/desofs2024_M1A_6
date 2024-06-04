@@ -2,9 +2,12 @@ name: Deployment Pipeline
 
 on:
   workflow_run:
-    workflows: [CI Pipeline]
+    workflows: 
+      - CiPipeline
     types:
       - completed
+    # branches:
+    #   - 24-release-pipelines
 jobs:
   deployment:
     runs-on: ubuntu-latest
