@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows: ["CiPipeline"]
     types:
-      - completed
+      - in_progress
 jobs:
   deployment:
     runs-on: ubuntu-latest
@@ -16,9 +16,9 @@ jobs:
       - name: Copy latest BE code to VM
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ vars.HOST }}
-          username: ${{ vars.USER }}
-          port: ${{ vars.PORT }}
+          host: 206.189.24.67
+          username: root
+          port: 22
           key: ${{ secrets.SSH_KEY }}
           source: '/Code/BE'
           target: '/usr/src/Code/BE'
@@ -26,9 +26,9 @@ jobs:
       - name: Copy latest FE code to VM
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ vars.HOST }}
-          username: ${{ vars.USER }}
-          port: ${{ vars.PORT }}
+          host: 206.189.24.67
+          username: root
+          port: 22
           key: ${{ secrets.SSH_KEY }}
           source: '/Code/FE'
           target: '/usr/src/Code/FE'
@@ -36,9 +36,9 @@ jobs:
       # - name: Copy latest docker-compose code to VM
       #   uses: appleboy/scp-action@v0.1.7
       #   with:
-      #     host: ${{ vars.HOST }}
-      #     username: ${{ vars.USER }}
-      #     port: ${{ vars.PORT }}
+      #     host: 206.189.24.67
+      #     username: root
+      #     port: 22
       #     key: ${{ secrets.SSH_KEY }}
       #     source: '/Code/Infrastructure/docker/docker-compose.yml'
       #     target: '/usr/src/Code/Infrastructure/docker'
@@ -46,9 +46,9 @@ jobs:
       - name: SSH into VM and rebuild docker images
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host: ${{ vars.HOST }}
-          username: ${{ vars.USER }}
-          port: ${{ vars.PORT }}
+          host: 206.189.24.67
+          username: root
+          port: 22
           key: ${{ secrets.SSH_KEY }}
           # Only re-build fe, be
           script: |
