@@ -2,12 +2,10 @@ name: Deployment Pipeline
 
 on:
   workflow_run:
-    workflows: ["Angular Pipeline"]
+    workflows: ["CI Pipeline"]
+    types: [completed]
     branches:
-        # - main
         - 24-release-pipelines
-    types: 
-        - completed
 
 jobs:
   deploy:
