@@ -1,4 +1,4 @@
-name: CiPipeline
+name: ci
 
 env:
   DOCKERFILE_FE_PATH: ./Code/FE/Dockerfile
