@@ -1,8 +1,10 @@
 name: Deployment Pipeline
 
 on:
-  - workflow_call
-  
+  workflow_run:
+    workflows: ["CiPipeline"]
+    types:
+      - in_progress
 jobs:
   deployment:
     runs-on: ubuntu-latest
