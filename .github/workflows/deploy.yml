@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows: ["CiPipeline"]
     types:
-      - in_progress
+      - completed
 jobs:
   deployment:
     runs-on: ubuntu-latest
