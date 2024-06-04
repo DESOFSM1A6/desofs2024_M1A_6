@@ -1,44 +1,38 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MessagesComponent } from './messages/messages.component';
+import { HomeComponent } from './Components/home/home.component';
+
+import { NewsComponent } from './Components/news/news.component';
+import { NewsSubmissionComponent } from './Components/news-submission/news-submission.component';
+import { NewsValidationComponent } from './Components/news-validation/news-validation.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-
-function initializeKeycloak(keycloak: KeycloakService) {
-  return () => keycloak.init({
-    config: {
-      url: 'http://localhost:9090/',
-      realm: 'jn-desofs',
-      clientId: 'oauth2-backend-client',
-
-    },
-    initOptions: {
-      onLoad: 'login-required',
-      flow: 'standard',
-      checkLoginIframe: false,
-    },
-    enableBearerInterceptor: true,
-  });
-}
+import { LoginComponent } from './Components/login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MessagesComponent,
+    LoginComponent,
+    HomeComponent,
+    NewsComponent,
+    NewsSubmissionComponent,
+    NewsValidationComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
+    HttpClientModule,
     KeycloakAngularModule
   ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeKeycloak,
-      multi: true,
-      deps: [KeycloakService]
-    }
-  ],
+  providers: [KeycloakService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
