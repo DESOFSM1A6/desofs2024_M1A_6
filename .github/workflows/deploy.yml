@@ -22,10 +22,21 @@ jobs:
           chmod 600 /home/runner/.ssh/id_rsa
           ssh-keyscan github.com >> /home/runner/.ssh/known_hosts
 
-      - name: Run ansible script
-        shell: bash 
+      - name: Install Ansible
         run: |
-          cd /Code/Infrastructure/ansible
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          pip3 install ansible
+
+      - name: Copy ansible directory to runner
+        shell: bash
+        run: |
+          cp -R Infrastructure/ansible /home/runner/ansible
+  
+      - name: Run ansible script
+        shell: bash
+        run: |
+          cd /home/runner/ansible
           ansible-playbook --private-key /home/runner/.ssh/id_rsa -i hosts.yml playbook.yml
       
       # - name: SSH into VM and rebuild docker images
