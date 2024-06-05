@@ -16,6 +16,8 @@
         - { src: "/home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/Code/FE", dest: "/usr/src/Code/FE/" }
         
     - name: Execute commands
-      command: /bin/sh -c "cd /usr/src/Code/Infrastructure/docker && docker-compose up --build fe be"
+      command: 
+        cmd: docker-compose up --build fe be
+        chdir: /usr/src/Code/Infrastructure/docker
     # - name: Fix keycloak
     #   command: docker exec -it docker_keycloak_1 sh -c 'sleep 240 && cd /opt/keycloak/bin/ && ./kcadm.sh config credentials --server http://localhost:8080 --realm master --user admin --password admin && ./kcadm.sh update realms/master -s sslRequired=NONE'"
