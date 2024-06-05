@@ -35,7 +35,6 @@ jobs:
         run: |
           mkdir /home/runner/ansible
           cp -R ./Code/Infrastructure/ansible/* /home/runner/ansible
-          ssh -i /home/runner/.ssh/id_rsa root@206.189.24.67
   
       - name: Run ansible script
         shell: bash
