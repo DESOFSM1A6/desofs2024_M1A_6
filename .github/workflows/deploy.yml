@@ -12,6 +12,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install Ansible
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          pip3 install ansible
+
       - name: Set up SSH
         env:
           KEY: ${{ secrets.SSH_KEY }}
@@ -20,43 +26,22 @@ jobs:
           service ssh status
           eval `ssh-agent -s`
 
-          mkdir -p /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/.ssh/
-          echo $KEY > /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/.ssh/id_rsa
-          chmod 600 /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/.ssh/id_rsa
-          ssh-keyscan 206.189.24.67 >> /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/.ssh/known_hosts
-
-      - name: Install Ansible
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-pip
-          pip3 install ansible
+          mkdir .ssh/
+          echo "$KEY" > .ssh/id_rsa
+          chmod 600 .ssh/id_rsa
+    # ssh-keyscan 206.189.24.67 >> /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/.ssh/known_hosts
 
 
       - name: Copy ansible directory to runner
         shell: bash
         run: |
-          cat /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/.ssh/id_rsa
           mkdir /home/runner/ansible
-          cp -R ./Code/Infrastructure/ansible/* /home/runner/ansible
-
-      - name: Run playbook
-        uses: dawidd6/action-ansible-playbook@v2
-        with:
-          playbook: playbook.yml
-          # Optional, directory where playbooks live
-          directory: /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/Code/Infrastructure/ansible
-          # Optional, SSH private key
-          key: ${{secrets.SSH_KEY}}
-          # Optional, SSH known hosts file content
-          # known_hosts: /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/.ssh/known_hosts
-          # Optional, additional flags to pass to ansible-playbook
-          options: |
-            --inventory hosts
-            --verbose
+  # cp -R ./Code/Infrastructure/ansible/* .
   
-      # - name: Run ansible script
-      #   shell: bash
-      #   run: |
-      #     cd /home/runner/ansible
-      #     ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -i hosts playbook.yml
+      - name: Run ansible script
+        env:
+          PEDRO_DO_API_KEY: ${{ secrets.PEDRO_DO_API_KEY }}
+        run: |
+          ansible-playbook -vvv --private-key .ssh/id_rsa -i hosts playbook.yml
+    # cd /home/runner/ansible
       
