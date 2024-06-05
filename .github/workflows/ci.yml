@@ -45,7 +45,7 @@ jobs:
       - name: Generate SBOM
         run: cd ./Code/FE/desofs-news && npm run generate-sbom
       - name: Upload SBOM to artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: bomFE
           path: bomFE.xml
@@ -68,7 +68,7 @@ jobs:
     - name: Test with Maven
       run: mvn test --file Code/BE/pom.xml
     - name: Upload SBOM to artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: sbom
         path: Code/BE/target/bom.xml
@@ -143,7 +143,7 @@ jobs:
         only-severities: critical,high
         sarif-file: angular-scout-report.sarif
     - name: Upload Artificat
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: docker-scout-findings
@@ -174,7 +174,7 @@ jobs:
         only-severities: critical,high
         sarif-file: java-scout-report.sarif
     - name: Upload Artificat
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: docker-scout-findings
