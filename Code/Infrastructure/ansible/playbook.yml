@@ -10,6 +10,7 @@
       copy:
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
+        follow: yes
       loop:
         - { src: "/home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/Code/BE", dest: "/usr/src/Code/BE/" }
         - { src: "/home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/Code/FE", dest: "/usr/src/Code/FE/" }
