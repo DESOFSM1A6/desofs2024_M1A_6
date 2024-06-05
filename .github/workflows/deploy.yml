@@ -15,14 +15,15 @@ jobs:
       - shell: bash
         name: Set up SSH
         env:
-          SSH_KEY: ${{ secrets.SSH_KEY }}
+          KEY: ${{ secrets.SSH_KEY }}
         run: |
-          echo "${SSH_KEY:0:30}"
+          echo "$KEY"
+          echo 'END'
           service ssh status
           eval `ssh-agent -s`
 
           mkdir -p /home/runner/.ssh/
-          echo "$SSH_KEY" > /home/runner/.ssh/id_rsa
+          echo "$KEY" > /home/runner/.ssh/id_rsa
           chmod 600 /home/runner/.ssh/id_rsa
           ssh-keyscan 206.189.24.67 >> /home/runner/.ssh/known_hosts
 
