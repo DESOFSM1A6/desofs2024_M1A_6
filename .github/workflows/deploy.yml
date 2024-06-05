@@ -12,18 +12,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - shell: bash
-        name: Set up SSH
+      - name: Set up SSH
         env:
           KEY: ${{ secrets.SSH_KEY }}
+          TEST: ${{ secrets.SONAR_FE }}
         run: |
-          echo "$KEY"
+          echo $KEY
+          echo $TEST
           echo 'END'
           service ssh status
           eval `ssh-agent -s`
 
           mkdir -p /home/runner/.ssh/
-          echo "$KEY" > /home/runner/.ssh/id_rsa
+          echo $KEY > /home/runner/.ssh/id_rsa
           chmod 600 /home/runner/.ssh/id_rsa
           ssh-keyscan 206.189.24.67 >> /home/runner/.ssh/known_hosts
 
