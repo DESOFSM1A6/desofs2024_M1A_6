@@ -18,20 +18,6 @@ jobs:
           sudo apt-get install -y python3-pip
           pip3 install ansible
 
-    #   - name: Set up SSH
-    #     env:
-    #       KEY: ${{ secrets.SSH_KEY }}
-    #       TEST: ${{ secrets.SONAR_FE }}
-    #     run: |
-    #       service ssh status
-    #       eval `ssh-agent -s`
-
-    #       mkdir .ssh/
-    #       echo "$KEY" > .ssh/id_rsa
-    #       chmod 600 .ssh/id_rsa
-    # # ssh-keyscan 206.189.24.67 >> /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/.ssh/known_hosts
-
-
       - name: Copy ansible directory to runner
         shell: bash
         run: |
