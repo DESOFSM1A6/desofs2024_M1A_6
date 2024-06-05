@@ -43,6 +43,6 @@ jobs:
           PEDRO_DO_API_KEY: ${{ secrets.PEDRO_DO_API_KEY }}
         run: |
           cd /home/runner/ansible
-          ansible-playbook -vvv -i hosts playbook.yml
+          ansible-playbook -i hosts playbook.yml
     # cd /home/runner/ansible
       
