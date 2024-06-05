@@ -17,11 +17,11 @@ data "digitalocean_ssh_key" "all" {
 
 resource "digitalocean_droplet" "tfdroplet" {
   image      = "ubuntu-24-04-x64"
-  name       = "desofs-droplet-1"
+  name       = "desofs-droplet-prod"
   region     = "lon1"
   size       = "s-1vcpu-2gb-amd"
   monitoring = true
-  tags       = ["desofs-prod"]
+  tags       = ["production"]
   ssh_keys   = [data.digitalocean_ssh_key.all.id]
 
   connection {
@@ -59,7 +59,7 @@ resource "digitalocean_droplet" "tfdroplet" {
   provisioner "remote-exec" {
     inline = [
       "sudo apt-get update",
-      "sudo apt install -y apt-transport-https ca-certificates curl software-properties-common",
+      "sudo apt install -y nginx apt-transport-https ca-certificates curl software-properties-common",
       "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -",
       "sudo add-apt-repository -y 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable'",
       "apt-cache policy docker-ce",
@@ -69,7 +69,10 @@ resource "digitalocean_droplet" "tfdroplet" {
       "sudo curl -L \"https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose",
       "sudo chmod +x /usr/local/bin/docker-compose",
       "cd /usr/src/Code/Infrastructure/docker",
-      "docker-compose up -d --build"
+      "docker-compose up -d --build",
+
+      "docker exec -it docker_keycloak_1 sh -c 'sleep 240 && cd /opt/keycloak/bin/ && ./kcadm.sh config credentials --server http://localhost:8080 --realm master --user admin --password admin && ./kcadm.sh update realms/master -s sslRequired=NONE'",
+
     ]
   }
 }
