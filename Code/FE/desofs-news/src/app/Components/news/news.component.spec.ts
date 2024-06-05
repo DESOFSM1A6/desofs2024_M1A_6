@@ -1,18 +1,26 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { NewsComponent } from './news.component';
 
-/*describe('CamiaoComponent', () => {
-  let component: CamiaoComponent;
-  let fixture: ComponentFixture<CamiaoComponent>;
+describe('HomeComponent', () => {
+  let component: NewsComponent;
+  let fixture: ComponentFixture<NewsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CamiaoComponent ]
+      declarations: [NewsComponent],
+      imports: [
+        HttpClientModule,
+        RouterTestingModule.withRoutes([])
+      ],
     })
-    .compileComponents();
+      .compileComponents();
+  });
 
-    fixture = TestBed.createComponent(CamiaoComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(NewsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -20,4 +28,4 @@ import { NewsComponent } from './news.component';
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});*/
+});
