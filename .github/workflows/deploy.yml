@@ -31,6 +31,7 @@ jobs:
       - name: Copy ansible directory to runner
         shell: bash
         run: |
+          mkdir /home/runner/ansible
           cp -R ./Code/Infrastructure/ansible/* /home/runner/ansible
           ls -l /home/runner/ansible
   
