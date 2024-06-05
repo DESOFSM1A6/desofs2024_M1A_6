@@ -36,12 +36,12 @@ jobs:
         shell: bash
         run: |
           mkdir /home/runner/ansible
-  # cp -R ./Code/Infrastructure/ansible/* .
+          cp -R ./Code/Infrastructure/ansible/* /home/runner/ansible
   
       - name: Run ansible script
         env:
           PEDRO_DO_API_KEY: ${{ secrets.PEDRO_DO_API_KEY }}
         run: |
-          ansible-playbook -vvv --private-key .ssh/id_rsa -i hosts playbook.yml
+          ansible-playbook -vvv --private-key .ssh/id_rsa -i hosts /home/runner/ansible/playbook.yml
     # cd /home/runner/ansible
       
