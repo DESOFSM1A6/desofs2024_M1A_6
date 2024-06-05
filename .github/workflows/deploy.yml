@@ -10,28 +10,17 @@ jobs:
     environment: production
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Run a multi-line script
-        run: |
-          mkdir ../buildbe
-          cp -TR ./Code/BE/ ../buildbe
-          tar -cvf deploy-be.tar ../buildbe/
-          
-          mkdir ../buildfe
-          cp -TR ./Code/FE/ ../buildfe
-          tar -cvf deploy-fe.tar ../buildfe/
+        uses: actions/checkout@v3
 
       - name: Copy latest BE code to VM
         uses: appleboy/scp-action@v0.1.4
         with:
           host: 206.189.24.67
           username: root
-          port: 22
-          password: root
+          password: rootadmin
           key: ${{ secrets.SSH_KEY }}
           overwrite: true
-          source: 'deploy-be'
+          source: './Code/BE/*'
           target: '/usr/src/Code/BE'
 
       - name: Copy latest FE code to VM
@@ -39,11 +28,10 @@ jobs:
         with:
           host: 206.189.24.67
           username: root
-          port: 22
-          password: root
+          password: rootadmin
           key: ${{ secrets.SSH_KEY }}
           overwrite: true
-          source: 'deploy-fe'
+          source: './Code/FE/*'
           target: '/usr/src/Code/FE'
 
       # - name: Copy latest docker-compose code to VM
@@ -62,7 +50,7 @@ jobs:
           host: 206.189.24.67
           username: root
           port: 22
-          password: root
+          password: rootadmin
           key: ${{ secrets.SSH_KEY }}
           # Only re-build fe, be
           script: |
