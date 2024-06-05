@@ -42,6 +42,13 @@ jobs:
         run: cd ./Code/FE/desofs-news && npm run build
       - name: Test
         run: cd ./Code/FE/desofs-news && npm run test -- --watch=false --browsers=ChromeHeadless
+      - name: Generate SBOM
+        run: cd ./Code/FE/desofs-news && npm run generate-sbom
+      - name: Upload SBOM to artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: bomFE
+          path: bomFE.xml
 
   build-be:
     name: Build and Test BE App
@@ -60,6 +67,12 @@ jobs:
       run: mvn -B clean install --file Code/BE/pom.xml
     - name: Test with Maven
       run: mvn test --file Code/BE/pom.xml
+    - name: Upload SBOM to artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: sbom
+        path: Code/BE/target/bom.xml
+    
 
   sonar-fe:
     name: Static Analysis FE
