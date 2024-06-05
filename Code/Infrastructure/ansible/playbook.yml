@@ -6,14 +6,6 @@
   vars_files:
     - vars.yaml
   tasks:
-    - name: ls BE
-      command: 
-        cmd: ls -l Code/BE
-
-    - name:  ls FE
-      command: 
-        cmd: /bin/bash -c 'ls -l Code/FE && ls -l'
-
     - name: Copy files
       copy:
         src: "{{ item.src }}"
