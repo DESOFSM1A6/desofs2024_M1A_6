@@ -25,8 +25,8 @@ jobs:
       - name: Run ansible script
         shell: bash 
         run: |
-          cd infrastructure/ansible
-          ansible-playbook --private-key /home/runner/.ssh/id_rsa -i hosts.yml setup-prod.yml
+          cd /Code/Infrastructure/ansible
+          ansible-playbook --private-key /home/runner/.ssh/id_rsa -i hosts.yml playbook.yml
       
       # - name: SSH into VM and rebuild docker images
       #   uses: appleboy/ssh-action@v0.1.7
