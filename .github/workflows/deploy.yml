@@ -12,6 +12,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Run a multi-line script
+        run: |
+          mkdir ../buildbe
+          cp -TR ./Code/BE/ ../buildbe
+          tar -cvf deploy-be.tar ../buildbe/
+          
+          mkdir ../buildfe
+          cp -TR ./Code/FE/ ../buildfe
+          tar -cvf deploy-fe.tar ../buildfe/
+
       - name: Copy latest BE code to VM
         uses: appleboy/scp-action@v0.1.4
         with:
@@ -21,7 +31,7 @@ jobs:
           password: root
           key: ${{ secrets.SSH_KEY }}
           overwrite: true
-          source: './Code/BE/*'
+          source: 'deploy-be'
           target: '/usr/src/Code/BE'
 
       - name: Copy latest FE code to VM
@@ -33,7 +43,7 @@ jobs:
           password: root
           key: ${{ secrets.SSH_KEY }}
           overwrite: true
-          source: './Code/FE/*'
+          source: 'deploy-fe'
           target: '/usr/src/Code/FE'
 
       # - name: Copy latest docker-compose code to VM
