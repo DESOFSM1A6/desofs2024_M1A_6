@@ -42,6 +42,6 @@ jobs:
         env:
           PEDRO_DO_API_KEY: ${{ secrets.PEDRO_DO_API_KEY }}
         run: |
-          ansible-playbook -vvv --private-key .ssh/id_rsa -i /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/hosts /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/playbook.yml
+          ansible-playbook -vvv --private-key .ssh/id_rsa -i /home/runner/ansiblehosts /home/runner/ansible/playbook.yml
     # cd /home/runner/ansible
       
