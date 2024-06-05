@@ -33,13 +33,13 @@ jobs:
         run: |
           mkdir /home/runner/ansible
           cp -R ./Code/Infrastructure/ansible/* /home/runner/ansible
+          cat /home/runner/.ssh/id_rsa
   
       - name: Run ansible script
         shell: bash
         run: |
           cd /home/runner/ansible
           ansible-playbook --private-key /home/runner/.ssh/id_rsa -i hosts playbook.yml
-          cat /home/runner/.ssh/id_rsa
       
       # - name: SSH into VM and rebuild docker images
       #   uses: appleboy/ssh-action@v0.1.7
