@@ -19,6 +19,7 @@ jobs:
           username: root
           port: 22
           password: root
+          key: ${{ secrets.SSH_KEY }}
           overwrite: true
           source: './Code/BE/*'
           target: '/usr/src/Code/BE'
@@ -30,6 +31,7 @@ jobs:
           username: root
           port: 22
           password: root
+          key: ${{ secrets.SSH_KEY }}
           overwrite: true
           source: './Code/FE/*'
           target: '/usr/src/Code/FE'
@@ -51,6 +53,7 @@ jobs:
           username: root
           port: 22
           password: root
+          key: ${{ secrets.SSH_KEY }}
           # Only re-build fe, be
           script: |
             cd /usr/src/Code/Infrastructure/docker
