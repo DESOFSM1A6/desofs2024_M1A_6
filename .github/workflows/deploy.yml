@@ -12,7 +12,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up SSH
+      - shell: bash
+        name: Set up SSH
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
         run: |
