@@ -13,47 +13,44 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Copy latest BE code to VM
-        uses: garygrossgarten/github-action-scp@release
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: 206.189.24.67
           username: root
           port: 22
-          privateKey: ${{ secrets.SSH_KEY }}
           password: root
-          local: '/Code/BE'
-          remote: '/usr/src/Code/BE'
+          source: '/Code/BE'
+          target: '/usr/src/Code/BE'
 
       - name: Copy latest FE code to VM
-        uses: garygrossgarten/github-action-scp@release
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: 206.189.24.67
           username: root
           port: 22
-          privateKey: ${{ secrets.SSH_KEY }}
           password: root
-          local: '/Code/FE'
-          remote: '/usr/src/Code/FE'
+          source: '/Code/FE'
+          target: '/usr/src/Code/FE'
 
       # - name: Copy latest docker-compose code to VM
-      #   uses: garygrossgarten/github-action-scp@release
+      #   uses: appleboy/scp-action@v0.1.7
       #   with:
       #     host: 206.189.24.67
       #     username: root
       #     port: 22
-      #     privateKey: ${{ secrets.SSH_KEY }}
-      #     local: '/Code/Infrastructure/docker/docker-compose.yml'
-      #     remote: '/usr/src/Code/Infrastructure/docker'
+      #     key: ${{ secrets.SSH_KEY }}
+      #     source: '/Code/Infrastructure/docker/docker-compose.yml'
+      #     target: '/usr/src/Code/Infrastructure/docker'
 
       - name: SSH into VM and rebuild docker images
-        uses: garygrossgarten/github-action-ssh@release
+        uses: appleboy/ssh-action@v0.1.7
         with:
           host: 206.189.24.67
           username: root
           port: 22
-          privateKey: ${{ secrets.SSH_KEY }}
           password: root
           # Only re-build fe, be
-          command: |
+          script: |
             cd /usr/src/Code/Infrastructure/docker
             docker-compose up -d --build fe be
             docker exec -it docker_keycloak_1 sh -c 'sleep 240 && cd /opt/keycloak/bin/ && ./kcadm.sh config credentials --server http://localhost:8080 --realm master --user admin --password admin && ./kcadm.sh update realms/master -s sslRequired=NONE'
