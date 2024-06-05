@@ -19,7 +19,8 @@ jobs:
           username: root
           port: 22
           password: root
-          source: '/Code/BE'
+          overwrite: true
+          source: '/Code/BE/*'
           target: '/usr/src/Code/BE'
 
       - name: Copy latest FE code to VM
@@ -29,7 +30,8 @@ jobs:
           username: root
           port: 22
           password: root
-          source: '/Code/FE'
+          overwrite: true
+          source: '/Code/FE/*'
           target: '/usr/src/Code/FE'
 
       # - name: Copy latest docker-compose code to VM
