@@ -8,7 +8,7 @@
   tasks:
     - name: Current
       command: 
-        cmd: ls -l .
+        cmd: ls -l
 
     - name:  ls FE
       command: 
