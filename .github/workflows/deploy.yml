@@ -18,18 +18,18 @@ jobs:
           sudo apt-get install -y python3-pip
           pip3 install ansible
 
-      - name: Set up SSH
-        env:
-          KEY: ${{ secrets.SSH_KEY }}
-          TEST: ${{ secrets.SONAR_FE }}
-        run: |
-          service ssh status
-          eval `ssh-agent -s`
+    #   - name: Set up SSH
+    #     env:
+    #       KEY: ${{ secrets.SSH_KEY }}
+    #       TEST: ${{ secrets.SONAR_FE }}
+    #     run: |
+    #       service ssh status
+    #       eval `ssh-agent -s`
 
-          mkdir .ssh/
-          echo "$KEY" > .ssh/id_rsa
-          chmod 600 .ssh/id_rsa
-    # ssh-keyscan 206.189.24.67 >> /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/.ssh/known_hosts
+    #       mkdir .ssh/
+    #       echo "$KEY" > .ssh/id_rsa
+    #       chmod 600 .ssh/id_rsa
+    # # ssh-keyscan 206.189.24.67 >> /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/.ssh/known_hosts
 
 
       - name: Copy ansible directory to runner
@@ -42,6 +42,7 @@ jobs:
         env:
           PEDRO_DO_API_KEY: ${{ secrets.PEDRO_DO_API_KEY }}
         run: |
-          ansible-playbook -vvv -i /home/runner/ansible/hosts /home/runner/ansible/playbook.yml
+          cd /home/runner/ansible
+          ansible-playbook -vvv -i hosts playbook.yml
     # cd /home/runner/ansible
       
