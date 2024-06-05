@@ -16,6 +16,7 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
         run: |
+          echo "${SSH_KEY:0:30}"
           service ssh status
           eval `ssh-agent -s`
 
