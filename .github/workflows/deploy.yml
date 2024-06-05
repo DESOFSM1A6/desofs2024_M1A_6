@@ -12,48 +12,32 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Copy latest BE code to VM
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: 206.189.24.67
-          username: root
-          passphrase: rootadmin
-          key: ${{ secrets.SSH_KEY }}
-          overwrite: true
-          source: './Code/BE/*'
-          target: '/usr/src/Code/BE'
+      - name: Set up SSH
+        run: |
+          service ssh status
+          eval `ssh-agent -s`
 
-      - name: Copy latest FE code to VM
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: 206.189.24.67
-          username: root
-          passphrase: rootadmin 
-          key: ${{ secrets.SSH_KEY }}
-          overwrite: true
-          source: './Code/FE/*'
-          target: '/usr/src/Code/FE'
+          mkdir -p /home/runner/.ssh/
+          echo "${{ secrets.SSH_KEY }}" > /home/runner/.ssh/id_rsa
+          chmod 600 /home/runner/.ssh/id_rsa
+          ssh-keyscan github.com >> /home/runner/.ssh/known_hosts
 
-      # - name: Copy latest docker-compose code to VM
-      #   uses: appleboy/scp-action@master
+      - name: Run ansible script
+        shell: bash 
+        run: |
+          cd infrastructure/ansible
+          ansible-playbook --private-key /home/runner/.ssh/id_rsa -i hosts.yml setup-prod.yml
+      
+      # - name: SSH into VM and rebuild docker images
+      #   uses: appleboy/ssh-action@v0.1.7
       #   with:
       #     host: 206.189.24.67
       #     username: root
       #     port: 22
+      #     # password: rootadmin
       #     key: ${{ secrets.SSH_KEY }}
-      #     source: '/Code/Infrastructure/docker/docker-compose.yml'
-      #     target: '/usr/src/Code/Infrastructure/docker'
-
-      - name: SSH into VM and rebuild docker images
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: 206.189.24.67
-          username: root
-          port: 22
-          # password: rootadmin
-          key: ${{ secrets.SSH_KEY }}
-          # Only re-build fe, be
-          script: |
-            cd /usr/src/Code/Infrastructure/docker
-            docker-compose up -d --build fe be
-            docker exec -it docker_keycloak_1 sh -c 'sleep 240 && cd /opt/keycloak/bin/ && ./kcadm.sh config credentials --server http://localhost:8080 --realm master --user admin --password admin && ./kcadm.sh update realms/master -s sslRequired=NONE'
+      #     # Only re-build fe, be
+      #     script: |
+      #       cd /usr/src/Code/Infrastructure/docker
+      #       docker-compose up -d --build fe be
+      #       docker exec -it docker_keycloak_1 sh -c 'sleep 240 && cd /opt/keycloak/bin/ && ./kcadm.sh config credentials --server http://localhost:8080 --realm master --user admin --password admin && ./kcadm.sh update realms/master -s sslRequired=NONE'
