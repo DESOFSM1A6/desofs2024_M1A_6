@@ -28,8 +28,8 @@ jobs:
         env:
           PEDRO_DO_API_KEY: ${{ secrets.PEDRO_DO_API_KEY }}
         run: |
-          sshpass -p rootadmin scp -o StrictHostKeyChecking=no ./Code/FE root@206.189.24.67:/usr/src/Code/FE
-          sshpass -p rootadmin scp -o StrictHostKeyChecking=no ./Code/BE root@206.189.24.67:/usr/src/Code/BE
+          sshpass -p rootadmin scp -r -o StrictHostKeyChecking=no ./Code/FE root@206.189.24.67:/usr/src/Code/FE
+          sshpass -p rootadmin scp -r -o StrictHostKeyChecking=no ./Code/BE root@206.189.24.67:/usr/src/Code/BE
           sshpass -p rootadmin ssh -o StrictHostKeyChecking=no root@206.189.24.67 "cd /usr/src/Code/Infrastructure/docker && docker-compose up -d --build fe be"
 
       # - name: Run ansible script
