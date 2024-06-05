@@ -22,7 +22,7 @@ jobs:
           mkdir -p /home/runner/.ssh/
           echo "$SSH_KEY" > /home/runner/.ssh/id_rsa
           chmod 600 /home/runner/.ssh/id_rsa
-          ssh-keyscan github.com >> /home/runner/.ssh/known_hosts
+          ssh-keyscan 206.189.24.67 >> /home/runner/.ssh/known_hosts
 
       - name: Install Ansible
         run: |
