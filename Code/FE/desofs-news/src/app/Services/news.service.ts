@@ -60,8 +60,8 @@ export class NewsService {
     this.messageService.add(`NewsService: ${message}`);
   }
 
-  createNews(title: string, content: string, creationDate: Date, writer: string): Observable<NewsDTO> {
-    const news: NewsDTO = { title: title, content: content, creationDate: creationDate, writer: writer};
+  createNews( id: number, title: string, content: string, creationDate: Date, writer: string, status: string, imageUrl: string): Observable<NewsDTO> {
+    const news: NewsDTO = {id: id, title: title, content: content, creationDate: creationDate, writer: writer, status: status, imageUrl: imageUrl};
     return this.http.post<NewsDTO>(this.newsUrl, news, this.httpOptions).pipe(
       tap((newNewsDTO: NewsDTO) => this.log(`added news w/ title=${newNewsDTO.title}`)),
       catchError(this.handleError<NewsDTO>('addNews'))

@@ -2,7 +2,7 @@ import { NewsService } from './../../Services/news.service';
 
 import { Component, OnInit } from '@angular/core';
 import { News } from 'src/app/Models/news';
-import { NewsMap } from 'src/app/Mapper/CamiaoMap';
+import { NewsMap } from 'src/app/Mapper/NewsMap';
 
 @Component({
   selector: 'app-news',
