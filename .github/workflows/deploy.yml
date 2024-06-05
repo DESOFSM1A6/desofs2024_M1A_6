@@ -28,7 +28,7 @@ jobs:
         with:
           host: 206.189.24.67
           username: root
-          password: rootadmin
+          # password: rootadmin
           key: ${{ secrets.SSH_KEY }}
           overwrite: true
           source: './Code/FE/*'
@@ -50,7 +50,7 @@ jobs:
           host: 206.189.24.67
           username: root
           port: 22
-          password: rootadmin
+          # password: rootadmin
           key: ${{ secrets.SSH_KEY }}
           # Only re-build fe, be
           script: |
