@@ -6,6 +6,14 @@
   vars_files:
     - vars.yaml
   tasks:
+    - name: Current
+      command: 
+        cmd: ls -l .
+
+    - name:  ls FE
+      command: 
+        cmd: ls /home/runner/work/desofs2024_M1A_6/desofs2024_M1A_6/Code/BE
+
     - name: Copy files
       copy:
         src: "{{ item.src }}"
