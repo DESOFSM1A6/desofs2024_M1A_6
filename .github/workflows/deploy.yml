@@ -1,0 +1,41 @@
+name: deploy
+
+on:
+  - workflow_call
+
+jobs:
+  deployment:
+    name: Deployment
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Ansible
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip sshpass
+          pip3 install ansible
+
+      - name: Copy ansible directory to runner
+        shell: bash
+        run: |
+          mkdir /home/runner/ansible
+          cp -R ./Code/Infrastructure/ansible/* /home/runner/ansible
+          
+      - name: Run ansible script
+        env:
+          PEDRO_DO_API_KEY: ${{ secrets.PEDRO_DO_API_KEY }}
+        run: |
+          sshpass -p rootadmin scp -r -o StrictHostKeyChecking=no ./Code/FE root@206.189.24.67:/usr/src/Code/
+          sshpass -p rootadmin scp -r -o StrictHostKeyChecking=no ./Code/BE root@206.189.24.67:/usr/src/Code/
+          sshpass -p rootadmin ssh -o StrictHostKeyChecking=no root@206.189.24.67 "cd /usr/src/Code/Infrastructure/docker && docker-compose up -d --build fe be"
+
+      # - name: Run ansible script
+      #   env:
+      #     PEDRO_DO_API_KEY: ${{ secrets.PEDRO_DO_API_KEY }}
+      #   run: |
+      #     cd /home/runner/ansible
+      #     ansible-playbook -i hosts playbook.yml
+      
