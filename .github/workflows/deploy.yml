@@ -32,6 +32,13 @@ jobs:
           pip3 install ansible
 
 
+      - name: Copy ansible directory to runner
+        shell: bash
+        run: |
+          cat /home/runner/.ssh/id_rsa
+          mkdir /home/runner/ansible
+          cp -R ./Code/Infrastructure/ansible/* /home/runner/ansible
+
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
@@ -46,13 +53,6 @@ jobs:
           options: |
             --inventory hosts
             --verbose
-
-      # - name: Copy ansible directory to runner
-      #   shell: bash
-      #   run: |
-      #     cat /home/runner/.ssh/id_rsa
-      #     mkdir /home/runner/ansible
-      #     cp -R ./Code/Infrastructure/ansible/* /home/runner/ansible
   
       # - name: Run ansible script
       #   shell: bash
