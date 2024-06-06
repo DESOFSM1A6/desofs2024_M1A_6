@@ -19,10 +19,9 @@ jobs:
           
       - name: Deploy changes
         env:
-          SSH_PASS: ${{ secrets.SSH_PASS }}
           PEDRO_DO_API_KEY: ${{ secrets.PEDRO_DO_API_KEY }}
         run: |
-          sshpass -p $SSH_PASS scp -r -o StrictHostKeyChecking=no ./Code/FE root@206.189.24.67:/usr/src/Code/
-          sshpass -p $SSH_PASS scp -r -o StrictHostKeyChecking=no ./Code/BE root@206.189.24.67:/usr/src/Code/
-          sshpass -p $SSH_PASS ssh -o StrictHostKeyChecking=no root@206.189.24.67 "cd /usr/src/Code/Infrastructure/docker && docker-compose up -d --build fe be"
+          sshpass -p ${{ secrets.SSH_PASS }} scp -r -o StrictHostKeyChecking=no ./Code/FE root@206.189.24.67:/usr/src/Code/
+          sshpass -p ${{ secrets.SSH_PASS }}  scp -r -o StrictHostKeyChecking=no ./Code/BE root@206.189.24.67:/usr/src/Code/
+          sshpass -p ${{ secrets.SSH_PASS }} ssh -o StrictHostKeyChecking=no root@206.189.24.67 "cd /usr/src/Code/Infrastructure/docker && docker-compose up -d --build fe be"
       
