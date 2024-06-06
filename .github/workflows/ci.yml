@@ -8,11 +8,10 @@ env:
 
 # run on every push to all branches
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
-      - 'feature/**'
-      - 24-release-pipelines
   pull_request:
     branches: ["main"]
 
@@ -181,8 +180,9 @@ jobs:
         path: java-scout-report.sarif
 
   deploy:
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/main'
     name: Deployment to 'production'
     needs: [image-scan-fe, image-scan-be]
     uses: ./.github/workflows/deploy.yml
+    secrets: inherit
     
