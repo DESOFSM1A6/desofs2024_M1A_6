@@ -119,7 +119,6 @@ jobs:
   
   image-scan-fe:
     name: Docker Build & Scan FE
-    continue-on-error: true # To remove
     needs: sonar-fe
     runs-on: ubuntu-latest
     permissions:
@@ -150,7 +149,6 @@ jobs:
         
   image-scan-be:
     name: Docker Build & Scan BE
-    continue-on-error: true # To remove
     needs: sonar-be
     runs-on: ubuntu-latest
     permissions:
