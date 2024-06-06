@@ -11,7 +11,10 @@
         <div class="header-top">
             <h1>Portal de Notícias - {{title}}</h1>
             <div class="user-controls" *ngIf="!isAuthenticated">
-              <button routerLink='/login'>Login</button>
+                <button routerLink='/login'>Login</button>
+            </div>
+            <div class="user-controls" *ngIf="isAuthenticated">
+                <button routerLink='/logout'>Logout</button>
             </div>
         </div>
         <nav *ngIf="!isAuthenticated">

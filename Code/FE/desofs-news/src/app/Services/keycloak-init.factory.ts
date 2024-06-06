@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import Keycloak, {KeycloakInstance} from 'keycloak-js';
+import Keycloak, {KeycloakInstance, KeycloakLogoutOptions} from 'keycloak-js';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,14 @@ export class KeycloakService {
       console.error('Failed to initialize Keycloak', err);
       return Promise.reject(err);
     });
+  }
+
+  logout() {
+    let redirectLink = window.location.origin + '/home';
+    const logoutOptions: KeycloakLogoutOptions = {
+      redirectUri: redirectLink
+    };
+    this.keycloak.logout(logoutOptions);
   }
 
   getUserRoles(): string[] {

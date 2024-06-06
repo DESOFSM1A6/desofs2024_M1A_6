@@ -13,10 +13,14 @@ export class LoginComponent implements OnInit {
     this.keycloakService.init('login-required').then(authenticated => {
       if (authenticated) {
         // Redirecionar para a página principal ou outra página após autenticação
-        window.location.href = '/home';
+        this.redirectToHome();
       }
     }).catch(err => {
       console.error('Failed to login with Keycloak', err);
     });
+  }
+
+  redirectToHome(): void {
+    window.location.href = '/home';
   }
 }

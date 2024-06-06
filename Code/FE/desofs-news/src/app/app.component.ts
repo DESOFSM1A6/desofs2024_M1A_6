@@ -19,6 +19,8 @@ export class AppComponent implements OnInit {
     // Verificar se o utilizador está na página de login e não está autenticado para definir as roles
     if (window.location.pathname === '/login' && !this.isAuthenticated) {
       this.setRoles(); // Definir as roles
+    } else if (window.location.pathname === '/logout'){
+        this.keycloakService.logout();
     } else {
       // Verificar se o utilizador já está autenticado
       this.keycloakService.init('check-sso').then(authenticated => {
