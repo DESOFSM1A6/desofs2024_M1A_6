@@ -180,8 +180,7 @@ jobs:
   #       path: java-scout-report.sarif
 
   deploy:
-    # Change to main branch
-    if: github.ref == 'refs/heads/pipeline-cleanup'
+    # if: github.ref == 'refs/heads/main'
     name: Deployment to 'production'
     # needs: [image-scan-fe, image-scan-be]
     uses: ./.github/workflows/deploy.yml
