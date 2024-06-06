@@ -16,173 +16,173 @@ on:
     branches: ["main"]
 
 jobs:
-  build-fe:
-    name: Build and Test FE App
-    continue-on-error: true # To remove
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "20.x"
-      - name: get the working directory
-        run: pwd
-      - name: Install Dependencies
-        run: cd ./Code/FE/desofs-news && npm install
-      - name: Build
-        run: cd ./Code/FE/desofs-news && npm run build
-      - name: Test
-        run: cd ./Code/FE/desofs-news && npm run test -- --watch=false --browsers=ChromeHeadless
-      - name: Generate SBOM
-        run: cd ./Code/FE/desofs-news && npm run generate-sbom
-      - name: Upload SBOM to artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: bomFE
-          path: bomFE.xml
+  # build-fe:
+  #   name: Build and Test FE App
+  #   continue-on-error: true # To remove
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Cache node modules
+  #       uses: actions/cache@v1
+  #       with:
+  #         path: ~/.npm
+  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: "20.x"
+  #     - name: get the working directory
+  #       run: pwd
+  #     - name: Install Dependencies
+  #       run: cd ./Code/FE/desofs-news && npm install
+  #     - name: Build
+  #       run: cd ./Code/FE/desofs-news && npm run build
+  #     - name: Test
+  #       run: cd ./Code/FE/desofs-news && npm run test -- --watch=false --browsers=ChromeHeadless
+  #     - name: Generate SBOM
+  #       run: cd ./Code/FE/desofs-news && npm run generate-sbom
+  #     - name: Upload SBOM to artifact
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: bomFE
+  #         path: bomFE.xml
 
-  build-be:
-    name: Build and Test BE App
-    continue-on-error: true # To remove
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B clean install --file Code/BE/pom.xml
-    - name: Test with Maven
-      run: mvn test --file Code/BE/pom.xml
-    - name: Upload SBOM to artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: sbom
-        path: Code/BE/target/bom.xml
+  # build-be:
+  #   name: Build and Test BE App
+  #   continue-on-error: true # To remove
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v3
+  #   - name: Set up JDK 17
+  #     uses: actions/setup-java@v3
+  #     with:
+  #       java-version: '17'
+  #       distribution: 'temurin'
+  #       cache: maven
+  #   - name: Build with Maven
+  #     run: mvn -B clean install --file Code/BE/pom.xml
+  #   - name: Test with Maven
+  #     run: mvn test --file Code/BE/pom.xml
+  #   - name: Upload SBOM to artifact
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: sbom
+  #       path: Code/BE/target/bom.xml
     
 
-  sonar-fe:
-    name: Static Analysis FE
-    needs: build-fe
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: SonarQube Scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_FE }}
+  # sonar-fe:
+  #   name: Static Analysis FE
+  #   needs: build-fe
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: SonarQube Scan
+  #       uses: sonarsource/sonarcloud-github-action@master
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         SONAR_TOKEN: ${{ secrets.SONAR_FE }}
 
-  sonar-be:
-    name: Static Analysis BE
-    continue-on-error: true # To remove
-    needs: build-be
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          distribution: 'zulu' # Alternative distribution options are available.
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-      - name: Cache Maven packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-      - name: Build and analyze
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_BE }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=desofsm1a6_desofs2024_M1A_6_BE -f Code/BE/pom.xml
+  # sonar-be:
+  #   name: Static Analysis BE
+  #   continue-on-error: true # To remove
+  #   needs: build-be
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+  #     - name: Set up JDK 17
+  #       uses: actions/setup-java@v3
+  #       with:
+  #         java-version: 17
+  #         distribution: 'zulu' # Alternative distribution options are available.
+  #     - name: Cache SonarCloud packages
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: ~/.sonar/cache
+  #         key: ${{ runner.os }}-sonar
+  #         restore-keys: ${{ runner.os }}-sonar
+  #     - name: Cache Maven packages
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: ~/.m2
+  #         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+  #         restore-keys: ${{ runner.os }}-m2
+  #     - name: Build and analyze
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+  #         SONAR_TOKEN: ${{ secrets.SONAR_BE }}
+  #       run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=desofsm1a6_desofs2024_M1A_6_BE -f Code/BE/pom.xml
   
-  image-scan-fe:
-    name: Docker Build & Scan FE
-    continue-on-error: true # To remove
-    needs: sonar-fe
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Setup Docker
-      uses: docker-practice/actions-setup-docker@v1
-      with:
-        docker_version: '26.1.3'
-    - name: Build Docker Image
-      run: docker build -f ${{ env.DOCKERFILE_FE_PATH }} --build-arg PROJECT_PATH=/Code/FE/desofs-news -t ${{ env.DOCKER_FE_IMAGE_NAME }}:latest .
-    - name: Docker Scout Scan
-      uses: docker/scout-action@v1.8.0
-      with:
-        dockerhub-user: ${{ secrets.DOCKER_USER }}
-        dockerhub-password: ${{ secrets.DOCKER_PWD }}
-        command: quickview,cves
-        only-severities: critical,high
-        sarif-file: angular-scout-report.sarif
-    - name: Upload Artificat
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: docker-scout-findings
-        path: angular-scout-report.sarif
+  # image-scan-fe:
+  #   name: Docker Build & Scan FE
+  #   continue-on-error: true # To remove
+  #   needs: sonar-fe
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     pull-requests: write
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v3
+  #   - name: Setup Docker
+  #     uses: docker-practice/actions-setup-docker@v1
+  #     with:
+  #       docker_version: '26.1.3'
+  #   - name: Build Docker Image
+  #     run: docker build -f ${{ env.DOCKERFILE_FE_PATH }} --build-arg PROJECT_PATH=/Code/FE/desofs-news -t ${{ env.DOCKER_FE_IMAGE_NAME }}:latest .
+  #   - name: Docker Scout Scan
+  #     uses: docker/scout-action@v1.8.0
+  #     with:
+  #       dockerhub-user: ${{ secrets.DOCKER_USER }}
+  #       dockerhub-password: ${{ secrets.DOCKER_PWD }}
+  #       command: quickview,cves
+  #       only-severities: critical,high
+  #       sarif-file: angular-scout-report.sarif
+  #   - name: Upload Artificat
+  #     uses: actions/upload-artifact@v3
+  #     if: always()
+  #     with:
+  #       name: docker-scout-findings
+  #       path: angular-scout-report.sarif
         
-  image-scan-be:
-    name: Docker Build & Scan BE
-    continue-on-error: true # To remove
-    needs: sonar-be
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Setup Docker
-      uses: docker-practice/actions-setup-docker@v1
-      with:
-        docker_version: '26.1.3'
-    - name: Build Docker Image
-      run: docker build -f ${{ env.DOCKERFILE_BE_PATH }} --build-arg PROJECT_PATH=/Code/BE -t ${{ env.DOCKER_BE_IMAGE_NAME }}:latest .
-    - name: Docker Scout Scan
-      uses: docker/scout-action@v1.8.0
-      with:
-        dockerhub-user: ${{ secrets.DOCKER_USER }}
-        dockerhub-password: ${{ secrets.DOCKER_PWD }}
-        command: quickview,cves
-        only-severities: critical,high
-        sarif-file: java-scout-report.sarif
-    - name: Upload Artificat
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: docker-scout-findings
-        path: java-scout-report.sarif
+  # image-scan-be:
+  #   name: Docker Build & Scan BE
+  #   continue-on-error: true # To remove
+  #   needs: sonar-be
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     pull-requests: write
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v3
+  #   - name: Setup Docker
+  #     uses: docker-practice/actions-setup-docker@v1
+  #     with:
+  #       docker_version: '26.1.3'
+  #   - name: Build Docker Image
+  #     run: docker build -f ${{ env.DOCKERFILE_BE_PATH }} --build-arg PROJECT_PATH=/Code/BE -t ${{ env.DOCKER_BE_IMAGE_NAME }}:latest .
+  #   - name: Docker Scout Scan
+  #     uses: docker/scout-action@v1.8.0
+  #     with:
+  #       dockerhub-user: ${{ secrets.DOCKER_USER }}
+  #       dockerhub-password: ${{ secrets.DOCKER_PWD }}
+  #       command: quickview,cves
+  #       only-severities: critical,high
+  #       sarif-file: java-scout-report.sarif
+  #   - name: Upload Artificat
+  #     uses: actions/upload-artifact@v3
+  #     if: always()
+  #     with:
+  #       name: docker-scout-findings
+  #       path: java-scout-report.sarif
 
   deploy:
     # Change to main branch
     if: github.ref == 'refs/heads/pipeline-cleanup'
     name: Deployment to 'production'
-    needs: [image-scan-fe, image-scan-be]
+    # needs: [image-scan-fe, image-scan-be]
     uses: ./.github/workflows/deploy.yml
     
