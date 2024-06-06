@@ -18,7 +18,6 @@ on:
 jobs:
   build-fe:
     name: Build and Test FE App
-    continue-on-error: true # To remove
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -51,7 +50,6 @@ jobs:
 
   build-be:
     name: Build and Test BE App
-    continue-on-error: true # To remove
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -87,7 +85,6 @@ jobs:
 
   sonar-be:
     name: Static Analysis BE
-    continue-on-error: true # To remove
     needs: build-be
     runs-on: ubuntu-latest
     steps:
