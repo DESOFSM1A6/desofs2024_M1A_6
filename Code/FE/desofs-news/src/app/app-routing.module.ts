@@ -7,10 +7,12 @@ import { NewsValidationComponent } from './Components/news-validation/news-valid
 import { LoginComponent } from './Components/login/login.component';
 import { JornalistaGuard } from './Services/guard/JornalistaGuard';
 import { EditorGuard } from './Services/guard/EditorGuard';
+import { LogoutComponent } from './Components/logout/logout.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
+  { path: 'logout', component: LogoutComponent},
   { path: 'home', component: HomeComponent },
   {path: 'news', component: NewsComponent},
   {path: 'news-submission', component: NewsSubmissionComponent, canActivate: [JornalistaGuard] },
