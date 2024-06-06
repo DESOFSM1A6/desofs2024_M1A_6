@@ -27,12 +27,6 @@ export class NewsComponent implements OnInit  {
     });
     
   }
-  /* FASE I 
-  createNews(caracteristica: string, tara: number, capacidadeMassa: number, capacidadekWh: number, autonomia: number, tempoCarregamento: number){
-    this.newsService.createNews(caracteristica, tara, capacidadeMassa, capacidadekWh,autonomia, tempoCarregamento).subscribe(camiao => {
-      this.news.push(camiao);
-    });
-  }
-  */
+  
 
 }
