@@ -184,4 +184,5 @@ jobs:
     name: Deployment to 'production'
     # needs: [image-scan-fe, image-scan-be]
     uses: ./.github/workflows/deploy.yml
+    secrets: inherit
     
