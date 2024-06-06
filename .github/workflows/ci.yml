@@ -11,8 +11,7 @@ on:
   push:
     branches:
       - main
-      - 'feature/**'
-      - 24-release-pipelines
+      - pipeline-cleanup
   pull_request:
     branches: ["main"]
 
