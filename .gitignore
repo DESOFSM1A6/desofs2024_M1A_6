@@ -174,3 +174,8 @@ build/
 */.angular-cli.json
 */.angular
 .angular
+/Code/BE/.env
+*/.env
+Code/FE/desofs-news/package-lock.json
+*/package-lock.json
+*/sbom.json
