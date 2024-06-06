@@ -19,8 +19,6 @@ jobs:
           sudo apt-get install -y sshpass
           
       - name: Deploy changes
-        # env:
-        #   PEDRO_DO_API_KEY: ${{ secrets.PEDRO_DO_API_KEY }}
         run: |
           sshpass -p ${{ secrets.SSH_PASS }} scp -r -o StrictHostKeyChecking=no ./Code/FE ${{ secrets.SSH_USER }}@206.189.24.67:/usr/src/Code/
           sshpass -p ${{ secrets.SSH_PASS }}  scp -r -o StrictHostKeyChecking=no ./Code/BE ${{ secrets.SSH_USER }}@206.189.24.67:/usr/src/Code/
