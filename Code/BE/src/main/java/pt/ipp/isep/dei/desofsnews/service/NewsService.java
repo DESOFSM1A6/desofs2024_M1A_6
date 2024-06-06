@@ -66,7 +66,7 @@ public class NewsService implements INewsService {
         }
         return news;
     }
-      
+
     @Override
     public void updateNews(int id, News article) {
         // TODO Auto-generated method stub
@@ -77,6 +77,12 @@ public class NewsService implements INewsService {
     public void deleteNews(int id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteNews'");
+    }
+
+    @Override
+    public NewsDTO approveNews(String id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'approveNews'");
     }
 
 }

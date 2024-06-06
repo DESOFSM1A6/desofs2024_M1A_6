@@ -19,4 +19,6 @@ public interface INewsService {
 
     void deleteNews(int id);
 
+    NewsDTO approveNews(String id);
+
 }
