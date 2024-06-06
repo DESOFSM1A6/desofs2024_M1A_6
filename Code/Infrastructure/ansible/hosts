@@ -1,0 +1,2 @@
+[prodvm]
+206.189.24.67 ansible_connection=ssh ansible_user=root ansible_ssh_pass=rootadmin

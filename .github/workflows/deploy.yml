@@ -1,0 +1,26 @@
+name: deploy
+
+on:
+  - workflow_call
+
+jobs:
+  deployment:
+    name: Deployment
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sshpass
+          
+      - name: Deploy changes
+        run: |
+          sshpass -p ${{ secrets.SSH_PASS }} scp -r -o StrictHostKeyChecking=no ./Code/FE ${{ secrets.SSH_USER }}@206.189.24.67:/usr/src/Code/
+          sshpass -p ${{ secrets.SSH_PASS }}  scp -r -o StrictHostKeyChecking=no ./Code/BE ${{ secrets.SSH_USER }}@206.189.24.67:/usr/src/Code/
+          sshpass -p ${{ secrets.SSH_PASS }} ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@206.189.24.67 "cd /usr/src/Code/Infrastructure/docker && docker-compose up -d --build fe be"
+      

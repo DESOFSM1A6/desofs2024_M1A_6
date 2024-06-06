@@ -1,5 +1,8 @@
 package pt.ipp.isep.dei.desofsnews.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,15 +10,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pt.ipp.isep.dei.desofsnews.DTO.NewsDTO;
 import pt.ipp.isep.dei.desofsnews.service.INewsService;
 import pt.ipp.isep.dei.desofsnews.service.IllegalSaveOperation;
 import pt.ipp.isep.dei.desofsnews.service.NewsService;
+
 
 @RestController
 @RequestMapping("/news")
@@ -52,5 +59,25 @@ public class NewsController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    // News by date
+    @GetMapping("/ofDay/{date}")
+    public ResponseEntity<String> getMethodName(@RequestParam String date) {
+        try {
+            DateFormat format = new SimpleDateFormat();
+            Date date2 = format.parse(date);
+            // insert code to get the news
+            return new ResponseEntity<>("Your response message", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("approve/{id}")
+    public ResponseEntity<NewsDTO> approveNews(@PathVariable String id) {
+        NewsDTO newsDTO = newsService.approveNews(id);
+        //code to deal with errors and other stuff
+        return new ResponseEntity<>(newsDTO, HttpStatus.OK);
     }
 }
