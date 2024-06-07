@@ -23,7 +23,8 @@ jobs:
     - name: Generate Angular dependencies file
       run: |
         cd ./Code/FE/desofs-news
-        npm list --all --json > dependencies.json
+        npm i
+        npm ls --depth=0 | awk 'NR>1 {print $2}' > dependencies.txt
     
     - uses: actions/upload-artifact@v4
       with:
@@ -38,7 +39,7 @@ jobs:
       run: |
         cd ./Code/FE/desofs-news
         echo "Angular dependencies:\n" >> ./combined-dependencies.txt
-        cat dependencies.json > ./combined-dependencies.txt
+        cat dependencies.txt > ./combined-dependencies.txt
         cd ./Code/BE
         echo "\n\nJava dependencies:\n" >> ./combined-dependencies.txt
         cat dependencies.txt >> ../combined-dependencies.txt
