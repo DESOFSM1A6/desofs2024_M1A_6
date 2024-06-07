@@ -18,7 +18,7 @@ jobs:
     - name: Generate FE dependencies file and zip
       run: |
         cd ./Code/FE/
-        zip -r fe.zip desofs-news -x
+        zip -r fe.zip desofs-news
         ls
         cp -R fe.zip ../../
         npm i
@@ -27,7 +27,7 @@ jobs:
     - name: Generate BE dependencies file and zip
       run: |
         cd ./Code/
-        zip -r be.zip BE -x
+        zip -r be.zip BE
         cp -R be.zip ../
         mvn dependency:tree -DoutputType=text | grep -P '^\[INFO\] +- ' | sed 's/^\[INFO\] +- //' > dependencies.txt
 
