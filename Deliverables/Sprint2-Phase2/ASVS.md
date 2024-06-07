@@ -26,6 +26,15 @@
 | Nível 1 | CWE-732 | Infrastructure | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | |
 | Nível 1 | CWE-639 | Infrastructure |  Apenas ser possível aceder frontend o que diminui a superfície de ataque | |
 
+## Tratamento e registo de erros
+
+| ASVS Level | CWE Code | Componente | Correção | Prova |
+|------------|----------|----------|----------|----------|
+| Nível 1 | CWE-210 | Infrastructure | Criação de métodos para tratamento de logs controlando a mensagem de erro exibida tendo em conta informações sensíveis. | private handleError - news.service.ts  |
+| Nível 2 | CWE-544 | Infrastructure | Criação de métodos para tratamento de logs associados a operações realizadas no código (ex. API Requests) | private handleError - news.service.ts  |
+| Nível 2 | CWE-200 | Infrastructure | Criação de métodos para tratamento de logs sincronizados com a data e hora correta | private handleError - news.service.ts  |
+
+
 ## Proteção de Informação
 
 | ASVS Level | CWE Code | Componente | Correção | Prova |
