@@ -32,7 +32,7 @@ jobs:
         cp -R be.zip ../
 
         cd BE
-        mvn dependency:tree -DoutputType=text | grep -P '^\[INFO\] +- ' | sed 's/^\[INFO\] +- //' > dependencies.txt
+        grep '<artifactId>.*</artifactId>' pom.xml | sed -e 's/<artifactId>//g' -e 's/<\/artifactId>//g' -e 's/\t//g' | tail -n +3 > dependencies.txt
 
 
     - name: Combine dependencies files and dependency files
