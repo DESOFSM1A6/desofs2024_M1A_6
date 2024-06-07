@@ -40,7 +40,7 @@ jobs:
         cd ./Code/FE/desofs-news
         echo "Angular dependencies:\n" >> ./combined-dependencies.txt
         cat dependencies.txt > ./combined-dependencies.txt
-        cd ./Code/BE
+        cd ../../../Code/BE
         echo "\n\nJava dependencies:\n" >> ./combined-dependencies.txt
         cat dependencies.txt >> ../combined-dependencies.txt
 
