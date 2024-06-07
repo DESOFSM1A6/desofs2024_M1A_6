@@ -15,32 +15,28 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Generate FE dependencies file and zip
+    - name: Generate FE dependencies file
       run: |
-        cd ./Code/FE/
-        zip -r fe.zip desofs-news
-        cp -R fe.zip ../../
-
-        cd desofs-news
+        cd ./Code/FE/desofs-news
         npm i
         npm ls --depth=0 | awk 'NR>1 {print $2}' > dependencies.txt
     
-    - name: Generate BE dependencies file and zip
+    - name: Generate BE dependencies file
       run: |
-        cd ./Code/
-        zip -r be.zip BE
-        cp -R be.zip ../
-
-        cd BE
+        cd ./Code/BE
         grep '<artifactId>.*</artifactId>' pom.xml | sed -e 's/<artifactId>//g' -e 's/<\/artifactId>//g' -e 's/\t//g' | tail -n +3 > dependencies.txt
-
+    
+    - name: Generate SBOMs
+      run: |
+        cd ./Code/FE/desofs-news && npm run generate-sbom
+        mv sbom.json ../../../fe-sbom.json
+        cd ../../../Code/BE/
+        mvn -B clean install --file Code/BE/pom.xml
+        mv target/bom.xml ../../be-bom.xml
 
     - name: Combine dependencies files and dependency files
       run: |
-        mkdir Package
-        cp -R be.zip Package
-        cp -R fe.zip Package
-        zip -r package.zip Package
+        zip -r package.zip ./Code/BE ./Code/FE/desofs-news
 
         touch combined-dependencies.txt
         echo "Angular dependencies:" >> combined-dependencies.txt
@@ -55,7 +51,7 @@ jobs:
 
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "package.zip"
+        artifacts: "package.zip,fe-sbom.json,be-bom.xml"
         bodyFile: "combined-dependencies.txt"
         prerelease: true
         generateReleaseNotes: true
