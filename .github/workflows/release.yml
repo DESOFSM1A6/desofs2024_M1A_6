@@ -31,7 +31,7 @@ jobs:
         cd ./Code/FE/desofs-news && npm run generate-sbom
         mv sbom.json ../../../fe-sbom.json
         cd ../../../Code/BE/
-        mvn -B clean install --file Code/BE/pom.xml
+        mvn -B clean install --file pom.xml
         mv target/bom.xml ../../be-bom.xml
 
     - name: Combine dependencies files and dependency files
