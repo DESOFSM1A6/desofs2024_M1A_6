@@ -28,7 +28,7 @@ jobs:
       run: |
         cd ./Code/
         zip -r be.zip BE -x
-        cp -R be.zip ../../
+        cp -R be.zip ../
         mvn dependency:tree -DoutputType=text | grep -P '^\[INFO\] +- ' | sed 's/^\[INFO\] +- //' > dependencies.txt
 
 
