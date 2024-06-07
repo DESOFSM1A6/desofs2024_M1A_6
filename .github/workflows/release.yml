@@ -15,25 +15,19 @@ jobs:
       with:
         fetch-depth: 0
 
-    - uses: actions/upload-artifact@v4
-      with:
-        name: fe
-        path: ./Code/FE/desofs-news
-    - name: Generate Angular dependencies file
+    - name: Generate FE dependencies file and zip
       run: |
         cd ./Code/FE/
+        zip -r fe.zip desofs-news -x
         ls
         cp -R fe.zip ../../
         npm i
         npm ls --depth=0 | awk 'NR>1 {print $2}' > dependencies.txt
     
-    - uses: actions/upload-artifact@v4
-      with:
-        name: be
-        path: ./Code/BE
-    - name: Generate Java dependencies file
+    - name: Generate BE dependencies file and zip
       run: |
         cd ./Code/
+        zip -r be.zip BE -x
         cp -R be.zip ../../
         mvn dependency:tree -DoutputType=text | grep -P '^\[INFO\] +- ' | sed 's/^\[INFO\] +- //' > dependencies.txt
 
