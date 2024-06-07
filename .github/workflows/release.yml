@@ -4,9 +4,6 @@ on:
   push:
     tags:
     - '*'
-    branches:
-    - 81-release-pipeline
-    # - main
 
 jobs:
   build:
