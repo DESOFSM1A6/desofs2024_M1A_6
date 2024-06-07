@@ -33,20 +33,19 @@ jobs:
 
         cd BE
         mvn dependency:tree -DoutputType=text | grep -P '^\[INFO\] +- ' | sed 's/^\[INFO\] +- //' > dependencies.txt
-        ls
 
 
     - name: Combine dependencies files
       run: |
         touch combined-dependencies.txt
         cd ./Code/FE/desofs-news
-        echo "Angular dependencies:" >> ../../../combined-dependencies.txt
-        echo " " >> ../../../combined-dependencies.txt
+        echo "Angular dependencies:" > ../../../combined-dependencies.txt
+        echo " " >> ../../combined-dependencies.txt
         cat dependencies.txt > ../../../combined-dependencies.txt
         cd ../../../Code/BE
-        echo "Java dependencies:" >> ../../combined-dependencies.txt
-        echo " " >> ../../combined-dependencies.txt
-        cat dependencies.txt >> ../../combined-dependencies.txt
+        echo "Java dependencies:" > ../../combined-dependencies.txt
+        echo " " > ../../combined-dependencies.txt
+        cat dependencies.txt > ../../combined-dependencies.txt
 
     - uses: ncipollo/release-action@v1
       with:
