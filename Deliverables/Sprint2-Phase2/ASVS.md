@@ -1,5 +1,6 @@
 # Requisitos de Segurança
 
+
 ## Arquitetura, Design e Ameaça
 
 | ASVS Level | CWE Code | Componente | Correção | Prova |
@@ -11,6 +12,7 @@
 | Nível 2 | CWE-306 | Infrastructure | Apenas ser possível aceder o backend através do frontend com autenticação apropriada | |
 | Nível 2 | CWE-502  | ContinousIntegration | Implementação do Sonar Cloud |  |
 | Nível 2 | CWE-1104  | ContinousIntegration | Implementação de Sonar Cloud e Docker Scout enviam relatórios e avisos sobre componentes e o Dependabot deteta dependências inválidas e cria PRs |  |
+
 
 ## Autenticação Segura
 
@@ -27,6 +29,7 @@
 | Nível 3 | CWE-308 | Authentication | Bloqueio de contas após tentativas falhadas | ![alt text](./MarkdownImages/Auth/BruteForceDetectionPolicies.png) |
 | Nível 3 | CWE-319 | Infrastructure | Utilização de 2 containers distintos | |
 
+
 ## Controlo de Acesso Adequado
 
 | ASVS Level | CWE Code | Componente | Correção | Prova |
@@ -40,14 +43,6 @@
 | Nível 1 | CWE-639 | Infrastructure |  Apenas ser possível aceder frontend o que diminui a superfície de ataque | |
 | Nível 1 | CWE-732 | Infrastructure | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | |
 
-## Tratamento e registo de erros
-
-| ASVS Level | CWE Code | Componente | Correção | Prova |
-|------------|----------|----------|----------|----------|
-| Nível 1 | CWE-210 | Infrastructure | Criação de métodos para tratamento de logs controlando a mensagem de erro exibida tendo em conta informações sensíveis. | private handleError - news.service.ts  |
-| Nível 2 | CWE-544 | Infrastructure | Criação de métodos para tratamento de logs associados a operações realizadas no código (ex. API Requests) | private handleError - news.service.ts  |
-| Nível 2 | CWE-200 | Infrastructure | Criação de métodos para tratamento de logs sincronizados com a data e hora correta | private handleError - news.service.ts  |
-
 
 ## Proteção de Informação
 
@@ -57,7 +52,6 @@
 
 
 ## Gestão de Sessão Segura
-
 
 | ASVS Level | CWE Code | Componente | Correção | Prova |
 |------------|----------|----------|----------|----------|
@@ -70,6 +64,7 @@
 | Nível 1 | CWE-614 | Authentication | Proteção de cookies contra ataque de rede |  |
 | Nível 1 | CWE-778 | Authentication | Defesas contra exploits de gestão de sessão | ![alt text](./MarkdownImages/Auth/revokeRefreshToken.png) ![alt text](./MarkdownImages/Auth/ssoSettings.png) |
 | Nível 1 | CWE-1004 | Authentication | Verificação de tokens |  |
+
 
 ## Tratamento de Erro e Logging
 
