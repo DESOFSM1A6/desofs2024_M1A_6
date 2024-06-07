@@ -47,3 +47,4 @@ jobs:
         artifacts: "fe.*,be.*"
         bodyFile: "dependencies.txt"
         prerelease: true
+        generateReleaseNotes: true
