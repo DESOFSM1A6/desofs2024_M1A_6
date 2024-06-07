@@ -40,15 +40,16 @@ jobs:
     - name: Combine dependencies files
       run: |
         cd ./Code/FE/desofs-news
-        echo "Angular dependencies:\n" >> ./combined-dependencies.txt
-        cat dependencies.txt > ./combined-dependencies.txt
+        echo "Angular dependencies:\n" >> ../../../combined-dependencies.txt
+        cat dependencies.txt > ../../../combined-dependencies.txt
         cd ../../../Code/BE
-        echo "\n\nJava dependencies:\n" >> ./combined-dependencies.txt
-        cat dependencies.txt >> ../combined-dependencies.txt
+        echo "\n\nJava dependencies:\n" >> ../../combined-dependencies.txt
+        cat dependencies.txt >> ../../combined-dependencies.txt
+        cd ../../
 
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "fe.*,be.*"
-        bodyFile: "dependencies.txt"
+        bodyFile: "combined-dependencies.txt"
         prerelease: true
         generateReleaseNotes: true
