@@ -76,9 +76,12 @@
 | ASVS Level | CWE Code | Componente | Correção | Prova |
 |------------|----------|----------|----------|----------|
 | Nível 1 | CWE-210 | Authentication | Proteção de logs contra acessos não autorizados | Apenas o administrador tem acesso à pagina de eventos, e o mesmo tem Multi Factor Authentication:![alt text](./MarkdownImages/Auth/eventPage.png) | 
+| Nível 1 | CWE-210 | Frontend | Criação de métodos para tratamento de logs controlando a mensagem de erro exibida tendo em conta informações sensíveis. | private handleError - news.service.ts  |
 | Nível 1 | CWE-532 | Authentication | Implementação de logging seguro |  | 
 | Nível 2 | CWE-117 | Authentication | Sanitização de mensagens de erro | ![alt text](./MarkdownImages/Auth/loginError.png) ![alt text](./MarkdownImages/Auth/loginPageError.png) | 
 | Nível 2 | CWE-200 | Authentication | Evitar a exposição de informações sensíveis | ![alt text](./MarkdownImages/Auth/userEventExample.png) ![alt text](./MarkdownImages/Auth/adminEventExample.png)| 
+| Nível 2 | CWE-200 | Frontend | Criação de métodos para tratamento de logs sincronizados com a data e hora correta | private handleError - news.service.ts  |
 | Nível 2 | CWE-285 | Authentication | Acesso controlado a logs | Apenas o administrador tem acesso à pagina de eventos, e o mesmo tem Multi Factor Authentication:![alt text](./MarkdownImages/Auth/eventPage.png) | 
 | Nível 2 | CWE-544 | Authentication | Configuração de políticas de retenção de logs | ![alt text](./MarkdownImages/Auth/userEvents.png) ![alt text](./MarkdownImages/Auth/adminEvents.png) | 
+| Nível 2 | CWE-544 | Frontend | Criação de métodos para tratamento de logs associados a operações realizadas no código (ex. API Requests) | private handleError - news.service.ts  |
 | Nível 2 | CWE-778 | Authentication | Prevenção de exploits através de logs | | 
