@@ -22,7 +22,7 @@ jobs:
         ls
         cp -R fe.zip ../../
 
-        cd ./Code/FE/desofs-news
+        cd desofs-news
         npm i
         npm ls --depth=0 | awk 'NR>1 {print $2}' > dependencies.txt
     
@@ -31,8 +31,8 @@ jobs:
         cd ./Code/
         zip -r be.zip BE
         cp -R be.zip ../
-        
-        cd ./Code/BE
+
+        cd BE
         mvn dependency:tree -DoutputType=text | grep -P '^\[INFO\] +- ' | sed 's/^\[INFO\] +- //' > dependencies.txt
 
 
