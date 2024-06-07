@@ -4,8 +4,8 @@ on:
   push:
     tags:
     - '*'
-    branches:
-    - main
+    # branches:
+    # - main
 
 jobs:
   build:
@@ -14,12 +14,36 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v3
+
     - uses: actions/upload-artifact@v4
       with:
-        name: code
-        path: ./Code
+        name: fe
+        path: ./Code/FE/desofs-news
+    - name: Generate Angular dependencies file
+      run: |
+        cd ./Code/FE/desofs-news
+        npm list --all --json > dependencies.json
+    
+    - uses: actions/upload-artifact@v4
+      with:
+        name: be
+        path: ./Code/BE
+    - name: Generate Java dependencies file
+      run: |
+        cd ./Code/BE
+        mvn dependency:tree -DoutputType=text -DoutputFile=dependencies.txt
+
+    - name: Combine dependencies files
+      run: |
+        cd ./Code/FE/desofs-news
+        echo "Angular dependencies:\n" >> ./combined-dependencies.txt
+        cat dependencies.json > ./combined-dependencies.txt
+        cd ./Code/BE
+        echo "\n\nJava dependencies:\n" >> ./combined-dependencies.txt
+        cat dependencies.txt >> ../combined-dependencies.txt
 
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "code.*"
-        bodyFile: "README.md"
+        artifacts: "fe.*,be.*"
+        bodyFile: "dependencies.txt"
+        prerelease: true
