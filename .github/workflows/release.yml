@@ -35,21 +35,27 @@ jobs:
         mvn dependency:tree -DoutputType=text | grep -P '^\[INFO\] +- ' | sed 's/^\[INFO\] +- //' > dependencies.txt
 
 
-    - name: Combine dependencies files
+    - name: Combine dependencies files and dependency files
       run: |
+        mkdir Package
+        cp -R be.zip Package
+        cp -R fe.zip Package
+        zip -r package.zip Package
+
         touch combined-dependencies.txt
         echo "Angular dependencies:" >> combined-dependencies.txt
         echo " " >> combined-dependencies.txt
         cd ./Code/FE/desofs-news
-        cat dependencies.txt > ../../../combined-dependencies.txt
+        cat dependencies.txt >> ../../../combined-dependencies.txt
         cd ../../../Code/BE
         echo "Java dependencies:" >> ../../combined-dependencies.txt
         echo " " >> ../../combined-dependencies.txt
-        cat dependencies.txt > ../../combined-dependencies.txt
+        cat dependencies.txt >> ../../combined-dependencies.txt
+
 
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "fe.zip,be.zip"
+        artifacts: "package.zip"
         bodyFile: "combined-dependencies.txt"
         prerelease: true
         generateReleaseNotes: true
