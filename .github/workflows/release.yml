@@ -25,6 +25,7 @@ jobs:
         cp -R fe.zip ../../
         npm i
         npm ls --depth=0 | awk 'NR>1 {print $2}' > dependencies.txt
+        cd ../../../
     
     - uses: actions/upload-artifact@v4
       with:
@@ -35,6 +36,7 @@ jobs:
         cd ./Code/BE
         cp -R be.zip ../../
         mvn dependency:tree -DoutputType=text | grep -P '^\[INFO\] +- ' | sed 's/^\[INFO\] +- //' > dependencies.txt
+        cd ../../
 
 
     - name: Combine dependencies files
