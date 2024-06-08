@@ -34,6 +34,16 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
+    coverageIstanbulReporter: {
+      reports: [ 'html', 'lcovonly', 'text-summary', 'cobertura' ],
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        statements: 100,
+        lines: 100,
+        branches: 100,
+        functions: 100
+      }
+    },
     sonarqubeReporter: {
       basePath: 'src/app',        // test folder 
       filePattern: '**/*spec.ts', // test file pattern
