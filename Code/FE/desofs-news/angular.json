@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "22s5_dk_64_spa": {
+    "desofsNews": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/22s5_dk_64_spa",
+            "outputPath": "dist/desofsNews",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -75,7 +75,8 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "22s5_dk_64_spa:build"
+            "browserTarget": "desofsNews:build",
+            "codeCoverageExclude": ["**/*.module.ts"]
           }
         },
         "test": {

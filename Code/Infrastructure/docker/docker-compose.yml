@@ -70,9 +70,21 @@ services:
     user: postgres
 
   # Missing database
+  db:
+    build:
+      context: "../../DB"
+      args:
+        - PROJECT_PATH=.
+    networks:
+      my_network:
+        ipv4_address: 172.25.0.10
+    volumes:
+      - master_db:/var/lib/mysql
+    
 
 volumes:
   postgres_data:
+  master_db:
 
 networks:
   my_network:

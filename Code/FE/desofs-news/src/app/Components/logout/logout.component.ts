@@ -11,5 +11,6 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit() {
     this.keycloakService.logout();
+    
   }
 }

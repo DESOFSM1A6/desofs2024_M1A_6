@@ -1,12 +1,12 @@
 {
-  "name": "22s5-dk-64-spa",
+  "name": "desofsNews",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "ng test --browsers ChromiumNoSandbox --code-coverage",
     "cy:test": "start-server-and-test cy:start http://localhost:3030 cy:run",
     "cy:start": "ng serve --port 3030",
     "cy:run": "cypress run",
@@ -48,6 +48,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "karma-sonarqube-reporter": "^1.0.0",
     "puppeteer": "^19.3.0",
     "start-server-and-test": "^1.14.0",
     "typescript": "4.8.2"

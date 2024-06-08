@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { News } from 'src/app/Models/news';  // Certifique-se de que o caminho está correto
+import { News } from 'src/app/Models/news'; // Certifique-se de que o caminho está correto
 
 @Component({
   selector: 'app-news-submission',
@@ -17,6 +17,7 @@ export class NewsSubmissionComponent {
       content: ['', Validators.required],
       writer: ['', Validators.required]
     });
+    
   }
 
   submitNews() {
