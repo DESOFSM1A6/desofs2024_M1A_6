@@ -19,24 +19,13 @@ module.exports = function (config) {
       clearContext: false
     },
     jasmineHtmlReporter: {
-      suppressAll: true
-    },
-    coverageReporter: { reporters: [{ type: 'lcov' }] },
-    coverageIstanbulReporter: {
-      reports: ['html', 'lcovonly', 'text-summary', 'cobertura'],
-      fixWebpackSourcePaths: true,
-      thresholds: {
-        statements: 100,
-        lines: 100,
-        branches: 100,
-        functions: 100
-      }
-    },
-    sonarqubeReporter: {
-      basePath: 'src/app',        // test folder 
-      filePattern: '**/*spec.ts', // test file pattern
-      outputFolder: 'coverage',    // reports destination
-      encoding: 'utf-8'           // file format
+      suppressAll: false
+    }, coverageReporter: {
+      dir: require('path').join(__dirname, './coverage'), // Specify the coverage directory
+      reporters: [
+        { type: 'lcov', subdir: '.' }, // Specify lcov format and put it in the main coverage directory
+        { type: 'text-summary' } // Optionally, add a text summary report
+      ]
     },
     reporters: ['progress', 'kjhtml', 'sonarqube'],
     port: 9876,
