@@ -17,6 +17,7 @@ export class NewsValidationComponent {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
   approveNews(newsId: number): void {

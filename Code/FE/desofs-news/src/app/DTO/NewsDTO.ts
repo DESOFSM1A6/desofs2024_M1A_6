@@ -9,4 +9,5 @@ export class NewsDTO {
       public imageUrl: string,
       public status: string
     ) { }
+    
   }

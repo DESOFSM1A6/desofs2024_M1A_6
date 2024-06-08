@@ -14,6 +14,7 @@ export class NewsMap {
         imageUrl: news.imageUrl
       } as NewsDTO;
     }
+    
   
     public static toViewModel(newsDTO: NewsDTO): News {
       return {

@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
       if (authenticated) {
         // Redirecionar para a página principal ou outra página após autenticação
         this.redirectToHome();
+
       }
     }).catch(err => {
       console.error('Failed to login with Keycloak', err);
