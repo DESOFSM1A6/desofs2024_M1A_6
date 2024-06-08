@@ -30,7 +30,7 @@ module.exports = function (config) {
       subdir: '.',
       reporters: [
         { type: 'html' },
-        { type: 'lcov ' },
+        { type: 'lcov' },
         { type: 'text-summary' }
       ]
     },
