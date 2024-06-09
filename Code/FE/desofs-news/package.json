@@ -2,6 +2,8 @@
   "name": "22s5-dk-64-spa",
   "version": "0.0.0",
   "scripts": {
+    "e2e": "ng e2e",
+    "e2e:test": "./node_modules/.bin/nightwatch --env 'chrome' --config './nightwatch.conf.js'",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -37,10 +39,14 @@
     "@angular-devkit/build-angular": "^15.2.10",
     "@angular/cli": "~15.2.9",
     "@angular/compiler-cli": "^15.2.10",
-    "@cyclonedx/cyclonedx-npm": "^1.19.0",
+    "@cyclonedx/cyclonedx-npm": "^1.10.0",
     "@cypress/schematic": "^2.4.0",
+    "@nightwatch/schematics": "^1.2.1",
     "@types/jasmine": "~4.0.0",
+    "@types/nightwatch": "2.3.31",
+    "@types/node": "20.14.2",
     "@types/three": "^0.146.0",
+    "chromedriver": "125.0.3",
     "cypress": "^13.11.0",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
@@ -48,8 +54,10 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "nightwatch": "3.6.3",
     "puppeteer": "^19.3.0",
-    "start-server-and-test": "^1.14.0",
+    "start-server-and-test": "^2.0.4",
+    "ts-node": "10.9.2",
     "typescript": "4.8.2"
   }
 }
