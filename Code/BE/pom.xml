@@ -10,19 +10,19 @@
 		<!-- lookup parent from repository -->
 	</parent>
 	<pluginRepositories>
-        <pluginRepository>
-            <id>central</id>
-            <name>Maven Plugin Repository</name>
-            <url>https://repo.maven.apache.org/maven2</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<name>Maven Plugin Repository</name>
+			<url>https://repo.maven.apache.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
 	<groupId>pt.ipp.isep.dei</groupId>
 	<artifactId>DesofsNews</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -44,13 +44,13 @@
 			<version>2.3.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.15</version>
-		</dependency>
 
-<!-- 		<dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+		<!-- 		<dependency>
 			<groupId>org.keycloak</groupId>
 			<artifactId>keycloak-core</artifactId>
 			<version>24.0.4</version>
@@ -93,7 +93,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
-<!-- 		<DEPENDENCY>
+		<!-- 		<DEPENDENCY>
 			<GROUPID>ORG.SPRINGFRAMEWORK.BOOT</GROUPID>
 			<ARTIFACTID>SPRING-BOOT-STARTER-OAUTH2-RESOURCE-SERVER</ARTIFACTID>
 			<VERSION>3.2.5</VERSION>
@@ -118,8 +118,8 @@
 			<artifactId>nimbus-jose-jwt</artifactId>
 			<version>9.39.1</version>
 		</dependency> -->
-<!--   -->
-<!-- 		<dependency>
+		<!--   -->
+		<!-- 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>6.2.4</version>
@@ -220,7 +220,7 @@
 			<plugin>
 				<groupId>org.cyclonedx</groupId>
 				<artifactId>cyclonedx-maven-plugin</artifactId>
-				<version>2.7.4</version> <!-- Use the latest version available -->
+				<version>2.7.4</version>				<!-- Use the latest version available -->
 				<executions>
 					<execution>
 						<id>make-bom</id>

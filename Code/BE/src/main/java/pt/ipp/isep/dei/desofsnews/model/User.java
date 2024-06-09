@@ -3,11 +3,13 @@ package pt.ipp.isep.dei.desofsnews.model;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Embeddable
 @NoArgsConstructor
+@Table(name = "Users_table")
 public class User {
 
     @Id

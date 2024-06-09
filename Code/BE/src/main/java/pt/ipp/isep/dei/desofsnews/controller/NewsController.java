@@ -60,18 +60,18 @@ public class NewsController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    // News by date
-    @GetMapping("/ofDay/{date}")
-    public ResponseEntity<String> getMethodName(@RequestParam String date) {
-        try {
-            DateFormat format = new SimpleDateFormat();
-            Date date2 = format.parse(date);
-            // insert code to get the news
-            return new ResponseEntity<>("Your response message", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    // News by date
+//    @GetMapping("/ofDay/{date}")
+//    public ResponseEntity<String> getMethodName(@RequestParam String date) {
+//        try {
+//            DateFormat format = new SimpleDateFormat();
+//            Date date2 = format.parse(date);
+//            // insert code to get the news
+//            return new ResponseEntity<>("Your response message", HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     // Pending news
     @GetMapping("/pending")
