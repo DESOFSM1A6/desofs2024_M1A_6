@@ -13,6 +13,11 @@
 | Nível 2 | CWE-502  | ContinousIntegration | Implementação do Sonar Cloud |  |
 | Nível 2 | CWE-1104  | ContinousIntegration | Implementação de Sonar Cloud e Docker Scout enviam relatórios e avisos sobre componentes e o Dependabot deteta dependências inválidas e cria PRs |  |
 
+| Nível 2 | CWE-1110 | Controle de Acesso | Verificação das restrições de segurança funcionais nos US e recursos. | |
+| Nível 2 | CWE-1059 | Documentação de Segurança| Documentação e justificação de todos os limites de confiança, componentes e fluxos de dados significativos da aplicação. | |
+| Nível 2 | CWE-502  | ContinousIntegration | Implementação do Sonar Cloud |  |
+| Nível 2 | CWE-1104  | ContinousIntegration | Implementação de Sonar Cloud e Docker Scout enviam relatórios e avisos sobre componentes e o Dependabot deteta dependências inválidas e cria PRs |  |
+
 
 ## Autenticação Segura
 
@@ -58,6 +63,16 @@
 
 ## Validação e Sanitização
 | Nível 1 | CWE-732 | Frontend | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | |
+
+## Validação e Sanitização
+
+| ASVS Level | CWE Code | Componente | Correção | Prova |
+|------------|----------|----------|----------|----------|
+| Nível 1 | CWE-732 | Frontend | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | |
+| Nível 1 | CWE-235 | Frontend | Acesso apenas à frontend reduz o risco de exposição de informação sensível|Verificar se a aplicação implementa defesas contra ataques de poluição de parâmetros HTTP. Por exemplo, use devidamente as funções de validação e sanitização para todos os parâmetros recebidos pela aplicação, independentemente da fonte (GET, POST, cookies, headers, variáveis de ambiente). |
+| Nível 1| CWE-138 | Frontend  | Verificar se a codificação de saída é relevante para o interpretador e contexto necessários. Por exemplo, use codificadores específicos para valores HTML, atributos HTML, JavaScript, parâmetros de URL, cabeçalhos HTTP. | |
+| Nível 1 | CWE-830 | Frontend Verificar se a aplicação protege contra ataques de injeção JSON, ataques de avaliação JSON e avaliação de expressão JavaScript. | |
+
 
 ## Proteção de Informação
 

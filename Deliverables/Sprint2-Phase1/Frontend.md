@@ -38,3 +38,20 @@ A autenticação é feita pelo AuthenticationService, que lida com o login, logo
 ## Roles
 
 Os roles são gerenciados diretamente no ficheiro AppComponent, o que permite a mudança de role através de métodos específicos, tais como setRoleJornalista, setRoleEditor e setRoleLeitor. Dependendo do role do utilizador, a UI de navegação é adaptada para mostrar ou ocultar determinadas opções.No caso do leitor esto pode ver as últimas notícias e navegar na página inicial. Para o jornalista, além das permissões do Leitor, pode submeter novas notícias. Por fim o editor, além das permissões do Jornalista, pode validar notícias submetidas.
+
+## Estrotura da parte de backend
+src/app: Contém o código da aplicação
+
+components: Contém os componentes da aplicação (e.g., home, login, news, etc.)
+
+services: Contém os serviços que fazem a comunicação com o backend
+
+models: Contém as classes que representam os dados da aplicação
+
+dto: Contém os objetos de transferência de dados (Data Transfer Objects)
+
+messages: Contém mensagens e constantes usadas na aplicação
+
+app.module.ts: O módulo principal da aplicação
+
+app-routing.module.ts: Configura as rotas da aplicação

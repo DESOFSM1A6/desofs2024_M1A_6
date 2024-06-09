@@ -1,6 +1,86 @@
-h2{
-    font-family: arial, sans-serif;
-    font-size: 2em;
-    text-align: center;
-    font-weight: bold;
-  }
+/* Geral */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Títulos */
+h2 {
+  font-family: 'Arial', sans-serif;
+  font-size: 2em;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Card de notícia */
+.card {
+  border: 1px solid #dee2e6; /* Borda para destacar o card */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra mais forte */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Sombra mais forte ao passar o mouse */
+}
+
+.card-img-top {
+  border-top-left-radius: 10px; /* Bordas arredondadas para a imagem */
+  border-top-right-radius: 10px;
+  width: 100%; /* Imagem ocupa a largura total do card */
+  height: auto;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.card-body {
+  padding: 20px;
+  background-color: #fff; /* Fundo branco para destacar o conteúdo */
+  border-bottom-left-radius: 10px; /* Bordas arredondadas para o conteúdo */
+  border-bottom-right-radius: 10px;
+}
+
+.card-title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #343a40; /* Cor mais escura para o título */
+}
+
+.card-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  margin-bottom: 10px;
+  color: #495057; /* Cor de texto */
+}
+
+.text-muted {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9em;
+  color: #6c757d; /* Cor para o texto secundário */
+}
+
+/* Botão Ler Mais */
+.btn-primary {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  background-color: #007bff;
+  border-color: #007bff;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Botão Carregar mais notícias */
+.btn-primary {
+  margin-top: 20px;
+}
+
+.spinner-border {
+  margin-top: 20px;
+}

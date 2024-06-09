@@ -10,44 +10,38 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
-      require('karma-sonarqube-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
       jasmine: {
+        // you can add configuration options for Jasmine here
+        // the possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
+        // for example, you can disable the random execution with `random: false`
+        // or set a specific seed with `seed: 4321`
       },
-      clearContext: false
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     jasmineHtmlReporter: {
-      suppressAll: true
+      suppressAll: true // removes the duplicated traces
     },
-    coverageReporter: { reporters: [{ type: 'lcov' }] },
-    coverageIstanbulReporter: {
-      reports: ['html', 'lcovonly', 'text-summary', 'cobertura'],
-      fixWebpackSourcePaths: true,
-      thresholds: {
-        statements: 100,
-        lines: 100,
-        branches: 100,
-        functions: 100
-      }
+    coverageReporter: {
+      dir: require('path').join(__dirname, './coverage/desofs-news'),
+      subdir: '.',
+      reporters: [
+        { type: 'html' },
+        { type: 'text-summary' }
+      ]
     },
-    sonarqubeReporter: {
-      basePath: 'src/app',        // test folder 
-      filePattern: '**/*spec.ts', // test file pattern
-      outputFolder: 'coverage',    // reports destination
-      encoding: 'utf-8'           // file format
-    },
-    reporters: ['progress', 'kjhtml', 'sonarqube'],
+    reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromiumNoSandbox'],
-    customLaunchers: {
+    browsers: ['ChromiumNoSandbox', 'Chrome'],
+    customLaunchers:
+    {
       ChromiumNoSandbox: {
-        base: 'ChromiumHeadless',
-        flags: ['--no-sandbox']
+        base: 'ChromeHeadless', flags: [' --no-sandbox', ' --headless', ' --disable-gpu-', '--disable-translate', '--disable - extensions']
       }
     },
     singleRun: false,

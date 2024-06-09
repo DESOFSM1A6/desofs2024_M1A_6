@@ -5,5 +5,5 @@ export interface News{
     creationDate: Date;
     writer: string;
     status: string;
-    imageUrl: string;
+    imageUrl?: string[]; //porque é opcional
 }

@@ -1,2 +1,24 @@
-<h2>HOME</h2>
-<h3> Tenha um ótimo dia, cheio de saúde e felicidade. Não beba antes de ir conduzir!</h3>
+<section class="homeNews">
+  <div class="container">
+    <h2 class="text-center mb-4">Página Principal</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4" *ngFor="let news of newsList">
+        <div class="card mb-4">
+          <img *ngIf="news.imageUrl && news.imageUrl.length > 0" class="card-img-top mx-auto d-block" [src]="news.imageUrl[0]" alt="Imagem da Notícia">
+          <div class="card-body">
+            <h3 class="card-title">{{ news.title }}</h3>
+            <p class="card-text">{{ news.content }}</p>
+            <p class="card-text"><small class="text-muted">{{ news.creationDate | date:'dd/MM/yyyy HH:mm:ss' }} - Escrito por {{ news.writer }}</small></p>
+            <a href="#read-more" class="btn btn-primary">Ler mais</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <button (click)="loadMoreNews()" *ngIf="newsList.length > 0 && !loadingMoreNews" class="btn btn-primary">Carregar mais notícias</button>
+      <div *ngIf="loadingMoreNews" class="spinner-border text-primary" role="status">
+        <span class="sr-only">Carregando...</span>
+      </div>
+    </div>
+  </div>
+</section>
