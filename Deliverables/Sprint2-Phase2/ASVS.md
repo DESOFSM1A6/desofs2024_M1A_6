@@ -44,14 +44,17 @@
 | Nível 1 | CWE-732 | Infrastructure | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | |
 
 ## Validação e Sanitização
-| Nível 1 | CWE-732 | Frontend | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | |
-
-## Proteção de Informação
 
 | ASVS Level | CWE Code | Componente | Correção | Prova |
 |------------|----------|----------|----------|----------|
 | Nível 1 | CWE-235 | Infrastructure | Proteção contra poluição de pedidos HTTP | Sanitizar Pedidos API ex.(ParameterSanitizerInterceptor - FE)  |
 | Nível 1 | CWE-915 | Infrastructure | Proteção contra ataques de atribuição massiva de parâmetros | Utilização de DTO's e uso de permissões explícitas  |
+
+## Proteção de Informação
+
+| ASVS Level | CWE Code | Componente | Correção | Prova |
+|------------|----------|----------|----------|----------|
+| Nível 1 | CWE-732 | Frontend | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | |
 
 
 ## Gestão de Sessão Segura
