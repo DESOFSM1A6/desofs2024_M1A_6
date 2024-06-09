@@ -39,19 +39,6 @@ export class NewsSubmissionComponent {
 
   submitNews() {
     if (this.newsForm.valid && this.selectedFiles.length > 0) {
-      // Verificações de tipo e tamanho de arquivo
-      this.selectedFiles.forEach(file => {
-        if (!file.type.startsWith('image/')) {
-          alert('Por favor, selecione apenas arquivos de imagem.');
-          return;
-        }
-        if (file.size > 2 * 1024 * 1024) {
-          alert('A imagem não pode exceder 2MB.');
-          return;
-        }
-      });
-
-      // Se todas as verificações passarem, continue com o envio do formulário
       const formData: FormData = new FormData();
       formData.append('title', this.newsForm.get('title')?.value);
       formData.append('content', this.newsForm.get('content')?.value);
@@ -84,5 +71,10 @@ export class NewsSubmissionComponent {
         console.error('Erro ao submeter notícia:', error);
       });
     }
+  }
+
+  noHTMLTags(control: any) {
+    const hasHTMLTags = /<\/?[a-z][\s\S]*>/i.test(control.value);
+    return hasHTMLTags ? { 'htmlTags': true } : null;
   }
 }
