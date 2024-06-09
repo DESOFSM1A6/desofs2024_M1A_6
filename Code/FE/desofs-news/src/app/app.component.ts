@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     console.log("TEST NEW DEPLOYMENT")
+    
     // Verificar se o utilizador está na página de login e não está autenticado para definir as roles
-    /*
     if (window.location.pathname === '/login' && !this.isAuthenticated) {
       this.setRoles(); // Definir as roles
     } else if (window.location.pathname === '/logout'){
@@ -31,7 +31,6 @@ export class AppComponent implements OnInit {
         console.error('Keycloak initialization failed', err);
       });
     }
-    */
   }
 
   setRoles() {
