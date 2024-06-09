@@ -23,6 +23,14 @@ export class NewsService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
+      // Atualiza o método createNews para aceitar FormData
+  createNews(newsData: FormData): Observable<NewsDTO> {
+    return this.http.post<NewsDTO>(this.newsUrl, newsData).pipe(
+      tap((newNewsDTO: NewsDTO) => this.log(`added news w/ title=${newNewsDTO.title}`)),
+      catchError(this.handleError<NewsDTO>('addNews'))
+    );
+  }
+
      // Método para obter as notícias
   getNewsList(): Observable<NewsDTO[]> {
     console.log("link cam: "+this.newsUrl);
@@ -33,14 +41,6 @@ export class NewsService {
         catchError(this.handleError<News[]>('getNews', []))
       );
 
-  }
-
-  // Atualiza o método createNews para aceitar FormData
-  createNews(newsData: FormData): Observable<NewsDTO> {
-    return this.http.post<NewsDTO>(this.newsUrl, newsData).pipe(
-      tap((newNewsDTO: NewsDTO) => this.log(`added news w/ title=${newNewsDTO.title}`)),
-      catchError(this.handleError<NewsDTO>('addNews'))
-    );
   }
 
   getPendingNewsList(): Observable<NewsDTO[]> {

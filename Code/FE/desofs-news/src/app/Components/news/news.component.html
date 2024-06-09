@@ -1,14 +1,17 @@
 <section class="news">
   <h2>Notícias do Dia</h2>
   <div class="news-grid">
-    <article *ngFor="let news of newsList">
+    <article *ngFor="let news of newsList" class="news-card">
       <div class="news-item">
         <img src="assets/images/{{ news.imageUrl }}" alt="Imagem da Notícia" class="news-image">
         <div class="news-content">
-          <h3>{{ news.title }}</h3>
-          <p>{{ news.content }}</p>
-          <p><small>{{ news.creationDate | date:'dd/MM/yyyy HH:mm:ss'}} - Escrito por {{ news.writer }}</small></p>
-          <a href="#read-more">Ler mais</a>
+          <h3 class="news-title">{{ news.title }}</h3>
+          <p class="news-description">{{ news.content }}</p>
+          <div class="news-details">
+            <small class="news-date">{{ news.creationDate | date:'dd/MM/yyyy HH:mm:ss'}}</small>
+            <small class="news-writer">Escrito por {{ news.writer }}</small>
+          </div>
+          <a href="#read-more" class="btn btn-primary">Ler mais</a>
         </div>
       </div>
     </article>

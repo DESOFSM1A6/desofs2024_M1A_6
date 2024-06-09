@@ -1,52 +1,86 @@
-h2{
-    font-family: arial, sans-serif;
-    font-size: 2em;
-    text-align: center;
-    font-weight: bold;
-  }
-/* Estilos do cabeçalho */
-.card-header {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2.2em;
-  font-weight: 700;
-  color: #333; /* Cor do texto */
+/* Geral */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fa;
 }
 
-/* Estilos dos rótulos */
-.form-group h5 {
+/* Títulos */
+h2 {
+  font-family: 'Arial', sans-serif;
+  font-size: 2em;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Card de notícia */
+.card {
+  border: 1px solid #dee2e6; /* Borda para destacar o card */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra mais forte */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Sombra mais forte ao passar o mouse */
+}
+
+.card-img-top {
+  border-top-left-radius: 10px; /* Bordas arredondadas para a imagem */
+  border-top-right-radius: 10px;
+  width: 100%; /* Imagem ocupa a largura total do card */
+  height: auto;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.card-body {
+  padding: 20px;
+  background-color: #fff; /* Fundo branco para destacar o conteúdo */
+  border-bottom-left-radius: 10px; /* Bordas arredondadas para o conteúdo */
+  border-bottom-right-radius: 10px;
+}
+
+.card-title {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
-  color: #555; /* Cor do texto */
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #343a40; /* Cor mais escura para o título */
 }
 
-/* Estilos do conteúdo da notícia */
-.news-item .card-title {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
-  color: #333; /* Cor do texto */
-}
-
-.news-item .card-text {
+.card-text {
   font-family: 'Roboto', sans-serif;
-  color: #777; /* Cor do texto */
+  font-size: 1em;
+  margin-bottom: 10px;
+  color: #495057; /* Cor de texto */
 }
 
-.news-item .text-muted {
+.text-muted {
   font-family: 'Roboto', sans-serif;
-  color: #999; /* Cor do texto */
+  font-size: 0.9em;
+  color: #6c757d; /* Cor para o texto secundário */
 }
 
-/* Estilos do botão de submissão */
+/* Botão Ler Mais */
 .btn-primary {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  background-color: #007bff; /* Cor de fundo do botão */
-  border-color: #007bff; /* Cor da borda do botão */
-  color: #fff; /* Cor do texto do botão */
+  background-color: #007bff;
+  border-color: #007bff;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
-  border-color: #0056b3; /* Cor da borda do botão ao passar o mouse */
-  color: #fff; /* Cor do texto do botão ao passar o mouse */
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Botão Carregar mais notícias */
+.btn-primary {
+  margin-top: 20px;
+}
+
+.spinner-border {
+  margin-top: 20px;
 }
