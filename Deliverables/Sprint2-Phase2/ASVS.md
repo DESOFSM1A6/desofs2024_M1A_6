@@ -111,3 +111,9 @@
 | Nível 2 | CWE-544 | Authentication | Configuração de políticas de retenção de logs | ![alt text](./MarkdownImages/Auth/userEvents.png) ![alt text](./MarkdownImages/Auth/adminEvents.png) | 
 | Nível 2 | CWE-544 | Frontend | Criação de métodos para tratamento de logs associados a operações realizadas no código (ex. API Requests) | private handleError - news.service.ts  |
 | Nível 2 | CWE-778 | Authentication | Prevenção de exploits através de logs | | 
+
+## File and Resource
+| ASVS Level | CWE Code | Componente | Correção | Prova |
+|------------|----------|----------|----------|----------|
+| Nível 1 | CWE-400 | Frontend | verificar que não são aceites ficheiros muito grandes|   |
+| Nível 1 | CWE-512 | Frontend | Aceita apenas algumas estenções de ficheiros| |
