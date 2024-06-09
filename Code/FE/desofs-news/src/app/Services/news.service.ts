@@ -23,7 +23,7 @@ export class NewsService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
-      // Atualiza o método createNews para aceitar FormData
+    // Atualiza o método createNews para aceitar FormData
   createNews(newsData: FormData): Observable<NewsDTO> {
     return this.http.post<NewsDTO>(this.newsUrl, newsData).pipe(
       tap((newNewsDTO: NewsDTO) => this.log(`added news w/ title=${newNewsDTO.title}`)),
