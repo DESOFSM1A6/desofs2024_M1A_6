@@ -185,4 +185,7 @@ public class NewsServiceTest {
             assert (true);
         }
     }
+
+
+
 }
