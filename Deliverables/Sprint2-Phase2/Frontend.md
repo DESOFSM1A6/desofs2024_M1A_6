@@ -61,5 +61,3 @@ O processo de disponibilizar a aplicação para uso num ambiente de produção. 
 
  Estes são alguns dos principais passos envolvidos no processo de implantação da aplicação Front End. O sucesso da implantação depende de uma execução cuidadosa e atenção aos detalhes em cada etapa do processo
 
-
- ## Requisitos de Segurança
