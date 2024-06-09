@@ -1,8 +1,8 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ParameterSanitizerInterceptor } from './Services/interceptor/parameterSanitizerInterceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -34,7 +34,12 @@ import { LogoutComponent } from './Components/logout/logout.component';
     HttpClientModule,
     KeycloakAngularModule
   ],
-  providers: [KeycloakService],
+  providers: [KeycloakService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ParameterSanitizerInterceptor,
+      multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
