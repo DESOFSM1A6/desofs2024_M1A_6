@@ -10,6 +10,9 @@
 | Nível 2 | CWE-284  | ContinousIntegration | Build da imagem Docker verifica que as imagens não utilizam demasiadas permissões |  |
 | Nível 2 | CWE-284 | Infrastructure | Restrição de tráfego a portas especificas e serviços, reduz o acesso não autorizado | |
 | Nível 2 | CWE-306 | Infrastructure | Apenas ser possível aceder o backend através do frontend com autenticação apropriada | |
+| Nível 2 | CWE-502  | ContinousIntegration | Implementação do Sonar Cloud |  |
+| Nível 2 | CWE-1104  | ContinousIntegration | Implementação de Sonar Cloud e Docker Scout enviam relatórios e avisos sobre componentes e o Dependabot deteta dependências inválidas e cria PRs |  |
+
 | Nível 2 | CWE-1110 | Controle de Acesso | Verificação das restrições de segurança funcionais nos US e recursos. | |
 | Nível 2 | CWE-1059 | Documentação de Segurança| Documentação e justificação de todos os limites de confiança, componentes e fluxos de dados significativos da aplicação. | |
 | Nível 2 | CWE-502  | ContinousIntegration | Implementação do Sonar Cloud |  |
