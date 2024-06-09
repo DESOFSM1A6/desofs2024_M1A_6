@@ -23,6 +23,7 @@ export class NewsService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
+     // Método para obter as notícias
   getNewsList(): Observable<NewsDTO[]> {
     console.log("link cam: "+this.newsUrl);
 
@@ -33,6 +34,36 @@ export class NewsService {
       );
 
   }
+
+  // Atualiza o método createNews para aceitar FormData
+  createNews(newsData: FormData): Observable<NewsDTO> {
+    return this.http.post<NewsDTO>(this.newsUrl, newsData).pipe(
+      tap((newNewsDTO: NewsDTO) => this.log(`added news w/ title=${newNewsDTO.title}`)),
+      catchError(this.handleError<NewsDTO>('addNews'))
+    );
+  }
+
+  getPendingNewsList(): Observable<NewsDTO[]> {
+    return this.http.get<NewsDTO[]>(`${this.newsUrl}/pending`)
+      .pipe(
+        catchError(this.handleError<NewsDTO[]>('getPendingNewsList', []))
+      );
+  }
+
+  approveNews(newsId: number): Observable<any> {
+    return this.http.post(`${this.newsUrl}/approve/${newsId}`, {})
+      .pipe(
+        catchError(this.handleError<any>('approveNews'))
+      );
+  }
+
+  rejectNews(newsId: number): Observable<any> {
+    return this.http.post(`${this.newsUrl}/reject/${newsId}`, {})
+      .pipe(
+        catchError(this.handleError<any>('rejectNews'))
+      );
+  }
+
 
   /**
  * Handle Http operation that failed.
@@ -54,19 +85,10 @@ export class NewsService {
       return of(result as T);
     };
   }
-
-  /** Log a NewsService message with the MessageService */
-  private log(message: string) {
-    this.messageService.add(`NewsService: ${message}`);
-  }
-
-  createNews( id: number, title: string, content: string, creationDate: Date, writer: string, status: string, imageUrl: string): Observable<NewsDTO> {
-    const news: NewsDTO = {id: id, title: title, content: content, creationDate: creationDate, writer: writer, status: status, imageUrl: imageUrl};
-    return this.http.post<NewsDTO>(this.newsUrl, news, this.httpOptions).pipe(
-      tap((newNewsDTO: NewsDTO) => this.log(`added news w/ title=${newNewsDTO.title}`)),
-      catchError(this.handleError<NewsDTO>('addNews'))
-    );
-  }
-
+  
+    /** Log a NewsService message with the MessageService */
+    private log(message: string) {
+      this.messageService.add(`NewsService: ${message}`);
+    }
 
 }

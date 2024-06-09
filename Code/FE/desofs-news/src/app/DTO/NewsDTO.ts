@@ -6,7 +6,7 @@ export class NewsDTO {
       public content: string,
       public creationDate: Date,
       public writer: string,
-      public imageUrl: string,
-      public status: string
+      public status: string,
+      public imageUrl?: string[],
     ) { }
   }
