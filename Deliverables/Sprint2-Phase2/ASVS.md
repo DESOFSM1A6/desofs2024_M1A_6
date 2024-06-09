@@ -61,8 +61,6 @@
 | Nivel 1    | CWE-436 | Backend | Foi implementado um filtro que verifica o content-type da request, garantindo que apenas são aceites pedidos com content-type application/json                                                      | [Link](../../Code/BE/src/main/java/pt/ipp/isep/dei/desofsnews/filters/ContentTypeCheckingFilter.java)                                                                          |
 
 
-## Validação e Sanitização
-| Nível 1 | CWE-732 | Frontend | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | |
 
 ## Validação e Sanitização
 
@@ -80,6 +78,8 @@
 |------------|----------|----------|----------|----------|
 | Nível 1 | CWE-235 | Infrastructure | Proteção contra poluição de pedidos HTTP | Sanitizar Pedidos API ex.(ParameterSanitizerInterceptor - FE)  |
 | Nível 1 | CWE-915 | Infrastructure | Proteção contra ataques de atribuição massiva de parâmetros | Utilização de DTO's e uso de permissões explícitas  |
+| Nível 1 | CWE-732 | Frontend | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | 
+
 
 
 ## Gestão de Sessão Segura
