@@ -69,22 +69,18 @@ export class NewsService {
       );
   }
 
-
-  /**
- * Handle Http operation that failed.
- * Let the app continue.
- *
- * @param operation - name of the operation that failed
- * @param result - optional value to return as the observable result
- */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      const now = new Date();
-      const timestamp = now.toLocaleString();
-
-
-      this.log(`${operation} failed at ${timestamp}`);
-
+      // Using ISO string in UTC for global time consistency
+      const timestamp = new Date().toISOString();
+  
+      // Encoding the operation to prevent log injection
+      const safeOperation = encodeURIComponent(operation);
+  
+      // Secure logging to avoid unauthorized access and modification
+      // Consider implementing file permissions, encryption, or using a secure logging service
+      this.log(`${safeOperation} failed at ${timestamp}`);
+  
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
