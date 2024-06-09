@@ -10,9 +10,9 @@
                 <p>{{ news.content }}</p>
             </div>
             <div class="action-buttons">
-                <button class="accept" (click)="approveNews(news.id)">Aceitar</button>
-                <button class="reject" (click)="rejectNews(news.id)">Rejeitar</button>
-            </div>
+                <button (click)="approveNews(news.id)" [disabled]="news.status === 'approved'">Aprovar</button>
+                <button (click)="rejectNews(news.id)" [disabled]="news.status === 'rejected'">Rejeitar</button>
+              </div>
         </div>
     </ng-template>
     <p class="pending-count">Total de notícias pendentes: {{ newsList.length }}</p>
