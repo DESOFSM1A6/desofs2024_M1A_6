@@ -4,3 +4,49 @@ h2{
     text-align: center;
     font-weight: bold;
   }
+/* Estilos do cabeçalho */
+.card-header {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #333; /* Cor do texto */
+}
+
+/* Estilos dos rótulos */
+.form-group h5 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  color: #555; /* Cor do texto */
+}
+
+/* Estilos do conteúdo da notícia */
+.news-item .card-title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  color: #333; /* Cor do texto */
+}
+
+.news-item .card-text {
+  font-family: 'Roboto', sans-serif;
+  color: #777; /* Cor do texto */
+}
+
+.news-item .text-muted {
+  font-family: 'Roboto', sans-serif;
+  color: #999; /* Cor do texto */
+}
+
+/* Estilos do botão de submissão */
+.btn-primary {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  background-color: #007bff; /* Cor de fundo do botão */
+  border-color: #007bff; /* Cor da borda do botão */
+  color: #fff; /* Cor do texto do botão */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+  border-color: #0056b3; /* Cor da borda do botão ao passar o mouse */
+  color: #fff; /* Cor do texto do botão ao passar o mouse */
+}
