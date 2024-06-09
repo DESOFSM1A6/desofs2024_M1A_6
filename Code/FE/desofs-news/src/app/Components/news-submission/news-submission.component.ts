@@ -38,7 +38,6 @@ export class NewsSubmissionComponent {
   }
 
   submitNews() {
-    console.log('Submit news called');
     if (this.newsForm.valid && this.selectedFiles.length > 0) {
       const formData: FormData = new FormData();
       formData.append('title', this.newsForm.get('title')?.value);
@@ -48,10 +47,25 @@ export class NewsSubmissionComponent {
         formData.append(`images`, file, file.name);
       });
       formData.append('status', 'pending');
+      //construts the newsDTO based on the form data
+      let newsDTO = {
+        id: 0 as number,
+        title: this.newsForm.get('title')?.value,
+        content: this.newsForm.get('content')?.value,
+        writer: this.newsForm.get('writer')?.value,
+        images: [] as string[],
+        status: 'PENDING',
+        creationDate: new Date()
+      };
+      this.selectedFiles.forEach((file, index) => {
+        
+        newsDTO.images.push(file.name);
+      });
+      console.log(newsDTO);
 
-      this.newsService.createNews(formData).subscribe(response => {
-        console.log('Notícia submetida:', response);
-        this.newsList.push(response);
+      this.newsService.createNews(newsDTO).subscribe(response => {
+        console.log('Notícia submetida:', newsDTO);
+        this.newsList.push(newsDTO);
         this.newsForm.reset();
       }, error => {
         console.error('Erro ao submeter notícia:', error);

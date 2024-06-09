@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MessageService } from './message.service';
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { config } from '../config';
-import { catchError, map, tap } from 'rxjs/operators';
 import { NewsDTO } from '../DTO/NewsDTO';
-import { News } from '../Models/news';
+import { MessageService } from './message.service';
 
 
 @Injectable({
@@ -13,7 +12,7 @@ import { News } from '../Models/news';
 })
 export class NewsService {
 
-  public newsUrl = `${config.backend}/News`;
+  public newsUrl = `${config.backend}/news`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,23 +23,29 @@ export class NewsService {
     private messageService: MessageService) { }
 
     // Atualiza o método createNews para aceitar FormData
-  createNews(newsData: FormData): Observable<NewsDTO> {
+  createNews(newsData: NewsDTO): Observable<NewsDTO> {
+    console.log(newsData);
     return this.http.post<NewsDTO>(this.newsUrl, newsData).pipe(
-      tap((newNewsDTO: NewsDTO) => this.log(`added news w/ title=${newNewsDTO.title}`)),
+      tap((newNewsDTO: NewsDTO) => this.log(`added news w/ title=${newsData.title}`)),
       catchError(this.handleError<NewsDTO>('addNews'))
     );
   }
 
      // Método para obter as notícias
-  getNewsList(): Observable<NewsDTO[]> {
+  getNewsList(): Observable<any> {
     console.log("link cam: "+this.newsUrl);
 
-    return this.http.get<NewsDTO[]>(this.newsUrl)
+    this.http.get<any>(this.newsUrl).subscribe(
+      (data) => {
+        console.log(data);
+      }
+    );
+    return this.http.get<any>(this.newsUrl)
       .pipe(
         tap(_ => this.log('fetched news')),
-        catchError(this.handleError<News[]>('getNews', []))
+        //logs the response in the console
+        catchError(this.handleError('getNewsList', []))
       );
-
   }
 
   getPendingNewsList(): Observable<NewsDTO[]> {
@@ -51,7 +56,7 @@ export class NewsService {
   }
 
   approveNews(newsId: number): Observable<any> {
-    return this.http.post(`${this.newsUrl}/approve/${newsId}`, {})
+    return this.http.put(`${this.newsUrl}/approve/${newsId}`, {})
       .pipe(
         catchError(this.handleError<any>('approveNews'))
       );

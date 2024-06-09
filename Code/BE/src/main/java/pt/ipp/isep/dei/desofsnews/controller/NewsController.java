@@ -23,7 +23,6 @@ import pt.ipp.isep.dei.desofsnews.service.INewsService;
 import pt.ipp.isep.dei.desofsnews.service.IllegalSaveOperation;
 import pt.ipp.isep.dei.desofsnews.service.NewsService;
 
-
 @RestController
 @RequestMapping("/news")
 @Component
@@ -74,10 +73,17 @@ public class NewsController {
         }
     }
 
+    // Pending news
+    @GetMapping("/pending")
+    public ResponseEntity<List<NewsDTO>> getPendingNews() {
+        List<NewsDTO> news = newsService.getPendingNews();
+        return new ResponseEntity<>(news, HttpStatus.ACCEPTED);
+    }
+
     @PutMapping("approve/{id}")
     public ResponseEntity<NewsDTO> approveNews(@PathVariable String id) {
         NewsDTO newsDTO = newsService.approveNews(id);
-        //code to deal with errors and other stuff
+        // code to deal with errors and other stuff
         return new ResponseEntity<>(newsDTO, HttpStatus.OK);
     }
 }

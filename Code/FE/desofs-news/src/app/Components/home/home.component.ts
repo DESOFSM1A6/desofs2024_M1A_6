@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NewsService } from './../../Services/news.service';
 import { News } from 'src/app/Models/news';
+import { NewsService } from './../../Services/news.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -49,7 +49,7 @@ export class HomeComponent {
     this.newsService.getNewsList().subscribe(
       (moreNews: any[]) => {
         // Adiciona as novas notícias à lista existente
-        this.newsList = [...moreNews];
+        this.newsList = [ ...moreNews];
         this.loadingMoreNews = false; // Desativa o indicador de carregamento
       },
       (error) => {

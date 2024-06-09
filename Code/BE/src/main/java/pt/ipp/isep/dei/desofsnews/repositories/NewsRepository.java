@@ -11,10 +11,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import pt.ipp.isep.dei.desofsnews.DTO.NewsDTO;
 import pt.ipp.isep.dei.desofsnews.model.News;
+import pt.ipp.isep.dei.desofsnews.model.Status;
 
-public class NewsRepository implements INewsRepository{
+public class NewsRepository implements INewsRepository {
     private static Logger logger = (Logger) LoggerFactory.getLogger(NewsRepository.class);
-
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -33,8 +33,8 @@ public class NewsRepository implements INewsRepository{
 
     @Override
     public Optional<News> findById(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        News news = entityManager.find(News.class, id);
+        return Optional.ofNullable(news);
     }
 
     @Override
@@ -97,6 +97,13 @@ public class NewsRepository implements INewsRepository{
         List<News> resultList = entityManager.createQuery("SELECT n FROM News n", News.class)
                 .getResultList();
         return resultList;
+    }
+
+    @Override
+    public List<News> getPendingNews() {
+        // Get pending status
+        return entityManager.createQuery("SELECT n FROM News n WHERE n.status = " + Status.PENDING.ordinal(), News.class)
+                .getResultList();
     }
 
     @Override

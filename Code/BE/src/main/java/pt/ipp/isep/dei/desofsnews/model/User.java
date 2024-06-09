@@ -18,7 +18,7 @@ public class User {
 
     public User(String username, String email) {
         java.security.SecureRandom random = new java.security.SecureRandom();
-        this.id = String.valueOf((int) (random.nextDouble()));
+        this.id = String.valueOf((int) (random.nextDouble()*1000));
         this.username = username;
         this.email = email;
     }
