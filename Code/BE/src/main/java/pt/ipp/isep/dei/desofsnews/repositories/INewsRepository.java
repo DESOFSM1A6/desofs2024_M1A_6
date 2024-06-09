@@ -14,4 +14,8 @@ public interface INewsRepository extends CrudRepository<News, String>{
 
     List<News> getAllNews();
 
+    List<News> getPendingNews();
+
+    
+
 }

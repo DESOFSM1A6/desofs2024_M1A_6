@@ -1,6 +1,7 @@
 version: '3'
 services:
   fe:
+    container_name: fe
     build:
       context: "../../FE"
       args:
@@ -16,6 +17,7 @@ services:
       - be
 
   be:
+    container_name: be
     build:
       context: "../../BE"
       args:
@@ -26,11 +28,14 @@ services:
       my_network:
         ipv4_address: 172.25.0.3
     expose:
-      - 9090
+      - "8080"
+    ports:
+      - "8085:8080"
     # depends_on:
     #   - db
 
   keycloak:
+    container_name: keycloak
     image: quay.io/keycloak/keycloak:20.0.0
     command: start-dev
     environment:
@@ -62,6 +67,8 @@ services:
       test: "exit 0"
     expose:
       - 5432
+    ports:
+      - "5432:5432"
     networks:
       my_network:
         ipv4_address: 172.25.0.5
@@ -69,22 +76,10 @@ services:
       - postgres_data:/var/lib/postgresql/data
     user: postgres
 
-  # Missing database
-  db:
-    build:
-      context: "../../DB"
-      args:
-        - PROJECT_PATH=.
-    networks:
-      my_network:
-        ipv4_address: 172.25.0.10
-    volumes:
-      - master_db:/var/lib/mysql
-    
+
 
 volumes:
   postgres_data:
-  master_db:
 
 networks:
   my_network:

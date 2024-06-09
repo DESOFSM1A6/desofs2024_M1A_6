@@ -21,4 +21,6 @@ public interface INewsService {
 
     NewsDTO approveNews(String id);
 
+    List<NewsDTO> getPendingNews();
+
 }

@@ -13,6 +13,11 @@
 | Nível 2 | CWE-502  | ContinousIntegration | Implementação do Sonar Cloud |  |
 | Nível 2 | CWE-1104  | ContinousIntegration | Implementação de Sonar Cloud e Docker Scout enviam relatórios e avisos sobre componentes e o Dependabot deteta dependências inválidas e cria PRs |  |
 
+| Nível 2 | CWE-1110 | Controle de Acesso | Verificação das restrições de segurança funcionais nos US e recursos. | |
+| Nível 2 | CWE-1059 | Documentação de Segurança| Documentação e justificação de todos os limites de confiança, componentes e fluxos de dados significativos da aplicação. | |
+| Nível 2 | CWE-502  | ContinousIntegration | Implementação do Sonar Cloud |  |
+| Nível 2 | CWE-1104  | ContinousIntegration | Implementação de Sonar Cloud e Docker Scout enviam relatórios e avisos sobre componentes e o Dependabot deteta dependências inválidas e cria PRs |  |
+
 
 ## Autenticação Segura
 
@@ -42,19 +47,39 @@
 | Nível 1 | CWE-639 | Authentication | Atribuição de roles específicos | ![alt text](./MarkdownImages/Auth/RealmRoles.png) |
 | Nível 1 | CWE-639 | Infrastructure |  Apenas ser possível aceder frontend o que diminui a superfície de ataque | |
 | Nível 1 | CWE-732 | Infrastructure | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | |
+| Nível 1 | CWE-497 | Backend | Definição do nivel INFO para logs nas configurações do Spring Boot | [Link](../../Code/BE/src/main/resources/application.properties) |
+| Nível 1    | CWE-89 | Backend  | Utilização de Hibernate ORM para evitar SQL Injection                                                                                                                                               | [Link](../../Code/BE/src/main/java/pt/ipp/isep/dei/desofsnews/repositories/NewsRepository.java)                                                                                |
+|  Nível 1    | CWE-643 | Backend | Utilização de json e assim evitar de xpath injection e de xml injection                                                                                                                             | [Link](../../Code/BE/src/main/java/pt/ipp/isep/dei/desofsnews/controllers/NewsController.java)                                                                                 |
+|  Nível 1 | Backend  | CWE-532  | Não é efetuado nenhum log de objetos de domínio                                                                                                                                                     | [Link](../../Code/BE/src/main/java/pt/ipp/isep/dei/desofsnews/controllers/NewsController.java)                                                                                 |
+| Nivel 2    |  | Backend        | A aplicação usa s4j para logs, estes logs são emitidos na timezone do sistema, sendo este sempre UTC                                                                                                |                                                                                                                                                                                |
+|  Nivel 1    | CWE-319 | Backend | Não são usados query string parameters, todos os parametros são passados no body da request                                                                                                         | [Link](../../Code/BE/src/main/java/pt/ipp/isep/dei/desofsnews/controllers/NewsController.java)                                                                                 |
+| Nível 1    | CWE-353 | Backend | As dependencias foram todas analisadas na iteração 1. São utilizados dois sistemas externos, o Keycloak e o Postegres, tendo o keycloak analisado em outro documento                                    | [Link](./Authentication.md)                                                                                                                                                    |
+|  Nível 1    | CWE-841 | Backend | A lógica de negocio é testada com um grande número de testes unitários, existindo na aplicação completa um threshold 40% de code coverage e nas classes de dominio e de serviço um threshold de 80% | [Link](../../Code/BE/src/test/java/pt/ipp/isep/dei/desofsnews/services/NewsServiceTest.java) [Sonar](https://sonarcloud.io/project/overview?id=desofsm1a6_desofs2024_M1A_6_BE) |
+| Nivel 1    | CWE-116 | Backend | Todos os enpoint usam como body json com encoding utf-8                                                                                                                                             | [Link](../../Code/BE/src/main/java/pt/ipp/isep/dei/desofsnews/controllers/NewsController.java)                                                                                 |
+| Nivel 1    | CWE-419 | Backend | Nenhum dos endpoints expõe informação além do nome do objecto                                                                                                                                       | [Link](../../Code/BE/src/main/java/pt/ipp/isep/dei/desofsnews/controllers/NewsController.java)                                                                                 |
+| Nivel 1    | CWE-20  | Backend | A aplicação utilizada Spring boot, que faz a validação de schema contra os DTOs                                                                                                                     | [Link](../../Code/BE/src/main/java/pt/ipp/isep/dei/desofsnews/controllers/NewsController.java)                                                                                 |
+| Nivel 1    | CWE-436 | Backend | Foi implementado um filtro que verifica o content-type da request, garantindo que apenas são aceites pedidos com content-type application/json                                                      | [Link](../../Code/BE/src/main/java/pt/ipp/isep/dei/desofsnews/filters/ContentTypeCheckingFilter.java)                                                                          |
+
+
 
 ## Validação e Sanitização
 
 | ASVS Level | CWE Code | Componente | Correção | Prova |
 |------------|----------|----------|----------|----------|
-| Nível 1 | CWE-235 | Infrastructure | Proteção contra poluição de pedidos HTTP | Sanitizar Pedidos API ex.(ParameterSanitizerInterceptor - FE)  |
-| Nível 1 | CWE-915 | Infrastructure | Proteção contra ataques de atribuição massiva de parâmetros | Utilização de DTO's e uso de permissões explícitas  |
+| Nível 1 | CWE-732 | Frontend | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | |
+| Nível 1 | CWE-235 | Frontend | Acesso apenas à frontend reduz o risco de exposição de informação sensível|Verificar se a aplicação implementa defesas contra ataques de poluição de parâmetros HTTP. Por exemplo, use devidamente as funções de validação e sanitização para todos os parâmetros recebidos pela aplicação, independentemente da fonte (GET, POST, cookies, headers, variáveis de ambiente). |
+| Nível 1| CWE-138 | Frontend  | Verificar se a codificação de saída é relevante para o interpretador e contexto necessários. Por exemplo, use codificadores específicos para valores HTML, atributos HTML, JavaScript, parâmetros de URL, cabeçalhos HTTP. | |
+| Nível 1 | CWE-830 | Frontend Verificar se a aplicação protege contra ataques de injeção JSON, ataques de avaliação JSON e avaliação de expressão JavaScript. | |
+
 
 ## Proteção de Informação
 
 | ASVS Level | CWE Code | Componente | Correção | Prova |
 |------------|----------|----------|----------|----------|
-| Nível 1 | CWE-732 | Frontend | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | |
+| Nível 1 | CWE-235 | Infrastructure | Proteção contra poluição de pedidos HTTP | Sanitizar Pedidos API ex.(ParameterSanitizerInterceptor - FE)  |
+| Nível 1 | CWE-915 | Infrastructure | Proteção contra ataques de atribuição massiva de parâmetros | Utilização de DTO's e uso de permissões explícitas  |
+| Nível 1 | CWE-732 | Frontend | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | 
+
 
 
 ## Gestão de Sessão Segura

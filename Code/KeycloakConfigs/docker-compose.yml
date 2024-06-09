@@ -15,7 +15,7 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin
       KEYCLOAK_JDBC_PARAMS: 'sslmode=require'
     ports:
-      - "9090:8080"
+      - "9091:8080"
     depends_on:
       postgres:
         condition: service_healthy

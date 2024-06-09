@@ -1,41 +1,58 @@
-<div class="container">
-    <h2>Submissão de Notícias</h2>
-    <form [formGroup]="newsForm" (ngSubmit)="submitNews()">
-      <div class="form-group">
-        <label for="title">Título</label>
-        <input id="title" formControlName="title" type="text" class="form-control">
-        <div *ngIf="newsForm.controls['title'].invalid && (newsForm.controls['title'].dirty || newsForm.controls['title'].touched)">
-          <small class="text-danger">O título é obrigatório.</small>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="content">Conteúdo</label>
-        <textarea id="content" formControlName="content" class="form-control" rows="5"></textarea>
-        <div *ngIf="newsForm.controls['content'].invalid && (newsForm.controls['content'].dirty || newsForm.controls['content'].touched)">
-          <small class="text-danger">O conteúdo é obrigatório.</small>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="writer">Escritor</label>
-        <input id="writer" formControlName="writer" type="text" class="form-control">
-        <div *ngIf="newsForm.controls['writer'].invalid && (newsForm.controls['writer'].dirty || newsForm.controls['writer'].touched)">
-          <small class="text-danger">O nome do escritor é obrigatório.</small>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Submeter</button>
-    </form>
-  
-    <h3>Notícias Submetidas</h3>
-    <div *ngIf="newsList.length > 0">
-      <div *ngFor="let news of newsList" class="news-item">
-        <h4>{{ news.title }}</h4>
-        <p>{{ news.content }}</p>
-        <p><small>Escritor: {{ news.writer }}</small></p>
-        <p><small>Data de Criação: {{ news.creationDate | date:'short' }}</small></p>
-      </div>
+<div class="container my-5">
+  <div class="card border-primary">
+    <div class="card-header bg-primary text-white">
+      <h2>Submissão de Notícias</h2>
     </div>
-    <div *ngIf="newsList.length === 0">
-      <p>Nenhuma notícia submetida ainda.</p>
+    <div class="card-body">
+      <form [formGroup]="newsForm" (ngSubmit)="submitNews()">
+        <div class="form-group">
+          <label for="title" class="form-label text-primary">Título</label>
+          <input id="title" formControlName="title" type="text" class="form-control" [class.is-invalid]="newsForm.controls['title'].invalid && (newsForm.controls['title'].dirty || newsForm.controls['title'].touched)">
+          <div class="invalid-feedback" *ngIf="newsForm.controls['title'].invalid && (newsForm.controls['title'].dirty || newsForm.controls['title'].touched)">
+            O título é obrigatório.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="content" class="form-label text-primary">Conteúdo</label>
+          <textarea id="content" formControlName="content" class="form-control" rows="5" [class.is-invalid]="newsForm.controls['content'].invalid && (newsForm.controls['content'].dirty || newsForm.controls['content'].touched)"></textarea>
+          <div class="invalid-feedback" *ngIf="newsForm.controls['content'].invalid && (newsForm.controls['content'].dirty || newsForm.controls['content'].touched)">
+            O conteúdo é obrigatório.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="writer" class="form-label text-primary">Escritor</label>
+          <input id="writer" formControlName="writer" type="text" class="form-control" [class.is-invalid]="newsForm.controls['writer'].invalid && (newsForm.controls['writer'].dirty || newsForm.controls['writer'].touched)">
+          <div class="invalid-feedback" *ngIf="newsForm.controls['writer'].invalid && (newsForm.controls['writer'].dirty || newsForm.controls['writer'].touched)">
+            O nome do escritor é obrigatório.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="images" class="form-label text-primary">Imagens:</label>
+          <input type="file" id="images" (change)="onFilesSelected($event)" multiple class="form-control-file">
+        </div>
+        <button type="submit" class="btn btn-primary">Submeter</button>
+      </form>
     </div>
   </div>
-  
+
+  <div class="card mt-5 border-success">
+    <div class="card-header bg-success text-white">
+      <h3>Notícias Submetidas</h3>
+    </div>
+    <div class="card-body">
+      <div *ngIf="newsList.length > 0">
+        <div *ngFor="let news of newsList" class="news-item card mb-3 border-success">
+          <div class="card-body">
+            <h4 class="card-title text-success">{{ news.title }}</h4>
+            <p class="card-text">{{ news.content }}</p>
+            <p class="card-text"><small class="text-muted">Escritor: {{ news.writer }}</small></p>
+            <p class="card-text"><small class="text-muted">Data de Criação: {{ news.creationDate | date:'short' }}</small></p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="newsList.length === 0">
+        <p>Nenhuma notícia submetida ainda.</p>
+      </div>
+    </div>
+  </div>
+</div>

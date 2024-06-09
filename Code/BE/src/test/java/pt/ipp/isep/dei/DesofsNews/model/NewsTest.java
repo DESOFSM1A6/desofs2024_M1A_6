@@ -28,7 +28,7 @@ public class NewsTest {
         assertEquals(pictures.get(0).getCaption(), "description1");
 
         // Act
-        News news = new News("text", "sdds", new User("username", "email"));
+        News news = new News("text", "sdds", new User("username", "email"), pictures, null);
 
         // Assert
         assertEquals(news.getText(), "sdds"); // asset that the date is today
@@ -42,7 +42,7 @@ public class NewsTest {
 
     @Test
     void editNewsTest() {
-        News news = new News("text", "sdds", new User("username", "email"));
+        News news = new News("text", "sdds", new User("username", "email"), null, null);
         assertEquals("sdds", news.getText());
         news.editText("dfsdjfsd");
         assertEquals("dfsdjfsd", news.getText());
