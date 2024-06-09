@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsService } from './../../Services/news.service';
 import { NewsDTO } from './../../DTO/NewsDTO';
+import { NewsService } from './../../Services/news.service';
 
 @Component({
   selector: 'app-news-validation',

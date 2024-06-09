@@ -27,6 +27,8 @@ services:
     networks:
       my_network:
         ipv4_address: 172.25.0.3
+    expose:
+      - "8080"
     ports:
       - "8085:8080"
     # depends_on:
@@ -73,6 +75,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     user: postgres
+
 
 
 volumes:

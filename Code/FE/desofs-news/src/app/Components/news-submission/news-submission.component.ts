@@ -19,6 +19,7 @@ export class NewsSubmissionComponent {
       writer: ['', Validators.required],
       images: [null, Validators.required]
     });
+    
   }
 
   onFilesSelected(event: any) {

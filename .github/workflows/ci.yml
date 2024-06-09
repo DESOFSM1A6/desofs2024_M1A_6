@@ -39,7 +39,7 @@ jobs:
       - name: Build
         run: cd ./Code/FE/desofs-news && npm run build
       - name: Test
-        run: cd ./Code/FE/desofs-news && npm run test -- --watch=false --browsers=ChromeHeadless
+        run: cd ./Code/FE/desofs-news && npm run test -- --code-coverage --watch=false --browsers=ChromeHeadless
       - name: Generate SBOM
         run: cd ./Code/FE/desofs-news && npm run generate-sbom
       - name: Upload SBOM to artifact
@@ -77,6 +77,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "20.x"
+      - name: Install Dependencies
+        run: cd ./Code/FE/desofs-news && npm install
+      - name: Build
+        run: cd ./Code/FE/desofs-news && npm run build
+      - name: Test
+        run: cd ./Code/FE/desofs-news && npm run test -- --code-coverage --watch=false --browsers=ChromeHeadless
+
       - name: SonarQube Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:

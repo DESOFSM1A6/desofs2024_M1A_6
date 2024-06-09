@@ -1,8 +1,8 @@
 import { NewsService } from './../../Services/news.service';
 
 import { Component, OnInit } from '@angular/core';
-import { News } from 'src/app/Models/news';
 import { NewsMap } from 'src/app/Mapper/NewsMap';
+import { News } from 'src/app/Models/news';
 
 @Component({
   selector: 'app-news',
@@ -48,6 +48,7 @@ export class NewsComponent implements OnInit  {
   ngOnInit(): void {
     console.log('ngOnInit called'); // Verificar se o ngOnInit está a ser chamado
     this.getNewsList();
+    
   }
 
   getNewsList(): void{
@@ -55,5 +56,6 @@ export class NewsComponent implements OnInit  {
       console.log(newsList); // Verificar se os dados estão corretos
       this.newsList = NewsMap.toViewModelList(newsList);
     });
+    
   }
 }

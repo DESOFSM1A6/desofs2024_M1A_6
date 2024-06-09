@@ -15,6 +15,8 @@ describe('Login Flow', () => {
       
       cy.url().should('include', '/home');
 
+      //test
+
       cy.contains('Home');
       cy.contains('Últimas Notícias');
       cy.contains('Submissão de noticias');

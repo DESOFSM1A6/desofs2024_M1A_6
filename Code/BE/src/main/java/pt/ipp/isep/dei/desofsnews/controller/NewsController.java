@@ -1,8 +1,5 @@
 package pt.ipp.isep.dei.desofsnews.controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pt.ipp.isep.dei.desofsnews.DTO.NewsDTO;
 import pt.ipp.isep.dei.desofsnews.service.INewsService;
 import pt.ipp.isep.dei.desofsnews.service.IllegalSaveOperation;
 import pt.ipp.isep.dei.desofsnews.service.NewsService;
+
 
 @RestController
 @RequestMapping("/news")
@@ -83,7 +80,7 @@ public class NewsController {
     @PutMapping("approve/{id}")
     public ResponseEntity<NewsDTO> approveNews(@PathVariable String id) {
         NewsDTO newsDTO = newsService.approveNews(id);
-        // code to deal with errors and other stuff
+
         return new ResponseEntity<>(newsDTO, HttpStatus.OK);
     }
 }
