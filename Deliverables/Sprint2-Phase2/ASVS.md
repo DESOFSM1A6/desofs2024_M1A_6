@@ -33,10 +33,10 @@
 | ASVS Level | CWE Code | Componente | Correção | Prova |
 |------------|----------|----------|----------|----------|
 | Nível 1 | CWE-732 | Frontend | Aceder apenas ao frontend reduz o risco de atribuição de permissões a recursos ao qual utilizadores não deveriam ter acesso | |
-| Nível 1 | CWE-235 | Input Validation | Acesso apenas à frontend reduz o risco de exposição de informação sensível|Verificar se a aplicação implementa defesas contra ataques de poluição de parâmetros HTTP. Por exemplo, use devidamente as funções de validação e sanitização para todos os parâmetros recebidos pela aplicação, independentemente da fonte (GET, POST, cookies, headers, variáveis de ambiente). |
-| Nível 1| CWE-138 | Output encoding and Injection Prevention  | Verificar se a codificação de saída é relevante para o interpretador e contexto necessários. Por exemplo, use codificadores específicos para valores HTML, atributos HTML, JavaScript, parâmetros de URL, cabeçalhos HTTP. | |
-| Nível 1 | CWE-830 |Verificar se a aplicação protege contra ataques de injeção JSON, ataques de avaliação JSON e avaliação de expressão JavaScript. | |
-| Nível 1 | CWE-943 | Verificar se a aplicação protege contra vulnerabilidades de injeção LDAP ou se controles específicos de segurança foram implementados para prevenir a injeção LDAP. | |
+| Nível 1 | CWE-235 | Frontend | Acesso apenas à frontend reduz o risco de exposição de informação sensível|Verificar se a aplicação implementa defesas contra ataques de poluição de parâmetros HTTP. Por exemplo, use devidamente as funções de validação e sanitização para todos os parâmetros recebidos pela aplicação, independentemente da fonte (GET, POST, cookies, headers, variáveis de ambiente). |
+| Nível 1| CWE-138 | Frontend  | Verificar se a codificação de saída é relevante para o interpretador e contexto necessários. Por exemplo, use codificadores específicos para valores HTML, atributos HTML, JavaScript, parâmetros de URL, cabeçalhos HTTP. | |
+| Nível 1 | CWE-830 | Frontend Verificar se a aplicação protege contra ataques de injeção JSON, ataques de avaliação JSON e avaliação de expressão JavaScript. | |
+
 
 ## Proteção de Informação
 
