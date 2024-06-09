@@ -38,6 +38,7 @@ export class NewsSubmissionComponent {
   }
 
   submitNews() {
+    console.log('Submit news called');
     if (this.newsForm.valid && this.selectedFiles.length > 0) {
       const formData: FormData = new FormData();
       formData.append('title', this.newsForm.get('title')?.value);

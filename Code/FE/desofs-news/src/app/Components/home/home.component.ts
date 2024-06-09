@@ -49,7 +49,7 @@ export class HomeComponent {
     this.newsService.getNewsList().subscribe(
       (moreNews: any[]) => {
         // Adiciona as novas notícias à lista existente
-        this.newsList = [...this.newsList, ...moreNews];
+        this.newsList = [...moreNews];
         this.loadingMoreNews = false; // Desativa o indicador de carregamento
       },
       (error) => {
