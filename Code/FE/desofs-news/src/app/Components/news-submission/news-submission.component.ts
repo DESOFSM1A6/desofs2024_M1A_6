@@ -39,6 +39,19 @@ export class NewsSubmissionComponent {
 
   submitNews() {
     if (this.newsForm.valid && this.selectedFiles.length > 0) {
+      // Verificações de tipo e tamanho de arquivo
+      this.selectedFiles.forEach(file => {
+        if (!file.type.startsWith('image/')) {
+          alert('Por favor, selecione apenas arquivos de imagem.');
+          return;
+        }
+        if (file.size > 2 * 1024 * 1024) {
+          alert('A imagem não pode exceder 2MB.');
+          return;
+        }
+      });
+
+      // Se todas as verificações passarem, continue com o envio do formulário
       const formData: FormData = new FormData();
       formData.append('title', this.newsForm.get('title')?.value);
       formData.append('content', this.newsForm.get('content')?.value);
@@ -47,7 +60,7 @@ export class NewsSubmissionComponent {
         formData.append(`images`, file, file.name);
       });
       formData.append('status', 'pending');
-      //construts the newsDTO based on the form data
+
       let newsDTO = {
         id: 0 as number,
         title: this.newsForm.get('title')?.value,
@@ -58,9 +71,9 @@ export class NewsSubmissionComponent {
         creationDate: new Date()
       };
       this.selectedFiles.forEach((file, index) => {
-        
         newsDTO.images.push(file.name);
       });
+
       console.log(newsDTO);
 
       this.newsService.createNews(newsDTO).subscribe(response => {

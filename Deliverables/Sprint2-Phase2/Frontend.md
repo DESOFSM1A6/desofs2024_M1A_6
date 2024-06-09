@@ -35,13 +35,16 @@ O teste é uma parte crucial do desenvolvimento de software, pois ajuda a identi
 
 - Testes de unidade: Testes para verificar o comportamento individual de componentes ou funções dentro da aplicação.
 
-- Testes de integração: Testes para garantir que os diferentes componentes da aplicação funcionem corretamente juntos.
+![alt text](./MarkdownImages/FE/unitTest.png)
 
-- Testes de aceitação do usuário: Testes para verificar se a aplicação atende aos requisitos e expectativas dos usuários finais.
+![alt text](./MarkdownImages/FE/karma_tests.png)
 
-- Testes de desempenho: Testes para avaliar o desempenho da aplicação, como tempo de resposta, utilização de recursos, escalabilidade, etc.
 
 - Testes de segurança: Testes para identificar vulnerabilidades de segurança na aplicação, como vulnerabilidades de OWASP Top 10, ataques de injeção, etc.
+
+![alt text](./MarkdownImages/FE/oasp.png)
+
+![alt text](./MarkdownImages/FE/oasp1.png)
 
 ## Deployment steps
 
