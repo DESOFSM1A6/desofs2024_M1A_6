@@ -1,0 +1,6 @@
+{
+    "**/app/**": {
+        "target": "http://be:8080",
+        "secure": false
+    }
+}

@@ -20,4 +20,4 @@ RUN npm install
 # Build the project
 # RUN npm run build
 
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+CMD ["npm", "start"]
