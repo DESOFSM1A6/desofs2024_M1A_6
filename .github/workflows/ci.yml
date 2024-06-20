@@ -148,7 +148,7 @@ jobs:
     - name: Build Docker Image
       run: docker build -f ${{ env.DOCKERFILE_FE_PATH }} --build-arg PROJECT_PATH=/Code/FE/desofs-news -t ${{ env.DOCKER_FE_IMAGE_NAME }}:latest .
     - name: Docker Scout Scan
-      uses: docker/scout-action@v1.8.0
+      uses: docker/scout-action@v1.10.0
       with:
         dockerhub-user: ${{ secrets.DOCKER_USER }}
         dockerhub-password: ${{ secrets.DOCKER_PWD }}
@@ -178,7 +178,7 @@ jobs:
     - name: Build Docker Image
       run: docker build -f ${{ env.DOCKERFILE_BE_PATH }} --build-arg PROJECT_PATH=/Code/BE -t ${{ env.DOCKER_BE_IMAGE_NAME }}:latest .
     - name: Docker Scout Scan
-      uses: docker/scout-action@v1.8.0
+      uses: docker/scout-action@v1.10.0
       with:
         dockerhub-user: ${{ secrets.DOCKER_USER }}
         dockerhub-password: ${{ secrets.DOCKER_PWD }}
